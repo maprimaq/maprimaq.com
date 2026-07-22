@@ -16,7 +16,7 @@ const YEARS = new Date().getFullYear() - FOUNDED;
 /* ---- i18n ---- */
 const I18N = {
   es: {
-    'nav.divisions': 'Divisiones',
+    'nav.divisions': 'Servicios',
     'nav.service': 'Servicio técnico',
     'nav.brands': 'Marcas',
     'nav.presence': 'Presencia',
@@ -25,13 +25,13 @@ const I18N = {
     'hero.years': 'años',
     'hero.title': 'al servicio de la industria',
     'hero.lead': 'Conectamos a la industria con tecnología de clase mundial, representando marcas líderes en los sectores textil, plástico, energía, tratamiento de aguas e industria en general.',
-    'hero.cta1': 'Conoce nuestras divisiones',
+    'hero.cta1': 'Conoce nuestros servicios',
     'hero.cta2': 'Contáctanos',
     'stats.years': 'años de experiencia',
     'stats.countries': 'países en Centroamérica',
     'stats.brands': 'marcas representadas',
     'stats.divisions': 'divisiones especializadas',
-    'div.eyebrow': 'Nuestras divisiones',
+    'div.eyebrow': 'Nuestros servicios',
     'div.title': 'Soluciones para cada industria',
     'div.lead': 'Cada división de MAPRIMAQ está especializada en brindar tecnología de alto desempeño para distintos sectores industriales.',
     'div.textiles.title': 'Textiles',
@@ -109,11 +109,10 @@ const I18N = {
     'form.ok': '¡Gracias! Hemos recibido su mensaje y le contactaremos pronto.',
     'form.error': 'No se pudo enviar el mensaje. Escríbanos a info@maprimaq.com.',
     'form.invalid': 'Por favor complete los campos requeridos.',
-    'footer.tagline': 'Innovación industrial desde 1961.',
     'footer.rights': 'Todos los derechos reservados.',
   },
   en: {
-    'nav.divisions': 'Divisions',
+    'nav.divisions': 'Services',
     'nav.service': 'Technical service',
     'nav.brands': 'Brands',
     'nav.presence': 'Locations',
@@ -122,13 +121,13 @@ const I18N = {
     'hero.years': 'years',
     'hero.title': 'serving the industry',
     'hero.lead': 'We connect industry with world-class technology, representing leading brands in textiles, plastics, energy, water treatment and general industry.',
-    'hero.cta1': 'Explore our divisions',
+    'hero.cta1': 'Explore our services',
     'hero.cta2': 'Contact us',
     'stats.years': 'years of experience',
     'stats.countries': 'countries in Central America',
     'stats.brands': 'brands represented',
     'stats.divisions': 'specialized divisions',
-    'div.eyebrow': 'Our divisions',
+    'div.eyebrow': 'Our services',
     'div.title': 'Solutions for every industry',
     'div.lead': 'Each MAPRIMAQ division specializes in delivering high-performance technology for different industrial sectors.',
     'div.textiles.title': 'Textiles',
@@ -206,7 +205,6 @@ const I18N = {
     'form.ok': 'Thank you! We received your message and will get back to you soon.',
     'form.error': 'The message could not be sent. Please email us at info@maprimaq.com.',
     'form.invalid': 'Please fill in the required fields.',
-    'footer.tagline': 'Industrial innovation since 1961.',
     'footer.rights': 'All rights reserved.',
   },
 };
@@ -302,20 +300,6 @@ if (yearsStat) yearsStat.dataset.count = YEARS;
 const yearsEl = document.getElementById('yearsCounter');
 if (yearsEl) countUp(yearsEl, YEARS, 1800);
 
-const heroImg = document.querySelector('.hero-bg img');
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-if (heroImg && !prefersReducedMotion) {
-  window.addEventListener(
-    'scroll',
-    () => {
-      const y = window.scrollY;
-      if (y < window.innerHeight) {
-        heroImg.style.transform = `scale(1.08) translateY(${y * 0.18}px)`;
-      }
-    },
-    { passive: true }
-  );
-}
 
 /* ---- Machine hover previews ---- */
 // Any .division-list li with data-img shows a floating photo on hover;
