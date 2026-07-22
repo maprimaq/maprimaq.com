@@ -3,9 +3,10 @@
   "configurations": [
     {
       "name": "maprimaq-site",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8471"],
-      "port": 8471
+      "runtimeExecutable": "sh",
+      "runtimeArgs": ["-c", "python3 -m http.server \"$PORT\""],
+      "port": 8471,
+      "autoPort": true
     }
   ]
 }

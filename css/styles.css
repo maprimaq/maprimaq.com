@@ -458,7 +458,7 @@ h3 { font-size: 1.25rem; }
 .pattern-bg {
   position: absolute;
   inset: 0;
-  background: var(--red) url('../assets/img/pattern-filled.jpg') 55% 42% / 680% auto;
+  background: var(--red) url('../assets/img/pattern-filled.svg') 55% 42% / 680% auto;
 }
 .pattern-bg.subtle {
   background: var(--red) url('../assets/img/pattern-outline.jpg') center / cover;
@@ -630,8 +630,14 @@ h3 { font-size: 1.25rem; }
   gap: 2.5rem;
   padding: clamp(3rem, 6vw, 4.5rem) 0 2rem;
 }
-.footer-logo { height: 84px; width: auto; }
-@media (max-width: 600px) { .footer-logo { height: 60px; } }
+.footer-logo {
+  height: 140px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: left top;
+}
+@media (max-width: 600px) { .footer-logo { height: 100px; } }
 .footer-nav, .footer-contact { display: flex; flex-direction: column; gap: 0.7rem; }
 .footer-nav a, .footer-contact a {
   color: rgba(255, 255, 255, .75);
