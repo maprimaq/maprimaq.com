@@ -232,14 +232,18 @@ function applyLang(lang) {
 }
 
 /* ---- Collapsible service lists ---- */
-function syncToggleLabels() {
+// Sets one card's toggle label from an explicit state (avoids reading the
+// `open` class, which is toggled asynchronously while collapsing).
+function setCardLabel(card, open) {
+  const label = card.querySelector('.toggle-label');
+  if (!label) return;
   const dict = I18N[currentLang];
+  const count = card.querySelectorAll('.division-list li').length;
+  label.textContent = open ? dict['div.less'] : `${dict['div.more']} (${count})`;
+}
+function syncToggleLabels() {
   document.querySelectorAll('.division-card').forEach((card) => {
-    const label = card.querySelector('.toggle-label');
-    if (!label) return;
-    const count = card.querySelectorAll('.division-list li').length;
-    const open = card.classList.contains('open');
-    label.textContent = open ? dict['div.less'] : `${dict['div.more']} (${count})`;
+    setCardLabel(card, card.classList.contains('open'));
   });
 }
 
@@ -265,13 +269,26 @@ function setCardOpen(card, open) {
     });
   }
   btn.setAttribute('aria-expanded', String(open));
-  syncToggleLabels();
+  setCardLabel(card, open);
 }
 
-document.querySelectorAll('.division-toggle').forEach((btn) => {
-  btn.addEventListener('click', () => {
-    const card = btn.closest('.division-card');
+document.querySelectorAll('.division-card').forEach((card) => {
+  // Stagger the list-item rise animation.
+  card.querySelectorAll('.division-list li').forEach((li, i) => {
+    li.style.animationDelay = `${Math.min(i * 0.03, 0.4)}s`;
+  });
+  // The whole card header toggles; clicks inside the open list are ignored
+  // so hovering/clicking a service (and its machine preview) doesn't collapse.
+  card.addEventListener('click', (e) => {
+    if (e.target.closest('.division-list')) return;
     setCardOpen(card, !card.classList.contains('open'));
+  });
+  // Keyboard access via the focusable card.
+  card.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      setCardOpen(card, !card.classList.contains('open'));
+    }
   });
 });
 
