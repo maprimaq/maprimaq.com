@@ -6,7 +6,7 @@
   <title>MAPRIMAQ — Innovación Industrial</title>
   <meta name="description" content="Desde 1961 conectamos a la industria centroamericana con tecnología de clase mundial: textiles, plásticos, energía, tratamiento de aguas e industria en general.">
   <link rel="icon" type="image/png" href="assets/img/icon-1.png">
-  <link rel="stylesheet" href="css/styles.css?v=4">
+  <link rel="stylesheet" href="css/styles.css?v=9">
   <meta property="og:title" content="MAPRIMAQ — Innovación Industrial">
   <meta property="og:description" content="65 años al servicio de la industria. Representamos marcas líderes mundiales en Guatemala, El Salvador y Honduras.">
   <meta property="og:image" content="assets/img/logo-color.png">
@@ -102,68 +102,92 @@
             list item to show its photo on hover; add data-brand="Marca" when the
             brand name should be displayed (omit it for anonymous machines).
           -->
-          <ul class="division-list">
-            <li data-i18n="div.textiles.i1" data-img="assets/img/machines/rieter.jpg" data-brand="Rieter">Hilatura de fibra corta y larga</li>
-            <li data-i18n="div.textiles.i2" data-img="assets/img/machines/mayer-cie.jpg" data-brand="Mayer &amp; Cie.">Tejido de punto circular</li>
-            <li data-i18n="div.textiles.i3" data-img="assets/img/machines/picanol.jpg" data-brand="Picanol">Telares</li>
-            <li data-i18n="div.textiles.i4" data-img="assets/img/machines/lafer.jpg" data-brand="Lafer">Tintura, estampado y acabados</li>
-            <li data-i18n="div.textiles.i5" data-img="assets/img/machines/baldwin.jpg" data-brand="Baldwin">Líneas continuas de teñido y acabado para tejido plano</li>
-            <li data-i18n="div.textiles.i6" data-img="assets/img/machines/ssm.jpg" data-brand="SSM">Máquinas para enconar y procesar hilo</li>
-            <li data-i18n="div.textiles.i7">Acondicionamiento al vacío y tratamiento de hilos en procesos continuos</li>
-            <li data-i18n="div.textiles.i8">Sistemas de hilos de fantasía con efectos especiales</li>
-            <li data-i18n="div.textiles.i9" data-img="assets/img/machines/reseda-binder.jpg" data-brand="Reseda Binder">Parafinado de hilo</li>
-            <li data-i18n="div.textiles.i10" data-img="assets/img/machines/rimtex.jpg" data-brand="Rimtex">Botes de hilatura</li>
-            <li data-i18n="div.textiles.i11" data-img="assets/img/machines/uster.jpg" data-brand="USTER">Detección de metales, chispas y fibras extrañas</li>
-            <li data-i18n="div.textiles.i12">Laboratorios e instrumentos para hilanderías</li>
-            <li data-i18n="div.textiles.i13" data-img="assets/img/machines/orox.jpg" data-brand="Orox">Líneas de costura automática</li>
-            <li data-i18n="div.textiles.i14" data-img="assets/img/machines/laroche-andritz.jpg" data-brand="Laroche · ANDRITZ">Líneas de reciclaje</li>
-            <li data-i18n="div.textiles.i15">Climatización</li>
-            <li data-i18n="div.textiles.i16">Sistemas industriales de aspiración</li>
-            <li data-i18n="div.textiles.i17">Libros de tendencias de moda</li>
-          </ul>
+          <button class="division-toggle" type="button" aria-expanded="false">
+            <span class="toggle-label"></span>
+            <svg class="toggle-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="division-list-wrap">
+            <ul class="division-list">
+              <li data-i18n="div.textiles.i1" data-img="assets/img/machines/rieter.jpg" data-brand="Rieter">Hilatura de fibra corta y larga</li>
+              <li data-i18n="div.textiles.i2" data-img="assets/img/machines/mayer-cie.jpg" data-brand="Mayer &amp; Cie.">Tejido de punto circular</li>
+              <li data-i18n="div.textiles.i3" data-img="assets/img/machines/picanol.jpg" data-brand="Picanol">Telares</li>
+              <li data-i18n="div.textiles.i4" data-img="assets/img/machines/lafer.jpg" data-brand="Lafer">Tintura, estampado y acabados</li>
+              <li data-i18n="div.textiles.i5" data-img="assets/img/machines/baldwin.jpg" data-brand="Baldwin">Líneas continuas de teñido y acabado para tejido plano</li>
+              <li data-i18n="div.textiles.i6" data-img="assets/img/machines/ssm.jpg" data-brand="SSM">Máquinas para enconar y procesar hilo</li>
+              <li data-i18n="div.textiles.i7">Acondicionamiento al vacío y tratamiento de hilos en procesos continuos</li>
+              <li data-i18n="div.textiles.i8">Sistemas de hilos de fantasía con efectos especiales</li>
+              <li data-i18n="div.textiles.i9" data-img="assets/img/machines/reseda-binder.jpg" data-brand="Reseda Binder">Parafinado de hilo</li>
+              <li data-i18n="div.textiles.i10" data-img="assets/img/machines/rimtex.jpg" data-brand="Rimtex">Botes de hilatura</li>
+              <li data-i18n="div.textiles.i11" data-img="assets/img/machines/uster.jpg" data-brand="USTER">Detección de metales, chispas y fibras extrañas</li>
+              <li data-i18n="div.textiles.i12">Laboratorios e instrumentos para hilanderías</li>
+              <li data-i18n="div.textiles.i13" data-img="assets/img/machines/orox.jpg" data-brand="Orox">Líneas de costura automática</li>
+              <li data-i18n="div.textiles.i14" data-img="assets/img/machines/laroche-andritz.jpg" data-brand="Laroche · ANDRITZ">Líneas de reciclaje</li>
+              <li data-i18n="div.textiles.i15">Climatización</li>
+              <li data-i18n="div.textiles.i16">Sistemas industriales de aspiración</li>
+              <li data-i18n="div.textiles.i17">Libros de tendencias de moda</li>
+            </ul>
+          </div>
         </article>
 
         <article class="division-card reveal" tabindex="0">
           <div class="division-icon" aria-hidden="true"><img src="assets/img/icon-1.png" alt=""></div>
           <h3 data-i18n="div.plastics.title">Plásticos</h3>
           <p data-i18n="div.plastics.desc">Maquinaria para transformación, reciclaje y producción de envases plásticos con soluciones enfocadas en productividad y sostenibilidad.</p>
-          <ul class="division-list">
-            <li data-i18n="div.plastics.i1" data-img="assets/img/machines/bandera.jpg" data-brand="Bandera">Extrusión</li>
-            <li data-i18n="div.plastics.i2" data-img="assets/img/machines/bekum.jpg" data-brand="Bekum">Soplado</li>
-            <li data-i18n="div.plastics.i3" data-img="assets/img/machines/wittmann-injection.jpg" data-brand="Wittmann">Inyección</li>
-            <li data-i18n="div.plastics.i4">Termoformado</li>
-            <li data-i18n="div.plastics.i5">Maquinaria para tubos plásticos flexibles</li>
-            <li data-i18n="div.plastics.i6" data-img="assets/img/machines/wittmann-robot.jpg" data-brand="Wittmann">Equipos auxiliares y automatización completa</li>
-            <li data-i18n="div.plastics.i7" data-img="assets/img/machines/chillers.jpg">Sistemas de enfriamiento</li>
-            <li data-i18n="div.plastics.i8" data-img="assets/img/machines/ngr.jpg" data-brand="NGR">Reciclaje post-industrial y post-consumo</li>
-            <li data-i18n="div.plastics.i9">Plantas llave en mano para producción de diésel</li>
-            <li data-i18n="div.plastics.i10">Resinas y compuestos para películas de empaque</li>
-            <li data-i18n="div.plastics.i11">Sistemas industriales de aspiración</li>
-          </ul>
+          <button class="division-toggle" type="button" aria-expanded="false">
+            <span class="toggle-label"></span>
+            <svg class="toggle-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="division-list-wrap">
+            <ul class="division-list">
+              <li data-i18n="div.plastics.i1" data-img="assets/img/machines/bandera.jpg" data-brand="Bandera">Extrusión</li>
+              <li data-i18n="div.plastics.i2" data-img="assets/img/machines/bekum.jpg" data-brand="Bekum">Soplado</li>
+              <li data-i18n="div.plastics.i3" data-img="assets/img/machines/wittmann-injection.jpg" data-brand="Wittmann">Inyección</li>
+              <li data-i18n="div.plastics.i4">Termoformado</li>
+              <li data-i18n="div.plastics.i5">Maquinaria para tubos plásticos flexibles</li>
+              <li data-i18n="div.plastics.i6" data-img="assets/img/machines/wittmann-robot.jpg" data-brand="Wittmann">Equipos auxiliares y automatización completa</li>
+              <li data-i18n="div.plastics.i7" data-img="assets/img/machines/chillers.jpg">Sistemas de enfriamiento</li>
+              <li data-i18n="div.plastics.i8" data-img="assets/img/machines/ngr.jpg" data-brand="NGR">Reciclaje post-industrial y post-consumo</li>
+              <li data-i18n="div.plastics.i9">Plantas llave en mano para producción de diésel</li>
+              <li data-i18n="div.plastics.i10">Resinas y compuestos para películas de empaque</li>
+              <li data-i18n="div.plastics.i11">Sistemas industriales de aspiración</li>
+            </ul>
+          </div>
         </article>
 
         <article class="division-card reveal" tabindex="0">
           <div class="division-icon" aria-hidden="true"><img src="assets/img/icon-1.png" alt=""></div>
           <h3 data-i18n="div.energy.title">Ambiente y Energía</h3>
           <p data-i18n="div.energy.desc">Equipos y soluciones para proyectos energéticos e hidroeléctricos con tecnología de alto rendimiento.</p>
-          <ul class="division-list">
-            <li data-i18n="div.energy.i1" data-img="assets/img/machines/idrosistem.jpg" data-brand="Idrosistem">Tratamiento de aguas residuales industriales</li>
-            <li data-i18n="div.energy.i2" data-img="assets/img/machines/ngr.jpg" data-brand="NGR">Líneas completas de reciclaje de plástico</li>
-            <li data-i18n="div.energy.i3" data-img="assets/img/machines/pierret.jpg" data-brand="Pierret">Líneas de reciclaje textil</li>
-            <li data-i18n="div.energy.i4" data-img="assets/img/machines/troyer.jpg" data-brand="Troyer">Energía hidroeléctrica</li>
-          </ul>
+          <button class="division-toggle" type="button" aria-expanded="false">
+            <span class="toggle-label"></span>
+            <svg class="toggle-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="division-list-wrap">
+            <ul class="division-list">
+              <li data-i18n="div.energy.i1" data-img="assets/img/machines/idrosistem.jpg" data-brand="Idrosistem">Tratamiento de aguas residuales industriales</li>
+              <li data-i18n="div.energy.i2" data-img="assets/img/machines/ngr.jpg" data-brand="NGR">Líneas completas de reciclaje de plástico</li>
+              <li data-i18n="div.energy.i3" data-img="assets/img/machines/pierret.jpg" data-brand="Pierret">Líneas de reciclaje textil</li>
+              <li data-i18n="div.energy.i4" data-img="assets/img/machines/troyer.jpg" data-brand="Troyer">Energía hidroeléctrica</li>
+            </ul>
+          </div>
         </article>
 
         <article class="division-card reveal" tabindex="0">
           <div class="division-icon" aria-hidden="true"><img src="assets/img/icon-1.png" alt=""></div>
           <h3 data-i18n="div.industrial.title">Equipo Industrial</h3>
           <p data-i18n="div.industrial.desc">Equipos y soluciones para diversos procesos industriales, representando fabricantes reconocidos por su innovación, eficiencia y confiabilidad.</p>
-          <ul class="division-list">
-            <li data-i18n="div.industrial.i1">Sistemas de aspiración industrial y de alto vacío</li>
-            <li data-i18n="div.industrial.i2">Climatización industrial</li>
-            <li data-i18n="div.industrial.i3" data-img="assets/img/machines/wieland.jpg" data-brand="Wieland">Sistemas de enfriamiento</li>
-            <li data-i18n="div.industrial.i4">Automatización de bodegas y estacionamientos</li>
-          </ul>
+          <button class="division-toggle" type="button" aria-expanded="false">
+            <span class="toggle-label"></span>
+            <svg class="toggle-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="division-list-wrap">
+            <ul class="division-list">
+              <li data-i18n="div.industrial.i1">Sistemas de aspiración industrial y de alto vacío</li>
+              <li data-i18n="div.industrial.i2">Climatización industrial</li>
+              <li data-i18n="div.industrial.i3" data-img="assets/img/machines/wieland.jpg" data-brand="Wieland">Sistemas de enfriamiento</li>
+              <li data-i18n="div.industrial.i4">Automatización de bodegas y estacionamientos</li>
+            </ul>
+          </div>
         </article>
       </div>
     </div>
@@ -298,6 +322,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=2"></script>
+  <script src="js/main.js?v=4"></script>
 </body>
 </html>

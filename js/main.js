@@ -34,6 +34,8 @@ const I18N = {
     'div.eyebrow': 'Nuestros servicios',
     'div.title': 'Soluciones para cada industria',
     'div.lead': 'Cada división de MAPRIMAQ está especializada en brindar tecnología de alto desempeño para distintos sectores industriales.',
+    'div.more': 'Ver servicios',
+    'div.less': 'Ver menos',
     'div.textiles.title': 'Textiles',
     'div.textiles.desc': 'Tecnología para toda la cadena de producción textil, desde hilatura hasta procesos especializados, respaldada por marcas líderes a nivel mundial.',
     'div.textiles.i1': 'Hilatura de fibra corta y larga',
@@ -130,6 +132,8 @@ const I18N = {
     'div.eyebrow': 'Our services',
     'div.title': 'Solutions for every industry',
     'div.lead': 'Each MAPRIMAQ division specializes in delivering high-performance technology for different industrial sectors.',
+    'div.more': 'View services',
+    'div.less': 'Show less',
     'div.textiles.title': 'Textiles',
     'div.textiles.desc': 'Technology for the entire textile production chain, from spinning to specialized processes, backed by world-leading brands.',
     'div.textiles.i1': 'Short and long staple spinning',
@@ -224,7 +228,52 @@ function applyLang(lang) {
   document.querySelectorAll('[data-lang-opt]').forEach((el) => {
     el.classList.toggle('active', el.getAttribute('data-lang-opt') === lang);
   });
+  syncToggleLabels();
 }
+
+/* ---- Collapsible service lists ---- */
+function syncToggleLabels() {
+  const dict = I18N[currentLang];
+  document.querySelectorAll('.division-card').forEach((card) => {
+    const label = card.querySelector('.toggle-label');
+    if (!label) return;
+    const count = card.querySelectorAll('.division-list li').length;
+    const open = card.classList.contains('open');
+    label.textContent = open ? dict['div.less'] : `${dict['div.more']} (${count})`;
+  });
+}
+
+function setCardOpen(card, open) {
+  const btn = card.querySelector('.division-toggle');
+  const wrap = card.querySelector('.division-list-wrap');
+  if (open) {
+    card.classList.add('open');
+    wrap.style.maxHeight = wrap.scrollHeight + 'px';
+    // After expanding, lift the cap so language switches / reflow can't clip it.
+    wrap.addEventListener('transitionend', function lift(e) {
+      if (e.propertyName === 'max-height' && card.classList.contains('open')) {
+        wrap.style.maxHeight = 'none';
+      }
+      wrap.removeEventListener('transitionend', lift);
+    });
+  } else {
+    // Set an explicit height first so the transition from 'none' animates.
+    wrap.style.maxHeight = wrap.scrollHeight + 'px';
+    requestAnimationFrame(() => {
+      card.classList.remove('open');
+      wrap.style.maxHeight = '0px';
+    });
+  }
+  btn.setAttribute('aria-expanded', String(open));
+  syncToggleLabels();
+}
+
+document.querySelectorAll('.division-toggle').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const card = btn.closest('.division-card');
+    setCardOpen(card, !card.classList.contains('open'));
+  });
+});
 
 const langToggle = document.getElementById('langToggle');
 langToggle.addEventListener('click', () => applyLang(currentLang === 'es' ? 'en' : 'es'));

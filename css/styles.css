@@ -137,9 +137,13 @@ h3 { font-size: 1.25rem; }
   justify-content: space-between;
   gap: 1rem;
 }
-.header-logo { display: flex; align-items: center; gap: 9px; }
-.header-logo img { height: 30px; width: auto; }
+.header-logo { display: flex; align-items: center; gap: 13px; }
+.header-logo img { height: 54px; width: auto; }
 .header-logo .logo-text { filter: brightness(0); }
+@media (max-width: 600px) {
+  .header-logo img { height: 42px; }
+  .header-logo { gap: 10px; }
+}
 
 .site-header.scrolled { box-shadow: 0 2px 18px rgba(0, 0, 0, .08); }
 
@@ -372,18 +376,52 @@ h3 { font-size: 1.25rem; }
 .division-icon img { width: 46px; height: auto; margin-bottom: 1.1rem; }
 .division-card h3 { margin-bottom: 0.6rem; }
 .division-card > p { color: var(--gray); font-size: 0.95rem; }
-.division-list {
-  margin-top: 1.1rem;
-  list-style: none;
+
+/* Toggle button that expands the full service list */
+.division-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.3rem;
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  color: var(--red);
+  transition: color .2s;
+}
+.division-toggle:hover { color: var(--red-bright); }
+.toggle-chevron {
+  width: 15px;
+  height: 15px;
+  transition: transform .35s var(--ease);
+}
+.division-card.open .toggle-chevron { transform: rotate(180deg); }
+
+/* Collapsible list (animated via max-height, set in JS) */
+.division-list-wrap {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .5s var(--ease);
+}
+.division-card.open .division-list-wrap {
+  margin-top: 1rem;
   border-top: 1px solid var(--line);
   padding-top: 1rem;
-  columns: 2;
+}
+.division-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   column-gap: 1.6rem;
 }
 @media (max-width: 520px) {
-  .division-list { columns: 1; }
+  .division-list { grid-template-columns: 1fr; }
 }
-.division-list li { break-inside: avoid; }
 
 @media (hover: hover) {
   .division-list li[data-img] {
