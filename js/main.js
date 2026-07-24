@@ -253,14 +253,14 @@ function setCardOpen(card, open) {
   if (open) {
     card.classList.add('open');
     wrap.style.maxHeight = wrap.scrollHeight + 'px';
-    // After expanding, lift the cap so language switches / reflow can't clip it.
-    wrap.addEventListener('transitionend', function lift(e) {
-      if (e.propertyName === 'max-height' && card.classList.contains('open')) {
-        wrap.style.maxHeight = 'none';
-      }
-      wrap.removeEventListener('transitionend', lift);
-    });
+    // After the expand finishes, lift the cap so a language switch or reflow
+    // (which can make the text taller) can never clip the list.
+    clearTimeout(wrap._liftTimer);
+    wrap._liftTimer = setTimeout(() => {
+      if (card.classList.contains('open')) wrap.style.maxHeight = 'none';
+    }, 550);
   } else {
+    clearTimeout(wrap._liftTimer);
     // Set an explicit height first so the transition from 'none' animates.
     wrap.style.maxHeight = wrap.scrollHeight + 'px';
     requestAnimationFrame(() => {

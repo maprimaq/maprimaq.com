@@ -448,11 +448,11 @@ h3 { font-size: 1.25rem; }
 }
 .division-list {
   list-style: none;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  columns: 230px;
   column-gap: 1.8rem;
   cursor: default;
 }
+.division-list li { break-inside: avoid; }
 /* Items rise in gently once the panel opens */
 .division-card.open .division-list li {
   animation: liRise .5s var(--ease) backwards;
@@ -463,9 +463,6 @@ h3 { font-size: 1.25rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   .division-card.open .division-list li { animation: none; }
-}
-@media (max-width: 520px) {
-  .division-list { grid-template-columns: 1fr; }
 }
 
 @media (hover: hover) {
