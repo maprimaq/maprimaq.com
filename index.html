@@ -6,7 +6,7 @@
   <title>MAPRIMAQ — Innovación Industrial</title>
   <meta name="description" content="Desde 1961 conectamos a la industria centroamericana con tecnología de clase mundial: textiles, plásticos, energía, tratamiento de aguas e industria en general.">
   <link rel="icon" type="image/png" href="assets/img/icon-1.png">
-  <link rel="stylesheet" href="css/styles.css?v=13">
+  <link rel="stylesheet" href="css/styles.css?v=14">
   <meta property="og:title" content="MAPRIMAQ — Innovación Industrial">
   <meta property="og:description" content="65 años al servicio de la industria. Representamos marcas líderes mundiales en Guatemala, El Salvador y Honduras.">
   <meta property="og:image" content="assets/img/logo-color.png">
@@ -21,6 +21,7 @@
         <img class="logo-text" src="assets/img/logo-text.png" alt="MAPRIMAQ">
       </a>
       <nav class="header-nav" id="headerNav" aria-label="Principal">
+        <a href="#nosotros" data-i18n="nav.about">Nosotros</a>
         <a href="#servicios" data-i18n="nav.divisions">Servicios</a>
         <a href="#mapritecnica" data-i18n="nav.service">Servicio técnico</a>
         <a href="#marcas" data-i18n="nav.brands">Marcas</a>
@@ -38,8 +39,17 @@
 
   <!-- ======= Hero ======= -->
   <section class="hero" id="inicio">
+    <!-- ============================================================
+         HERO CAROUSEL IMAGES
+         To change the rotating hero photos, simply swap the src="…"
+         of the <img> tags below (add or remove slides freely — the
+         carousel adapts). The first image is the one shown on load.
+         Timing lives in js/main.js (HERO_SLIDE_MS).
+         ============================================================ -->
     <div class="hero-bg" aria-hidden="true">
-      <img src="assets/img/hero-spinning.jpg" alt="" fetchpriority="high">
+      <img class="hero-slide is-active" src="assets/img/hero-spinning.jpg" alt="" fetchpriority="high">
+      <img class="hero-slide" src="assets/img/hero-machinery.webp" alt="" loading="lazy">
+      <img class="hero-slide" src="assets/img/rieter-spinning.webp" alt="" loading="lazy">
       <div class="hero-scrim"></div>
     </div>
     <div class="container hero-grid">
@@ -73,12 +83,51 @@
         <span class="stat-label" data-i18n="stats.countries">países en Centroamérica</span>
       </div>
       <div class="stat reveal">
-        <span class="stat-number" data-count="18">0</span><span class="stat-plus">+</span>
+        <span class="stat-number" data-count="100">0</span><span class="stat-plus">+</span>
         <span class="stat-label" data-i18n="stats.brands">marcas representadas</span>
       </div>
       <div class="stat reveal">
         <span class="stat-number" data-count="4">0</span>
         <span class="stat-label" data-i18n="stats.divisions">divisiones especializadas</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Nosotros / About ======= -->
+  <section class="about section" id="nosotros">
+    <div class="container about-grid">
+      <div class="about-copy">
+        <p class="eyebrow reveal" data-i18n="about.eyebrow">Nosotros</p>
+        <h2 class="reveal" data-i18n="about.title">Tres generaciones al servicio de la industria</h2>
+        <p class="reveal" data-i18n="about.p1">Somos una empresa familiar en la tercera generación, fundada en agosto de 1961. Desde entonces conectamos a la industria centroamericana con tecnología de clase mundial.</p>
+        <p class="reveal" data-i18n="about.p2">Cooperamos comercialmente con empresas fabricantes de equipos para las industrias textil, del plástico, hidroeléctricas y plantas de tratamiento de aguas industriales. Los equipos que comercializamos provienen de Europa, Asia, América del Norte y América del Sur.</p>
+        <p class="reveal" data-i18n="about.p3">MAPRIMAQ es la única empresa a nivel centroamericano que puede ofrecer localmente montajes, puestas en marcha y servicio posventa de equipos de hilatura de la marca Rieter. Nuestros ingenieros de servicio además han trabajado en Turquía, Portugal, Perú y Centroamérica brindando servicio posventa para equipos de hilatura Rieter.</p>
+        <p class="reveal" data-i18n="about.p4">Hemos participado exitosamente en ferias industriales como INTERFER en los años 90 y, más recientemente, en el Apparel &amp; Sourcing Show de la Ciudad de Guatemala.</p>
+      </div>
+      <div class="about-timeline reveal">
+        <h3 data-i18n="about.tlTitle">Hitos históricos</h3>
+        <ol class="timeline">
+          <li>
+            <span class="tl-year">1961</span>
+            <p data-i18n="about.t1961">Fundación de la empresa en Guatemala.</p>
+          </li>
+          <li>
+            <span class="tl-year">1984</span>
+            <p data-i18n="about.t1984">Venta en Guatemala y Latinoamérica de la primera máquina para hilatura marca Schubert &amp; Salzer – Ingolstadt, modelo RU 14.</p>
+          </li>
+          <li>
+            <span class="tl-year">1985</span>
+            <p data-i18n="about.t1985">Venta en Guatemala de la primera sopladora de envases plásticos marca Bekum, modelo BM 08.</p>
+          </li>
+          <li>
+            <span class="tl-year">1995</span>
+            <p data-i18n="about.t1995">Venta de la primera planta biológica en Guatemala para la depuración de aguas residuales textiles, marca Idrosistem.</p>
+          </li>
+          <li>
+            <span class="tl-year">2021</span>
+            <p data-i18n="about.t2021">Venta en Honduras de la planta de hilatura más grande de Centroamérica, marca Rieter.</p>
+          </li>
+        </ol>
       </div>
     </div>
   </section>
@@ -92,10 +141,16 @@
         <p class="section-lead" data-i18n="div.lead">Cada división de MAPRIMAQ está especializada en brindar tecnología de alto desempeño para distintos sectores industriales.</p>
       </div>
 
+      <!-- ============================================================
+           SERVICE CARD PHOTOS
+           Each card shows a photo (class="division-photo") on the right.
+           To change a card's photo, swap the src="…" of its <img> below.
+           ============================================================ -->
       <div class="division-grid">
         <article class="division-card reveal" tabindex="0">
           <div class="division-head">
             <div class="division-icon" aria-hidden="true"><img src="assets/img/icon-1.png" alt=""></div>
+            <div class="division-photo" aria-hidden="true"><img src="assets/img/machines/rieter.jpg" alt="" loading="lazy"></div>
             <h3 data-i18n="div.textiles.title">Textiles</h3>
             <p data-i18n="div.textiles.desc">Tecnología para toda la cadena de producción textil, desde hilatura hasta procesos especializados, respaldada por marcas líderes a nivel mundial.</p>
             <!--
@@ -134,6 +189,7 @@
         <article class="division-card reveal" tabindex="0">
           <div class="division-head">
             <div class="division-icon" aria-hidden="true"><img src="assets/img/icon-1.png" alt=""></div>
+            <div class="division-photo" aria-hidden="true"><img src="assets/img/machines/bekum.jpg" alt="" loading="lazy"></div>
             <h3 data-i18n="div.plastics.title">Plásticos</h3>
             <p data-i18n="div.plastics.desc">Maquinaria para transformación, reciclaje y producción de envases plásticos con soluciones enfocadas en productividad y sostenibilidad.</p>
             <button class="division-toggle" type="button" aria-expanded="false">
@@ -161,6 +217,7 @@
         <article class="division-card reveal" tabindex="0">
           <div class="division-head">
             <div class="division-icon" aria-hidden="true"><img src="assets/img/icon-1.png" alt=""></div>
+            <div class="division-photo" aria-hidden="true"><img src="assets/img/machines/troyer.jpg" alt="" loading="lazy"></div>
             <h3 data-i18n="div.energy.title">Ambiente y Energía</h3>
             <p data-i18n="div.energy.desc">Equipos y soluciones para proyectos energéticos e hidroeléctricos con tecnología de alto rendimiento.</p>
             <button class="division-toggle" type="button" aria-expanded="false">
@@ -181,6 +238,7 @@
         <article class="division-card reveal" tabindex="0">
           <div class="division-head">
             <div class="division-icon" aria-hidden="true"><img src="assets/img/icon-1.png" alt=""></div>
+            <div class="division-photo" aria-hidden="true"><img src="assets/img/machines/wieland.jpg" alt="" loading="lazy"></div>
             <h3 data-i18n="div.industrial.title">Equipo Industrial</h3>
             <p data-i18n="div.industrial.desc">Equipos y soluciones para diversos procesos industriales, representando fabricantes reconocidos por su innovación, eficiencia y confiabilidad.</p>
             <button class="division-toggle" type="button" aria-expanded="false">
@@ -241,24 +299,61 @@
   <section class="presence section" id="presencia">
     <div class="container">
       <div class="section-head reveal">
-        <p class="eyebrow" data-i18n="pres.eyebrow">Presencia regional</p>
+        <p class="eyebrow" data-i18n="pres.eyebrow">Nuestras sedes</p>
         <h2 data-i18n="pres.title">Cerca de su operación</h2>
       </div>
-      <div class="presence-grid">
-        <div class="presence-card reveal">
-          <span class="presence-tag" data-i18n="pres.hq">Sede central</span>
-          <h3>Guatemala</h3>
-          <p data-i18n="pres.gt">Ciudad de Guatemala, Guatemala</p>
+      <div class="presence-layout">
+        <!-- Stylized minimalist map of Guatemala · El Salvador · Honduras -->
+        <div class="presence-map reveal">
+          <svg viewBox="0 0 620 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mapa de Centroamérica con las sedes de MAPRIMAQ">
+            <!-- Neighboring countries (context, extra muted) -->
+            <path class="map-neighbor" d="M0,193 L42,211 45,171 71,125 143,125 143,27 216,27 269,0 0,0 Z"/>
+            <path class="map-neighbor" d="M216,27 L269,0 263,78 232,132 212,135 Z"/>
+            <path class="map-neighbor" d="M552,185 L543,241 532,325 521,400 414,400 398,386 350,342 333,297 350,280 370,255 406,249 448,199 476,204 515,188 Z"/>
+            <!-- Guatemala -->
+            <path class="map-country" d="M42,211 L45,171 71,125 143,125 143,27 216,27 212,135 246,144 213,179 204,217 162,246 162,255 100,232 Z"/>
+            <!-- Honduras -->
+            <path class="map-country" d="M246,144 L286,136 336,134 372,141 403,129 437,134 476,140 515,162 552,185 515,188 476,204 448,199 406,249 370,255 350,280 333,297 305,277 297,252 255,232 204,217 213,179 Z"/>
+            <!-- El Salvador -->
+            <path class="map-country" d="M162,246 L204,217 255,232 297,252 296,273 258,288 207,269 162,255 Z"/>
+            <!-- Country labels -->
+            <text class="map-label" x="98" y="168">Guatemala</text>
+            <text class="map-label" x="398" y="192">Honduras</text>
+            <text class="map-label" x="236" y="310">El Salvador</text>
+            <!-- Office pins -->
+            <g class="map-pin">
+              <circle class="pulse" cx="139" cy="206" r="14"/>
+              <circle class="dot" cx="139" cy="206" r="6"/>
+              <text class="pin-label" x="139" y="190">Ciudad de Guatemala</text>
+            </g>
+            <g class="map-pin">
+              <circle class="pulse" cx="213" cy="258" r="14"/>
+              <circle class="dot" cx="213" cy="258" r="6"/>
+              <text class="pin-label" x="213" y="245">San Salvador</text>
+            </g>
+            <g class="map-pin">
+              <circle class="pulse" cx="278" cy="157" r="14"/>
+              <circle class="dot" cx="278" cy="157" r="6"/>
+              <text class="pin-label" x="278" y="141">San Pedro Sula</text>
+            </g>
+          </svg>
         </div>
-        <div class="presence-card reveal">
-          <span class="presence-tag" data-i18n="pres.office">Oficina</span>
-          <h3>El Salvador</h3>
-          <p data-i18n="pres.sv">San Salvador, El Salvador</p>
-        </div>
-        <div class="presence-card reveal">
-          <span class="presence-tag" data-i18n="pres.office2">Oficina</span>
-          <h3>Honduras</h3>
-          <p data-i18n="pres.hn">San Pedro Sula, Honduras</p>
+        <div class="presence-grid">
+          <div class="presence-card reveal">
+            <span class="presence-tag" data-i18n="pres.hq">Oficina principal</span>
+            <h3>Guatemala</h3>
+            <p data-i18n="pres.gt">Ciudad de Guatemala, Guatemala</p>
+          </div>
+          <div class="presence-card reveal">
+            <span class="presence-tag" data-i18n="pres.office">Oficina</span>
+            <h3>El Salvador</h3>
+            <p data-i18n="pres.sv">San Salvador, El Salvador</p>
+          </div>
+          <div class="presence-card reveal">
+            <span class="presence-tag" data-i18n="pres.office2">Oficina</span>
+            <h3>Honduras</h3>
+            <p data-i18n="pres.hn">San Pedro Sula, Honduras</p>
+          </div>
         </div>
       </div>
     </div>
@@ -315,6 +410,7 @@
         <img src="assets/img/logo-footer.png" alt="MAPRIMAQ — Innovación Industrial" class="footer-logo">
       </div>
       <nav class="footer-nav" aria-label="Footer">
+        <a href="#nosotros" data-i18n="nav.about">Nosotros</a>
         <a href="#servicios" data-i18n="nav.divisions">Servicios</a>
         <a href="#mapritecnica" data-i18n="nav.service">Servicio técnico</a>
         <a href="#marcas" data-i18n="nav.brands">Marcas</a>
@@ -330,6 +426,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=6"></script>
+  <script src="js/main.js?v=7"></script>
 </body>
 </html>

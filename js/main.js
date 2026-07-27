@@ -13,13 +13,20 @@ const ODOO_URL = 'https://odoo.maprimaq.com';
 const FOUNDED = 1961;
 const YEARS = new Date().getFullYear() - FOUNDED;
 
+// Hero carousel: milliseconds each slide stays on screen.
+// The images themselves are plain <img class="hero-slide"> tags in
+// index.html (see the HERO CAROUSEL IMAGES comment there) — swap the
+// src attributes to change them.
+const HERO_SLIDE_MS = 5000;
+
 /* ---- i18n ---- */
 const I18N = {
   es: {
+    'nav.about': 'Nosotros',
     'nav.divisions': 'Servicios',
     'nav.service': 'Servicio técnico',
     'nav.brands': 'Marcas',
-    'nav.presence': 'Presencia',
+    'nav.presence': 'Sedes',
     'nav.contact': 'Contáctanos',
     'hero.kicker': 'Innovación industrial desde 1961',
     'hero.years': 'años',
@@ -31,6 +38,18 @@ const I18N = {
     'stats.countries': 'países en Centroamérica',
     'stats.brands': 'marcas representadas',
     'stats.divisions': 'divisiones especializadas',
+    'about.eyebrow': 'Nosotros',
+    'about.title': 'Tres generaciones al servicio de la industria',
+    'about.p1': 'Somos una empresa familiar en la tercera generación, fundada en agosto de 1961. Desde entonces conectamos a la industria centroamericana con tecnología de clase mundial.',
+    'about.p2': 'Cooperamos comercialmente con empresas fabricantes de equipos para las industrias textil, del plástico, hidroeléctricas y plantas de tratamiento de aguas industriales. Los equipos que comercializamos provienen de Europa, Asia, América del Norte y América del Sur.',
+    'about.p3': 'MAPRIMAQ es la única empresa a nivel centroamericano que puede ofrecer localmente montajes, puestas en marcha y servicio posventa de equipos de hilatura de la marca Rieter. Nuestros ingenieros de servicio además han trabajado en Turquía, Portugal, Perú y Centroamérica brindando servicio posventa para equipos de hilatura Rieter.',
+    'about.p4': 'Hemos participado exitosamente en ferias industriales como INTERFER en los años 90 y, más recientemente, en el Apparel & Sourcing Show de la Ciudad de Guatemala.',
+    'about.tlTitle': 'Hitos históricos',
+    'about.t1961': 'Fundación de la empresa en Guatemala.',
+    'about.t1984': 'Venta en Guatemala y Latinoamérica de la primera máquina para hilatura marca Schubert & Salzer – Ingolstadt, modelo RU 14.',
+    'about.t1985': 'Venta en Guatemala de la primera sopladora de envases plásticos marca Bekum, modelo BM 08.',
+    'about.t1995': 'Venta de la primera planta biológica en Guatemala para la depuración de aguas residuales textiles, marca Idrosistem.',
+    'about.t2021': 'Venta en Honduras de la planta de hilatura más grande de Centroamérica, marca Rieter.',
     'div.eyebrow': 'Nuestros servicios',
     'div.title': 'Soluciones para cada industria',
     'div.lead': 'Cada división de MAPRIMAQ está especializada en brindar tecnología de alto desempeño para distintos sectores industriales.',
@@ -90,9 +109,9 @@ const I18N = {
     'brands.eyebrow': 'Nuestras marcas',
     'brands.title': 'Representamos a líderes mundiales',
     'brands.lead': 'Trabajamos junto a fabricantes internacionales provenientes de Europa, Asia, Norteamérica y Sudamérica para ofrecer tecnología confiable, innovadora y de alto desempeño.',
-    'pres.eyebrow': 'Presencia regional',
+    'pres.eyebrow': 'Nuestras sedes',
     'pres.title': 'Cerca de su operación',
-    'pres.hq': 'Sede central',
+    'pres.hq': 'Oficina principal',
     'pres.office': 'Oficina',
     'pres.office2': 'Oficina',
     'pres.gt': 'Ciudad de Guatemala, Guatemala',
@@ -114,6 +133,7 @@ const I18N = {
     'footer.rights': 'Todos los derechos reservados.',
   },
   en: {
+    'nav.about': 'About us',
     'nav.divisions': 'Services',
     'nav.service': 'Technical service',
     'nav.brands': 'Brands',
@@ -129,6 +149,18 @@ const I18N = {
     'stats.countries': 'countries in Central America',
     'stats.brands': 'brands represented',
     'stats.divisions': 'specialized divisions',
+    'about.eyebrow': 'About us',
+    'about.title': 'Three generations serving industry',
+    'about.p1': 'We are a family company in its third generation, founded in August 1961. Ever since, we have connected Central American industry with world-class technology.',
+    'about.p2': 'We cooperate commercially with manufacturers of equipment for the textile, plastics and hydroelectric industries and industrial water-treatment plants. The equipment we distribute comes from Europe, Asia, North America and South America.',
+    'about.p3': 'MAPRIMAQ is the only company in Central America able to locally offer installation, commissioning and after-sales service for Rieter spinning equipment. Our service engineers have also worked in Turkey, Portugal, Peru and Central America providing after-sales service for Rieter spinning machinery.',
+    'about.p4': 'We have successfully taken part in industrial trade fairs such as INTERFER in the 1990s and, more recently, the Apparel & Sourcing Show in Guatemala City.',
+    'about.tlTitle': 'Milestones',
+    'about.t1961': 'The company is founded in Guatemala.',
+    'about.t1984': 'First Schubert & Salzer – Ingolstadt RU 14 spinning machine sold in Guatemala and Latin America.',
+    'about.t1985': 'First Bekum BM 08 blow-molding machine for plastic containers sold in Guatemala.',
+    'about.t1995': 'First biological plant for treating textile wastewater in Guatemala, by Idrosistem.',
+    'about.t2021': 'The largest spinning plant in Central America, by Rieter, sold in Honduras.',
     'div.eyebrow': 'Our services',
     'div.title': 'Solutions for every industry',
     'div.lead': 'Each MAPRIMAQ division specializes in delivering high-performance technology for different industrial sectors.',
@@ -188,9 +220,9 @@ const I18N = {
     'brands.eyebrow': 'Our brands',
     'brands.title': 'We represent world leaders',
     'brands.lead': 'We work with international manufacturers from Europe, Asia, North America and South America to deliver reliable, innovative, high-performance technology.',
-    'pres.eyebrow': 'Regional presence',
+    'pres.eyebrow': 'Our locations',
     'pres.title': 'Close to your operation',
-    'pres.hq': 'Headquarters',
+    'pres.hq': 'Main office',
     'pres.office': 'Office',
     'pres.office2': 'Office',
     'pres.gt': 'Guatemala City, Guatemala',
@@ -365,6 +397,17 @@ if (yearsStat) yearsStat.dataset.count = YEARS;
 
 const yearsEl = document.getElementById('yearsCounter');
 if (yearsEl) countUp(yearsEl, YEARS, 1800);
+
+/* ---- Hero image carousel ---- */
+const heroSlides = document.querySelectorAll('.hero-bg .hero-slide');
+if (heroSlides.length > 1) {
+  let heroIdx = 0;
+  setInterval(() => {
+    heroSlides[heroIdx].classList.remove('is-active');
+    heroIdx = (heroIdx + 1) % heroSlides.length;
+    heroSlides[heroIdx].classList.add('is-active');
+  }, HERO_SLIDE_MS);
+}
 
 
 /* ---- Machine hover previews ---- */

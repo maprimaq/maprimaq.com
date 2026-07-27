@@ -231,11 +231,21 @@ h3 { font-size: 1.25rem; }
   overflow: hidden;
 }
 .hero-bg { position: absolute; inset: 0; }
-.hero-bg img {
+/* Carousel: slides stack on top of each other; the active one fades/slides in */
+.hero-bg .hero-slide {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: 70% center;
+  opacity: 0;
+  transform: translateX(2.5%) scale(1.04);
+  transition: opacity 1.4s var(--ease), transform 6s linear;
+}
+.hero-bg .hero-slide.is-active {
+  opacity: 1;
+  transform: translateX(0) scale(1);
 }
 .hero-scrim {
   position: absolute;
@@ -357,13 +367,30 @@ h3 { font-size: 1.25rem; }
 }
 .division-head {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto 1fr auto auto;
   grid-template-areas:
-    "icon title toggle"
-    "icon desc  toggle";
+    "icon title photo toggle"
+    "icon desc  photo toggle";
   align-items: center;
   column-gap: 1.4rem;
 }
+.division-photo {
+  grid-area: photo;
+  align-self: center;
+  width: 172px;
+  height: 100px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--paper-soft);
+}
+.division-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .6s var(--ease);
+}
+.division-card:hover .division-photo img,
+.division-card.open .division-photo img { transform: scale(1.06); }
 .division-card::before {
   content: '';
   position: absolute;
@@ -384,7 +411,7 @@ h3 { font-size: 1.25rem; }
 .division-icon { grid-area: icon; align-self: center; }
 .division-icon img { width: 44px; height: auto; display: block; }
 .division-card h3 { grid-area: title; align-self: end; margin: 0; }
-.division-card > p {
+.division-head > p {
   grid-area: desc;
   align-self: start;
   color: var(--gray);
@@ -423,15 +450,19 @@ h3 { font-size: 1.25rem; }
 }
 .division-card.open .toggle-chevron { transform: rotate(180deg); }
 
-@media (max-width: 620px) {
+@media (max-width: 760px) {
   .division-head {
-    grid-template-columns: auto 1fr;
+    /* Fixed first column: keeps the full-width photo (which spans both
+       columns) from inflating the icon column's auto size. */
+    grid-template-columns: 44px minmax(0, 1fr);
     grid-template-areas:
+      "photo photo"
       "icon title"
       "desc desc"
       "toggle toggle";
     row-gap: 0.4rem;
   }
+  .division-photo { width: 100%; height: 150px; margin-bottom: 0.8rem; }
   .division-toggle { justify-self: start; margin-top: 0.6rem; }
 }
 
@@ -539,6 +570,72 @@ h3 { font-size: 1.25rem; }
   transform: skewX(-30deg);
 }
 
+/* ---------- Nosotros / About ---------- */
+.about { background: var(--paper); }
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: clamp(2.5rem, 6vw, 5rem);
+  align-items: start;
+}
+.about-copy h2 { margin-bottom: 1.2rem; }
+.about-copy p:not(.eyebrow) {
+  color: var(--gray);
+  margin-bottom: 1rem;
+  font-size: 1.02rem;
+}
+.about-timeline {
+  background: var(--paper-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(1.6rem, 3vw, 2.4rem);
+}
+.about-timeline h3 {
+  font-size: 0.85rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 1.4rem;
+}
+.timeline { list-style: none; position: relative; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: var(--line);
+}
+.timeline li {
+  position: relative;
+  padding: 0 0 1.4rem 2rem;
+}
+.timeline li:last-child { padding-bottom: 0; }
+.timeline li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--red);
+  box-shadow: 0 0 0 4px rgba(192, 32, 44, .14);
+}
+.tl-year {
+  display: block;
+  font-weight: 700;
+  color: var(--ink);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+.timeline li p { color: var(--gray); font-size: 0.92rem; margin-top: 0.15rem; }
+
+@media (max-width: 900px) {
+  .about-grid { grid-template-columns: 1fr; }
+}
+
 /* ---------- Pattern background (official brand patterns) ---------- */
 .pattern-bg {
   position: absolute;
@@ -602,9 +699,81 @@ h3 { font-size: 1.25rem; }
 .brands-strip img { width: 100%; height: auto; }
 
 /* ---------- Presence ---------- */
+.presence-layout {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 1.4rem;
+  align-items: stretch;
+}
+
+/* Stylized minimalist map */
+.presence-map {
+  background: var(--paper-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(1.2rem, 3vw, 2.2rem);
+  display: flex;
+  align-items: center;
+}
+.presence-map svg { width: 100%; height: auto; }
+.map-neighbor {
+  fill: #eeeef0;
+  stroke: #fff;
+  stroke-width: 1.5;
+}
+.map-country {
+  fill: #dedfe3;
+  stroke: #fff;
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+  transition: fill .3s;
+}
+.presence-map:hover .map-country { fill: #d6d7dc; }
+.map-label {
+  font-family: 'Decimal', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  fill: #9a9aa0;
+  text-anchor: middle;
+}
+.map-pin .dot {
+  fill: var(--red);
+  stroke: #fff;
+  stroke-width: 2;
+}
+.map-pin .pulse {
+  fill: var(--red);
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pinPulse 2.4s var(--ease) infinite;
+}
+.map-pin:nth-of-type(2) .pulse { animation-delay: .5s; }
+.map-pin:nth-of-type(3) .pulse { animation-delay: 1s; }
+@keyframes pinPulse {
+  0% { transform: scale(.35); opacity: .45; }
+  70% { transform: scale(1.5); opacity: 0; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .map-pin .pulse { animation: none; }
+}
+.map-pin .pin-label {
+  font-family: 'Decimal', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 12.5px;
+  font-weight: 700;
+  fill: var(--ink);
+  text-anchor: middle;
+  paint-order: stroke;
+  stroke: rgba(246, 246, 247, .85);
+  stroke-width: 3;
+}
+
 .presence-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr;
   gap: 1.4rem;
 }
 .presence-card {
@@ -765,7 +934,7 @@ h3 { font-size: 1.25rem; }
   .mapritecnica-grid, .contact-grid { grid-template-columns: 1fr; }
   .mapritecnica-img { order: -1; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
-  .presence-grid { grid-template-columns: 1fr; }
+  .presence-layout { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
 }
 
