@@ -35,7 +35,7 @@
   --line: #e6e6e8;
   --radius: 10px;
   --container: 1200px;
-  --header-h: 84px;
+  --header-h: 96px;
   --ease: cubic-bezier(.22, .61, .36, 1);
 }
 
@@ -137,12 +137,12 @@ h3 { font-size: 1.25rem; }
   justify-content: space-between;
   gap: 1rem;
 }
-.header-logo { display: flex; align-items: center; gap: 13px; }
-.header-logo img { height: 54px; width: auto; }
+.header-logo { display: flex; align-items: center; gap: 15px; }
+.header-logo img { height: 66px; width: auto; }
 .header-logo .logo-text { filter: brightness(0); }
 @media (max-width: 600px) {
-  .header-logo img { height: 42px; }
-  .header-logo { gap: 10px; }
+  .header-logo img { height: 48px; }
+  .header-logo { gap: 11px; }
 }
 
 .site-header.scrolled { box-shadow: 0 2px 18px rgba(0, 0, 0, .08); }
@@ -367,10 +367,10 @@ h3 { font-size: 1.25rem; }
 }
 .division-head {
   display: grid;
-  grid-template-columns: auto 1fr auto auto;
+  grid-template-columns: auto 1fr auto;
   grid-template-areas:
-    "icon title photo toggle"
-    "icon desc  photo toggle";
+    "photo title toggle"
+    "photo desc  toggle";
   align-items: center;
   column-gap: 1.4rem;
 }
@@ -408,8 +408,6 @@ h3 { font-size: 1.25rem; }
 .division-card:hover::before, .division-card:focus-visible::before, .division-card.open::before { transform: scaleY(1); }
 .division-card:focus-visible { outline: none; }
 
-.division-icon { grid-area: icon; align-self: center; }
-.division-icon img { width: 44px; height: auto; display: block; }
 .division-card h3 { grid-area: title; align-self: end; margin: 0; }
 .division-head > p {
   grid-area: desc;
@@ -452,14 +450,12 @@ h3 { font-size: 1.25rem; }
 
 @media (max-width: 760px) {
   .division-head {
-    /* Fixed first column: keeps the full-width photo (which spans both
-       columns) from inflating the icon column's auto size. */
-    grid-template-columns: 44px minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
     grid-template-areas:
-      "photo photo"
-      "icon title"
-      "desc desc"
-      "toggle toggle";
+      "photo"
+      "title"
+      "desc"
+      "toggle";
     row-gap: 0.4rem;
   }
   .division-photo { width: 100%; height: 150px; margin-bottom: 0.8rem; }
@@ -697,6 +693,12 @@ h3 { font-size: 1.25rem; }
   padding: clamp(1.5rem, 4vw, 3rem);
 }
 .brands-strip img { width: 100%; height: auto; }
+.brands-more {
+  text-align: center;
+  color: var(--gray);
+  font-size: 0.95rem;
+  margin-top: clamp(1.2rem, 2.5vw, 2rem);
+}
 
 /* ---------- Presence ---------- */
 .presence-layout {
