@@ -636,23 +636,11 @@ h3 { font-size: 1.25rem; }
 .pattern-bg {
   position: absolute;
   inset: 0;
-  background: var(--red);
-}
-/* Single oversized brand M as a watermark (the allover pattern reads too
-   busy at this scale) — the logo's alpha channel is used as a mask so the
-   M renders in the brighter brand red. */
-.pattern-bg::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--red-bright);
-  -webkit-mask: url('../assets/img/logo-m.png') 62% 42% / clamp(520px, 55vw, 900px) auto no-repeat;
-  mask: url('../assets/img/logo-m.png') 62% 42% / clamp(520px, 55vw, 900px) auto no-repeat;
+  background: var(--red) url('../assets/img/pattern-filled.svg') 55% 42% / 680% auto;
 }
 .pattern-bg.subtle {
   background: var(--red) url('../assets/img/pattern-outline.jpg') center / cover;
 }
-.pattern-bg.subtle::after { content: none; }
 
 /* ---------- MAPRITÉCNICA ---------- */
 .mapritecnica {
