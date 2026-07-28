@@ -700,7 +700,7 @@ h3 { font-size: 1.25rem; }
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: marqueeSlide 50s linear infinite;
+  animation: marqueeSlide 90s linear infinite;
 }
 .logo-marquee:hover .marquee-track { animation-play-state: paused; }
 .marquee-group {
