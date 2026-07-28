@@ -684,20 +684,43 @@ h3 { font-size: 1.25rem; }
   object-fit: cover;
 }
 
-/* ---------- Brands ---------- */
-.brands { background: var(--paper-soft); }
-.brands-strip {
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: clamp(1.5rem, 4vw, 3rem);
-}
-.brands-strip img { width: 100%; height: auto; }
-.brands-more {
+/* ---------- Brand logo marquee (inside Servicios) ---------- */
+.brands-inline { margin-top: clamp(3rem, 6vw, 4.5rem); }
+.brands-inline h3 {
   text-align: center;
-  color: var(--gray);
-  font-size: 0.95rem;
-  margin-top: clamp(1.2rem, 2.5vw, 2rem);
+  font-size: 1.1rem;
+  margin-bottom: 1.4rem;
+}
+.logo-marquee {
+  overflow: hidden;
+  /* Fade the strip out at both edges */
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeSlide 50s linear infinite;
+}
+.logo-marquee:hover .marquee-track { animation-play-state: paused; }
+.marquee-group {
+  display: flex;
+  align-items: center;
+}
+/* Each logo keeps the uniform 2:1 cell it was designed in, so relative
+   logo sizes stay balanced; the cell's own padding spaces the strip. */
+.marquee-group img {
+  height: clamp(80px, 10vw, 120px);
+  width: auto;
+  display: block;
+}
+/* The track holds two identical groups; sliding one full group width
+   (-50%) loops seamlessly. */
+@keyframes marqueeSlide {
+  to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
 }
 
 /* ---------- Presence ---------- */
@@ -941,8 +964,8 @@ h3 { font-size: 1.25rem; }
 }
 
 /* Collapse to the burger menu well before the (large) logo can collide
-   with the nav links (the Spanish nav needs ~1210px to fit). */
-@media (max-width: 1240px) {
+   with the nav links (the Spanish nav needs ~1140px to fit). */
+@media (max-width: 1160px) {
   .burger { display: flex; }
   .header-nav {
     position: fixed;
