@@ -18,7 +18,7 @@ const YEARS = new Date().getFullYear() - FOUNDED;
 // index.html (see the HERO CAROUSEL IMAGES comment there) — swap the
 // src attributes to change them.
 // Long enough to actually read the slide-2 exhibitor copy before it advances.
-const HERO_SLIDE_MS = 9000;
+const HERO_SLIDE_MS = 5000;
 
 /* ---- i18n ---- */
 const I18N = {
