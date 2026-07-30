@@ -17,7 +17,8 @@ const YEARS = new Date().getFullYear() - FOUNDED;
 // The images themselves are plain <img class="hero-slide"> tags in
 // index.html (see the HERO CAROUSEL IMAGES comment there) — swap the
 // src attributes to change them.
-const HERO_SLIDE_MS = 5000;
+// Long enough to actually read the slide-2 exhibitor copy before it advances.
+const HERO_SLIDE_MS = 9000;
 
 /* ---- i18n ---- */
 const I18N = {
@@ -33,6 +34,17 @@ const I18N = {
     'hero.lead': 'Conectamos a la industria con tecnología de clase mundial, representando marcas líderes en los sectores textil, plástico, energía, tratamiento de aguas e industria en general.',
     'hero.cta1': 'Conoce nuestros servicios',
     'hero.cta2': 'Contáctanos',
+    'hero.prev': 'Diapositiva anterior',
+    'hero.next': 'Diapositiva siguiente',
+    'ad.title': 'Apparel Sourcing Show 2026',
+    'ad.dates': '18 – 20 de agosto de 2026',
+    'ad.venue': 'Tikal Futura · Centro de Convenciones · Ciudad de Guatemala',
+    'ad.stands': 'Stands 25 & 26',
+    'ad.lead': 'Exhibimos la tecnología más moderna para la industria textil.',
+    'ad.b1': 'Yarn-Pak: tarimas plásticas para paletizar bobinas de hilo. Multi-Pak: cajas retornables de cartón duradero con base y tapa plásticas para piezas textiles.',
+    'ad.b2': 'Aplicación de suavizantes y químicos auxiliares sobre la tela mediante spray de precisión: máxima eficiencia y ahorro.',
+    'ad.b3': 'La gama más completa de maquinaria italiana para teñir hilo y telas de fibras naturales y sintéticas, incluyendo el sistema Nautilus.',
+    'ad.b4': 'Equipos de precisión de última generación para el corte de tejidos, no-tejidos, esponja y cuero en salas de corte.',
     'stats.years': 'años de experiencia',
     'stats.countries': 'oficinas en Centroamérica',
     'stats.brands': 'marcas representadas',
@@ -141,6 +153,17 @@ const I18N = {
     'hero.lead': 'We connect industry with world-class technology, representing leading brands in textiles, plastics, energy, water treatment and general industry.',
     'hero.cta1': 'Explore our services',
     'hero.cta2': 'Contact us',
+    'hero.prev': 'Previous slide',
+    'hero.next': 'Next slide',
+    'ad.title': 'Apparel Sourcing Show 2026',
+    'ad.dates': 'August 18 – 20, 2026',
+    'ad.venue': 'Tikal Futura · Convention Center · Guatemala City',
+    'ad.stands': 'Stands 25 & 26',
+    'ad.lead': 'We showcase the most advanced technology for the textile industry.',
+    'ad.b1': 'Yarn-Pak: plastic pallets for palletizing yarn bobbins. Multi-Pak: returnable heavy-duty cardboard boxes with plastic base and lid for textile parts.',
+    'ad.b2': 'Application of softeners and auxiliary chemicals onto fabric via precision spray: maximum efficiency and savings.',
+    'ad.b3': 'The most complete range of Italian machinery for dyeing yarn and fabrics in natural and synthetic fibres, including the Nautilus system.',
+    'ad.b4': 'Latest-generation precision equipment for cutting fabrics, non-wovens, foam and leather in cutting rooms.',
     'stats.years': 'years of experience',
     'stats.countries': 'offices in Central America',
     'stats.brands': 'brands represented',
@@ -393,14 +416,63 @@ const yearsEl = document.getElementById('yearsCounter');
 if (yearsEl) countUp(yearsEl, YEARS, 1800);
 
 /* ---- Hero image carousel ---- */
+// Each copy layer belongs to exactly one slide and crossfades with it, so a
+// slide never shows another slide's text: .hero-copy is slide 0, .hero-ad
+// (the Apparel Show card) is slide 1.
+const hero = document.querySelector('.hero');
 const heroSlides = document.querySelectorAll('.hero-bg .hero-slide');
+const heroCopy = document.querySelector('.hero-copy');
+const heroAd = document.querySelector('.hero-ad');
 if (heroSlides.length > 1) {
   let heroIdx = 0;
-  setInterval(() => {
+  let heroTimer = null;
+
+  function showHeroSlide(idx) {
     heroSlides[heroIdx].classList.remove('is-active');
-    heroIdx = (heroIdx + 1) % heroSlides.length;
+    // Wraps in both directions, so the prev button works from slide 0.
+    heroIdx = (idx + heroSlides.length) % heroSlides.length;
     heroSlides[heroIdx].classList.add('is-active');
-  }, HERO_SLIDE_MS);
+    if (heroCopy) heroCopy.classList.toggle('is-hidden', heroIdx !== 0);
+    if (heroAd) {
+      const adHidden = heroIdx !== 1;
+      heroAd.classList.toggle('is-hidden', adHidden);
+      // Keep the card's links out of the tab order / a11y tree while faded out.
+      heroAd.toggleAttribute('inert', adHidden);
+      heroAd.setAttribute('aria-hidden', adHidden ? 'true' : 'false');
+    }
+  }
+  function stopHeroTimer() {
+    clearInterval(heroTimer);
+    heroTimer = null;
+  }
+  // Reduced-motion users never get auto-advance — guarded here rather than at
+  // the call sites so hover-out and arrow clicks can't restart it either.
+  const heroAutoplay = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function startHeroTimer() {
+    stopHeroTimer();
+    if (!heroAutoplay) return;
+    heroTimer = setInterval(() => showHeroSlide(heroIdx + 1), HERO_SLIDE_MS);
+  }
+  // Manual navigation restarts the dwell so the slide you asked for gets a
+  // full turn instead of the remainder of the previous one.
+  function goToHeroSlide(idx) {
+    showHeroSlide(idx);
+    startHeroTimer();
+  }
+
+  const heroPrev = document.getElementById('heroPrev');
+  const heroNext = document.getElementById('heroNext');
+  if (heroPrev) heroPrev.addEventListener('click', () => goToHeroSlide(heroIdx - 1));
+  if (heroNext) heroNext.addEventListener('click', () => goToHeroSlide(heroIdx + 1));
+
+  // Pause while the pointer rests on the hero (pointer devices only, so a tap
+  // on touch screens can't leave the carousel stuck).
+  if (hero && window.matchMedia('(hover: hover)').matches) {
+    hero.addEventListener('mouseenter', stopHeroTimer);
+    hero.addEventListener('mouseleave', startHeroTimer);
+  }
+
+  startHeroTimer();
 }
 
 
