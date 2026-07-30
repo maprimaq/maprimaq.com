@@ -419,7 +419,6 @@ if (yearsEl) countUp(yearsEl, YEARS, 1800);
 // Each copy layer belongs to exactly one slide and crossfades with it, so a
 // slide never shows another slide's text: .hero-copy is slide 0, .hero-ad
 // (the Apparel Show card) is slide 1.
-const hero = document.querySelector('.hero');
 const heroSlides = document.querySelectorAll('.hero-bg .hero-slide');
 const heroCopy = document.querySelector('.hero-copy');
 const heroAd = document.querySelector('.hero-ad');
@@ -465,13 +464,23 @@ if (heroSlides.length > 1) {
   if (heroPrev) heroPrev.addEventListener('click', () => goToHeroSlide(heroIdx - 1));
   if (heroNext) heroNext.addEventListener('click', () => goToHeroSlide(heroIdx + 1));
 
-  // Pause while the pointer rests on the hero (pointer devices only, so a tap
-  // on touch screens can't leave the carousel stuck).
-  if (hero && window.matchMedia('(hover: hover)').matches) {
-    hero.addEventListener('mouseenter', stopHeroTimer);
-    hero.addEventListener('mouseleave', startHeroTimer);
+  // Pause on hover over the CONTROLS and the ad copy only — never the whole
+  // .hero. The hero fills most of the viewport, so the pointer is inside it
+  // when the page loads and the browser dispatches mouseenter as soon as
+  // layout settles; that stopped the timer immediately after init and left the
+  // carousel frozen on slide 1 until an arrow click restarted it.
+  // .hero-ad is pointer-events:none while faded out, so it can only pause the
+  // slide it actually belongs to.
+  if (window.matchMedia('(hover: hover)').matches) {
+    [document.querySelector('.hero-nav'), heroAd].forEach((el) => {
+      if (!el) return;
+      el.addEventListener('mouseenter', stopHeroTimer);
+      el.addEventListener('mouseleave', startHeroTimer);
+    });
   }
 
+  // Single init call — startHeroTimer() clears any existing interval first, so
+  // this can never stack a second one.
   startHeroTimer();
 }
 
