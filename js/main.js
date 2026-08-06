@@ -434,9 +434,14 @@ if (heroSlides.length > 1) {
     if (heroCopy) heroCopy.classList.toggle('is-hidden', heroIdx !== 0);
     if (heroAd) {
       const adHidden = heroIdx !== 1;
+      // The class is the ONLY thing gating whether the ad renders — identical
+      // to how .hero-copy is shown/hidden, which is proven to work on the
+      // browser where the ad vanished. We deliberately no longer toggle
+      // `inert`: it needs WebKit ~15.5+, and an iOS browser on an older
+      // embedded WebKit (Arc) rendered the ad as completely absent while
+      // Safari on the same phone was fine. Nothing about the ad's visibility
+      // may depend on an attribute the engine might not understand.
       heroAd.classList.toggle('is-hidden', adHidden);
-      // Keep the card's links out of the tab order / a11y tree while faded out.
-      heroAd.toggleAttribute('inert', adHidden);
       heroAd.setAttribute('aria-hidden', adHidden ? 'true' : 'false');
     }
   }

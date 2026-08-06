@@ -238,13 +238,20 @@ h3 { font-size: 0.96rem; }
 /* ---------- Hero ---------- */
 .hero {
   position: relative;
+  /* vh first as the fallback: svh needs Safari 15.4+, and older WebKit drops
+     the whole declaration rather than falling back. */
+  min-height: 66vh;
   min-height: 66svh;
   display: flex;
   align-items: center;
   padding: calc(var(--header-h) + 1.11rem) 0 2.67rem;
-  overflow: hidden;
 }
-.hero-bg { position: absolute; inset: 0; }
+/* The clipping lives on the background, NOT on .hero. It exists only to
+   contain .hero-slide's scale(1.04)/translateX zoom; when it sat on .hero it
+   also clipped the copy layers, so any viewport where the slide-2 ad grew
+   past the hero box would silently swallow the ad instead of letting the
+   section grow. .hero can no longer clip its own content on any screen. */
+.hero-bg { position: absolute; inset: 0; overflow: hidden; }
 /* Carousel: slides stack on top of each other; the active one fades/slides in */
 .hero-bg .hero-slide {
   position: absolute;
@@ -273,7 +280,15 @@ h3 { font-size: 0.96rem; }
 /* Slide-owned copy layers stack in the same cell so each can crossfade
    independently without the hero jumping height between slides. */
 .hero-grid { position: relative; z-index: 2; display: grid; }
-.hero-copy, .hero-ad { grid-area: 1 / 1; align-self: center; }
+/* translateZ(0) on BOTH layers (never just one, so their paint behaviour stays
+   identical) gives each its own compositing layer. Cheap insurance against the
+   iOS Safari bug where a stacked opacity:0 layer fails to repaint when it
+   flips to 1 — not the confirmed cause, but free. */
+.hero-copy, .hero-ad {
+  grid-area: 1 / 1;
+  align-self: center;
+  transform: translateZ(0);
+}
 .hero-copy {
   max-width: 485px;
   opacity: 1;
@@ -387,6 +402,25 @@ h3 { font-size: 0.96rem; }
   font-size: 0.72rem;
   line-height: 1.45;
   color: var(--gray);
+}
+/* Phones: the ad carries far more content than the slide-1 copy (header block
+   + four sponsor rows), and both layers share one grid cell, so the ad sets
+   the hero's height. Compact it so the whole ad fits a phone screen instead
+   of running past the fold — measured 570px -> 511px at 375px wide.
+   align-self:start applies to the ad only: it is the taller layer so this is
+   a no-op today, but if it ever outgrows the row it now overflows downward
+   (where the section can grow) rather than symmetrically off the top.
+   .hero-copy stays centred so slide 1 is unchanged. */
+@media (max-width: 700px) {
+  .hero-ad { align-self: start; }
+  .hero-ad-venue { margin-top: 0.3rem; }
+  .hero-ad-stands { margin-top: 0.45rem; }
+  .hero-ad-lead { margin-top: 0.45rem; }
+  .hero-ad-brands { margin-top: 0.6rem; }
+  .hero-ad-brands a { padding: 0.28rem 0; }
+  /* Single-line labels don't need body's 1.6 leading. */
+  .brand-name { line-height: 1.25; }
+  .brand-desc { font-size: 0.7rem; line-height: 1.38; }
 }
 /* Narrow screens: shrink the chip rather than stacking, so the row reads the
    same and the description keeps as much measure as possible. */

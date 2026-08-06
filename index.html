@@ -6,7 +6,7 @@
   <title>MAPRIMAQ — Innovación Industrial</title>
   <meta name="description" content="Desde 1961 conectamos a la industria centroamericana con tecnología de clase mundial: textiles, plásticos, energía, tratamiento de aguas e industria en general.">
   <link rel="icon" type="image/png" href="assets/img/icon-1.png">
-  <link rel="stylesheet" href="css/styles.css?v=26">
+  <link rel="stylesheet" href="css/styles.css?v=28">
   <meta property="og:title" content="MAPRIMAQ — Innovación Industrial">
   <meta property="og:description" content="65 años al servicio de la industria. Representamos marcas líderes mundiales en Guatemala, El Salvador y Honduras.">
   <meta property="og:image" content="assets/img/logo-color.png">
@@ -70,12 +70,22 @@
         </div>
       </div>
       <!-- Apparel Show overlay — belongs to hero slide 2 only; starts hidden
-           (and inert, so its links are not focusable) until the carousel
-           advances to that slide. It deliberately reuses the slide-1 hero
-           typography (.hero-kicker, red accent figure) instead of card chrome
-           so both slides read as one hero.
-           Content mirrors invite-apparel-show-2026.html. -->
-      <aside class="hero-ad is-hidden" aria-label="Apparel Sourcing Show 2026" aria-hidden="true" inert>
+           until the carousel advances to that slide. It deliberately reuses
+           the slide-1 hero typography (.hero-kicker, red accent figure)
+           instead of card chrome so both slides read as one hero.
+           Content mirrors invite-apparel-show-2026.html.
+
+           Deliberately NO `inert` attribute. It needs WebKit ~Safari 15.5+,
+           and an iOS browser embedding an older WebKit than the system Safari
+           (Arc) rendered this ad as completely absent while Safari on the same
+           phone showed it. `inert` was the only attribute .hero-ad carried
+           that .hero-copy did not, and .hero-copy fades correctly even on the
+           broken browser. Visibility is therefore driven ONLY by the
+           .is-hidden class (opacity) — the exact mechanism .hero-copy uses.
+           Never gate this element's rendering on an attribute or property an
+           older engine might not understand. aria-hidden stays: it has no
+           rendering effect in any engine, so it cannot hide anything. -->
+      <aside class="hero-ad is-hidden" aria-label="Apparel Sourcing Show 2026" aria-hidden="true">
         <p class="hero-kicker" data-i18n="ad.dates">18 – 20 de agosto de 2026</p>
         <h2 class="hero-ad-title" data-i18n="ad.title">Apparel Sourcing Show 2026</h2>
         <p class="hero-ad-venue" data-i18n="ad.venue">Tikal Futura · Centro de Convenciones · Ciudad de Guatemala</p>
@@ -518,6 +528,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=14"></script>
+  <script src="js/main.js?v=15"></script>
 </body>
 </html>
