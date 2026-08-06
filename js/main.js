@@ -36,15 +36,15 @@ const I18N = {
     'hero.cta2': 'Contáctanos',
     'hero.prev': 'Diapositiva anterior',
     'hero.next': 'Diapositiva siguiente',
-    'ad.title': 'Apparel Sourcing Show 2026',
-    'ad.dates': '18 – 20 de agosto de 2026',
-    'ad.venue': 'Tikal Futura · Centro de Convenciones · Ciudad de Guatemala',
-    'ad.stands': 'Stands 25 & 26',
-    'ad.lead': 'Exhibimos la tecnología más moderna para la industria textil.',
-    'ad.b1': 'Yarn-Pak: tarimas plásticas para paletizar bobinas de hilo. Multi-Pak: cajas retornables de cartón duradero con base y tapa plásticas para piezas textiles.',
-    'ad.b2': 'Aplicación de suavizantes y químicos auxiliares sobre la tela mediante spray de precisión: máxima eficiencia y ahorro.',
-    'ad.b3': 'La gama más completa de maquinaria italiana para teñir hilo y telas de fibras naturales y sintéticas, incluyendo el sistema Nautilus.',
-    'ad.b4': 'Equipos de precisión de última generación para el corte de tejidos, no-tejidos, esponja y cuero en salas de corte.',
+    'promo.title': 'Apparel Sourcing Show 2026',
+    'promo.dates': '18 – 20 de agosto de 2026',
+    'promo.venue': 'Tikal Futura · Centro de Convenciones · Ciudad de Guatemala',
+    'promo.stands': 'Stands 25 & 26',
+    'promo.lead': 'Exhibimos la tecnología más moderna para la industria textil.',
+    'promo.b1': 'Yarn-Pak: tarimas plásticas para paletizar bobinas de hilo. Multi-Pak: cajas retornables de cartón duradero con base y tapa plásticas para piezas textiles.',
+    'promo.b2': 'Aplicación de suavizantes y químicos auxiliares sobre la tela mediante spray de precisión: máxima eficiencia y ahorro.',
+    'promo.b3': 'La gama más completa de maquinaria italiana para teñir hilo y telas de fibras naturales y sintéticas, incluyendo el sistema Nautilus.',
+    'promo.b4': 'Equipos de precisión de última generación para el corte de tejidos, no-tejidos, esponja y cuero en salas de corte.',
     'stats.years': 'años de experiencia',
     'stats.countries': 'oficinas en Centroamérica',
     'stats.brands': 'marcas representadas',
@@ -155,15 +155,15 @@ const I18N = {
     'hero.cta2': 'Contact us',
     'hero.prev': 'Previous slide',
     'hero.next': 'Next slide',
-    'ad.title': 'Apparel Sourcing Show 2026',
-    'ad.dates': 'August 18 – 20, 2026',
-    'ad.venue': 'Tikal Futura · Convention Center · Guatemala City',
-    'ad.stands': 'Stands 25 & 26',
-    'ad.lead': 'We showcase the most advanced technology for the textile industry.',
-    'ad.b1': 'Yarn-Pak: plastic pallets for palletizing yarn bobbins. Multi-Pak: returnable heavy-duty cardboard boxes with plastic base and lid for textile parts.',
-    'ad.b2': 'Application of softeners and auxiliary chemicals onto fabric via precision spray: maximum efficiency and savings.',
-    'ad.b3': 'The most complete range of Italian machinery for dyeing yarn and fabrics in natural and synthetic fibres, including the Nautilus system.',
-    'ad.b4': 'Latest-generation precision equipment for cutting fabrics, non-wovens, foam and leather in cutting rooms.',
+    'promo.title': 'Apparel Sourcing Show 2026',
+    'promo.dates': 'August 18 – 20, 2026',
+    'promo.venue': 'Tikal Futura · Convention Center · Guatemala City',
+    'promo.stands': 'Stands 25 & 26',
+    'promo.lead': 'We showcase the most advanced technology for the textile industry.',
+    'promo.b1': 'Yarn-Pak: plastic pallets for palletizing yarn bobbins. Multi-Pak: returnable heavy-duty cardboard boxes with plastic base and lid for textile parts.',
+    'promo.b2': 'Application of softeners and auxiliary chemicals onto fabric via precision spray: maximum efficiency and savings.',
+    'promo.b3': 'The most complete range of Italian machinery for dyeing yarn and fabrics in natural and synthetic fibres, including the Nautilus system.',
+    'promo.b4': 'Latest-generation precision equipment for cutting fabrics, non-wovens, foam and leather in cutting rooms.',
     'stats.years': 'years of experience',
     'stats.countries': 'offices in Central America',
     'stats.brands': 'brands represented',
@@ -417,11 +417,11 @@ if (yearsEl) countUp(yearsEl, YEARS, 1800);
 
 /* ---- Hero image carousel ---- */
 // Each copy layer belongs to exactly one slide and crossfades with it, so a
-// slide never shows another slide's text: .hero-copy is slide 0, .hero-ad
+// slide never shows another slide's text: .hero-copy is slide 0, .hero-promo
 // (the Apparel Show card) is slide 1.
 const heroSlides = document.querySelectorAll('.hero-bg .hero-slide');
 const heroCopy = document.querySelector('.hero-copy');
-const heroAd = document.querySelector('.hero-ad');
+const heroPromo = document.querySelector('.hero-promo');
 if (heroSlides.length > 1) {
   let heroIdx = 0;
   let heroTimer = null;
@@ -432,17 +432,23 @@ if (heroSlides.length > 1) {
     heroIdx = (idx + heroSlides.length) % heroSlides.length;
     heroSlides[heroIdx].classList.add('is-active');
     if (heroCopy) heroCopy.classList.toggle('is-hidden', heroIdx !== 0);
-    if (heroAd) {
-      const adHidden = heroIdx !== 1;
-      // The class is the ONLY thing gating whether the ad renders — identical
-      // to how .hero-copy is shown/hidden, which is proven to work on the
-      // browser where the ad vanished. We deliberately no longer toggle
-      // `inert`: it needs WebKit ~15.5+, and an iOS browser on an older
-      // embedded WebKit (Arc) rendered the ad as completely absent while
-      // Safari on the same phone was fine. Nothing about the ad's visibility
-      // may depend on an attribute the engine might not understand.
-      heroAd.classList.toggle('is-hidden', adHidden);
-      heroAd.setAttribute('aria-hidden', adHidden ? 'true' : 'false');
+    if (heroPromo) {
+      const promoHidden = heroIdx !== 1;
+      // The class is the ONLY thing gating whether the promo renders —
+      // identical to how .hero-copy is shown/hidden.
+      // NOTE: this element and its selector must stay on the hero-promo-*
+      // prefix. Named .hero-ad it was hidden outright by Arc's built-in
+      // content blocker (cosmetic filter lists hide "ad" class tokens), which
+      // is what made it invisible on iOS while Safari was fine.
+      heroPromo.classList.toggle('is-hidden', promoHidden);
+      // Everything below is ADDITIVE accessibility only, and is deliberately
+      // sequenced after the class toggle: visibility is already settled by the
+      // line above, so even if an engine mishandles or throws on `inert`, the
+      // promo has still been shown/hidden correctly. Never move `inert` ahead
+      // of the class toggle, and never let it become the visibility gate.
+      heroPromo.setAttribute('aria-hidden', promoHidden ? 'true' : 'false');
+      // Keeps the faded-out promo's links out of the tab order / a11y tree.
+      heroPromo.toggleAttribute('inert', promoHidden);
     }
   }
   function stopHeroTimer() {
@@ -474,10 +480,10 @@ if (heroSlides.length > 1) {
   // when the page loads and the browser dispatches mouseenter as soon as
   // layout settles; that stopped the timer immediately after init and left the
   // carousel frozen on slide 1 until an arrow click restarted it.
-  // .hero-ad is pointer-events:none while faded out, so it can only pause the
+  // .hero-promo is pointer-events:none while faded out, so it can only pause the
   // slide it actually belongs to.
   if (window.matchMedia('(hover: hover)').matches) {
-    [document.querySelector('.hero-nav'), heroAd].forEach((el) => {
+    [document.querySelector('.hero-nav'), heroPromo].forEach((el) => {
       if (!el) return;
       el.addEventListener('mouseenter', stopHeroTimer);
       el.addEventListener('mouseleave', startHeroTimer);

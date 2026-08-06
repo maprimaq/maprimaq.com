@@ -284,7 +284,7 @@ h3 { font-size: 0.96rem; }
    identical) gives each its own compositing layer. Cheap insurance against the
    iOS Safari bug where a stacked opacity:0 layer fails to repaint when it
    flips to 1 — not the confirmed cause, but free. */
-.hero-copy, .hero-ad {
+.hero-copy, .hero-promo {
   grid-area: 1 / 1;
   align-self: center;
   transform: translateZ(0);
@@ -307,16 +307,16 @@ h3 { font-size: 0.96rem; }
    same measure, and borrows the slide-1 type scale (.hero-kicker for the
    dates, a red display figure for the stands) so the two slides read as one
    hero. Same 1.4s fade as the image crossfade. */
-.hero-ad {
+.hero-promo {
   max-width: 498px;
   opacity: 1;
   transition: opacity 1.4s var(--ease);
 }
-.hero-ad.is-hidden {
+.hero-promo.is-hidden {
   opacity: 0;
   pointer-events: none;
 }
-.hero-ad-title {
+.hero-promo-title {
   font-size: clamp(1.16rem, 2.27vw, 1.78rem);
   font-weight: 700;
   line-height: 1.1;
@@ -324,13 +324,13 @@ h3 { font-size: 0.96rem; }
   text-transform: uppercase;
   color: var(--ink);
 }
-.hero-ad-venue {
+.hero-promo-venue {
   margin-top: 0.4rem;
   font-size: 0.8rem;
   color: var(--gray);
 }
 /* Echoes .hero-number's red display figure so slide 2 keeps slide 1's accent. */
-.hero-ad-stands {
+.hero-promo-stands {
   margin-top: 0.62rem;
   font-size: clamp(1rem, 2vw, 1.38rem);
   font-weight: 700;
@@ -339,18 +339,18 @@ h3 { font-size: 0.96rem; }
   text-transform: uppercase;
   color: var(--red);
 }
-.hero-ad-lead {
+.hero-promo-lead {
   margin-top: 0.58rem;
   font-size: 0.82rem;
   color: var(--gray);
 }
 /* Four exhibited technologies, one full-width row each: at two columns the
    logo chip would leave too little measure for the descriptions to read. */
-.hero-ad-brands {
+.hero-promo-brands {
   list-style: none;
   margin-top: 0.85rem;
 }
-.hero-ad-brands a {
+.hero-promo-brands a {
   display: flex;
   align-items: center;
   gap: 0.62rem;
@@ -359,8 +359,8 @@ h3 { font-size: 0.96rem; }
   text-decoration: none;
   transition: border-color .25s var(--ease);
 }
-.hero-ad-brands a:hover { border-color: var(--red); }
-.hero-ad-brands a:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+.hero-promo-brands a:hover { border-color: var(--red); }
+.hero-promo-brands a:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
 /* Logos extracted from invite-apparel-show-2026.html. Their native aspect
    ratios run from 2.78:1 to 6.06:1, so every logo gets an IDENTICAL fixed
    chip and object-fit: contain scales it to fit inside — never stretched,
@@ -378,7 +378,7 @@ h3 { font-size: 0.96rem; }
   border-radius: 6px;
   transition: border-color .25s var(--ease), box-shadow .25s var(--ease);
 }
-.hero-ad-brands a:hover .brand-logo {
+.hero-promo-brands a:hover .brand-logo {
   border-color: var(--red);
   box-shadow: 0 6px 16px rgba(0, 0, 0, .08);
 }
@@ -395,7 +395,7 @@ h3 { font-size: 0.96rem; }
   color: var(--ink);
   transition: color .25s;
 }
-.hero-ad-brands a:hover .brand-name { color: var(--red); }
+.hero-promo-brands a:hover .brand-name { color: var(--red); }
 .brand-desc {
   display: block;
   margin-top: 0.13rem;
@@ -412,12 +412,12 @@ h3 { font-size: 0.96rem; }
    (where the section can grow) rather than symmetrically off the top.
    .hero-copy stays centred so slide 1 is unchanged. */
 @media (max-width: 700px) {
-  .hero-ad { align-self: start; }
-  .hero-ad-venue { margin-top: 0.3rem; }
-  .hero-ad-stands { margin-top: 0.45rem; }
-  .hero-ad-lead { margin-top: 0.45rem; }
-  .hero-ad-brands { margin-top: 0.6rem; }
-  .hero-ad-brands a { padding: 0.28rem 0; }
+  .hero-promo { align-self: start; }
+  .hero-promo-venue { margin-top: 0.3rem; }
+  .hero-promo-stands { margin-top: 0.45rem; }
+  .hero-promo-lead { margin-top: 0.45rem; }
+  .hero-promo-brands { margin-top: 0.6rem; }
+  .hero-promo-brands a { padding: 0.28rem 0; }
   /* Single-line labels don't need body's 1.6 leading. */
   .brand-name { line-height: 1.25; }
   .brand-desc { font-size: 0.7rem; line-height: 1.38; }
@@ -425,7 +425,7 @@ h3 { font-size: 0.96rem; }
 /* Narrow screens: shrink the chip rather than stacking, so the row reads the
    same and the description keeps as much measure as possible. */
 @media (max-width: 560px) {
-  .hero-ad-brands a { gap: 0.53rem; }
+  .hero-promo-brands a { gap: 0.53rem; }
   .brand-logo {
     width: 52px;
     height: 30px;
@@ -1169,7 +1169,7 @@ h3 { font-size: 0.96rem; }
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .hero-bg img { transform: none !important; }
-  .hero-copy, .hero-ad { transition: none; }
+  .hero-copy, .hero-promo { transition: none; }
   .scroll-hint span { animation: none; }
 }
 

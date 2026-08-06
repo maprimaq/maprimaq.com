@@ -6,7 +6,7 @@
   <title>MAPRIMAQ — Innovación Industrial</title>
   <meta name="description" content="Desde 1961 conectamos a la industria centroamericana con tecnología de clase mundial: textiles, plásticos, energía, tratamiento de aguas e industria en general.">
   <link rel="icon" type="image/png" href="assets/img/icon-1.png">
-  <link rel="stylesheet" href="css/styles.css?v=28">
+  <link rel="stylesheet" href="css/styles.css?v=29">
   <meta property="og:title" content="MAPRIMAQ — Innovación Industrial">
   <meta property="og:description" content="65 años al servicio de la industria. Representamos marcas líderes mundiales en Guatemala, El Salvador y Honduras.">
   <meta property="og:image" content="assets/img/logo-color.png">
@@ -48,7 +48,7 @@
 
          Each slide owns its own copy layer, and they crossfade with the
          images (see js/main.js): .hero-copy belongs to slide 1 and
-         .hero-ad (the Apparel Show overlay) belongs to slide 2, so a
+         .hero-promo (the Apparel Show overlay) belongs to slide 2, so a
          slide never renders with another slide's text over it.
          ============================================================ -->
     <div class="hero-bg" aria-hidden="true">
@@ -75,56 +75,63 @@
            instead of card chrome so both slides read as one hero.
            Content mirrors invite-apparel-show-2026.html.
 
-           Deliberately NO `inert` attribute. It needs WebKit ~Safari 15.5+,
-           and an iOS browser embedding an older WebKit than the system Safari
-           (Arc) rendered this ad as completely absent while Safari on the same
-           phone showed it. `inert` was the only attribute .hero-ad carried
-           that .hero-copy did not, and .hero-copy fades correctly even on the
-           broken browser. Visibility is therefore driven ONLY by the
-           .is-hidden class (opacity) — the exact mechanism .hero-copy uses.
-           Never gate this element's rendering on an attribute or property an
-           older engine might not understand. aria-hidden stays: it has no
-           rendering effect in any engine, so it cannot hide anything. -->
-      <aside class="hero-ad is-hidden" aria-label="Apparel Sourcing Show 2026" aria-hidden="true">
-        <p class="hero-kicker" data-i18n="ad.dates">18 – 20 de agosto de 2026</p>
-        <h2 class="hero-ad-title" data-i18n="ad.title">Apparel Sourcing Show 2026</h2>
-        <p class="hero-ad-venue" data-i18n="ad.venue">Tikal Futura · Centro de Convenciones · Ciudad de Guatemala</p>
-        <p class="hero-ad-stands" data-i18n="ad.stands">Stands 25 &amp; 26</p>
-        <p class="hero-ad-lead" data-i18n="ad.lead">Exhibimos la tecnología más moderna para la industria textil.</p>
-        <ul class="hero-ad-brands">
+           NAMING IS LOAD-BEARING HERE — do not rename these classes back.
+           This block was previously called .hero-ad / .hero-ad-* and its logos
+           lived in assets/img/sponsors/. Arc on iOS rendered it as completely
+           absent while Safari on the same phone was fine: Arc's built-in
+           content blocker matches cosmetic filter lists, which hide elements
+           whose class/id contains an "ad" token and block URLs containing
+           "sponsor". Keep every class here on the hero-promo-* prefix and keep
+           the logos under assets/img/brands-show/. Visible copy may still say
+           "sponsors" — filter lists match names and URLs, not prose.
+
+           Visibility is driven ONLY by the .is-hidden class (opacity), the
+           same mechanism .hero-copy uses. `inert` and aria-hidden are purely
+           ADDITIVE a11y (they keep the faded-out promo's links out of the tab
+           order and the a11y tree) — neither may ever gate rendering, so the
+           promo still shows on an engine that ignores `inert`. It starts inert
+           because the carousel starts on slide 1; js/main.js clears it on
+           slide 2. -->
+      <aside class="hero-promo is-hidden" aria-label="Apparel Sourcing Show 2026" aria-hidden="true" inert>
+        <p class="hero-kicker" data-i18n="promo.dates">18 – 20 de agosto de 2026</p>
+        <h2 class="hero-promo-title" data-i18n="promo.title">Apparel Sourcing Show 2026</h2>
+        <p class="hero-promo-venue" data-i18n="promo.venue">Tikal Futura · Centro de Convenciones · Ciudad de Guatemala</p>
+        <p class="hero-promo-stands" data-i18n="promo.stands">Stands 25 &amp; 26</p>
+        <p class="hero-promo-lead" data-i18n="promo.lead">Exhibimos la tecnología más moderna para la industria textil.</p>
+        <ul class="hero-promo-brands">
           <li>
             <a href="https://formall.com/products/" target="_blank" rel="noopener">
-              <img class="brand-logo" src="assets/img/sponsors/formall.png" alt="" loading="lazy" width="300" height="57">
+              <img class="brand-logo" src="assets/img/brands-show/formall.png" alt="" loading="lazy" width="300" height="57">
               <span class="brand-text">
                 <span class="brand-name">Formall — Yarn-Pak &amp; Multi-Pak</span>
-                <span class="brand-desc" data-i18n="ad.b1">Yarn-Pak: tarimas plásticas para paletizar bobinas de hilo. Multi-Pak: cajas retornables de cartón duradero con base y tapa plásticas para piezas textiles.</span>
+                <span class="brand-desc" data-i18n="promo.b1">Yarn-Pak: tarimas plásticas para paletizar bobinas de hilo. Multi-Pak: cajas retornables de cartón duradero con base y tapa plásticas para piezas textiles.</span>
               </span>
             </a>
           </li>
           <li>
             <a href="https://www.bwconverting.com/brand/product/baldwin/texcoat-g4" target="_blank" rel="noopener">
-              <img class="brand-logo" src="assets/img/sponsors/baldwin.png" alt="" loading="lazy" width="400" height="66">
+              <img class="brand-logo" src="assets/img/brands-show/baldwin.png" alt="" loading="lazy" width="400" height="66">
               <span class="brand-text">
                 <span class="brand-name">Baldwin — TexCoat™ G4</span>
-                <span class="brand-desc" data-i18n="ad.b2">Aplicación de suavizantes y químicos auxiliares sobre la tela mediante spray de precisión: máxima eficiencia y ahorro.</span>
+                <span class="brand-desc" data-i18n="promo.b2">Aplicación de suavizantes y químicos auxiliares sobre la tela mediante spray de precisión: máxima eficiencia y ahorro.</span>
               </span>
             </a>
           </li>
           <li>
             <a href="https://laip.it/en/machines/nautilus/" target="_blank" rel="noopener">
-              <img class="brand-logo" src="assets/img/sponsors/laip.jpg" alt="" loading="lazy" width="300" height="128">
+              <img class="brand-logo" src="assets/img/brands-show/laip.jpg" alt="" loading="lazy" width="300" height="128">
               <span class="brand-text">
                 <span class="brand-name">Laip — Nautilus</span>
-                <span class="brand-desc" data-i18n="ad.b3">La gama más completa de maquinaria italiana para teñir hilo y telas de fibras naturales y sintéticas, incluyendo el sistema Nautilus.</span>
+                <span class="brand-desc" data-i18n="promo.b3">La gama más completa de maquinaria italiana para teñir hilo y telas de fibras naturales y sintéticas, incluyendo el sistema Nautilus.</span>
               </span>
             </a>
           </li>
           <li>
             <a href="https://www.oroxgroup.it/complete-line/" target="_blank" rel="noopener">
-              <img class="brand-logo" src="assets/img/sponsors/orox.png" alt="" loading="lazy" width="400" height="144">
+              <img class="brand-logo" src="assets/img/brands-show/orox.png" alt="" loading="lazy" width="400" height="144">
               <span class="brand-text">
                 <span class="brand-name">Orox</span>
-                <span class="brand-desc" data-i18n="ad.b4">Equipos de precisión de última generación para el corte de tejidos, no-tejidos, esponja y cuero en salas de corte.</span>
+                <span class="brand-desc" data-i18n="promo.b4">Equipos de precisión de última generación para el corte de tejidos, no-tejidos, esponja y cuero en salas de corte.</span>
               </span>
             </a>
           </li>
@@ -528,6 +535,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=15"></script>
+  <script src="js/main.js?v=17"></script>
 </body>
 </html>
