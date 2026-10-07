@@ -36,15 +36,10 @@ const I18N = {
     'hero.cta2': 'Contáctanos',
     'hero.prev': 'Diapositiva anterior',
     'hero.next': 'Diapositiva siguiente',
-    'promo.title': 'Apparel Sourcing Show 2026',
-    'promo.dates': '18 – 20 de agosto de 2026',
-    'promo.venue': 'Tikal Futura · Centro de Convenciones · Ciudad de Guatemala',
-    'promo.stands': 'Stands 25 & 26',
-    'promo.lead': 'Exhibimos la tecnología más moderna para la industria textil.',
-    'promo.b1': 'Yarn-Pak: tarimas plásticas para paletizar bobinas de hilo. Multi-Pak: cajas retornables de cartón duradero con base y tapa plásticas para piezas textiles.',
-    'promo.b2': 'Aplicación de suavizantes y químicos auxiliares sobre la tela mediante spray de precisión: máxima eficiencia y ahorro.',
-    'promo.b3': 'La gama más completa de maquinaria italiana para teñir hilo y telas de fibras naturales y sintéticas, incluyendo el sistema Nautilus.',
-    'promo.b4': 'Equipos de precisión de última generación para el corte de tejidos, no-tejidos, esponja y cuero en salas de corte.',
+    'promo.dates': '10 – 13 de noviembre de 2026',
+    'promo.venue': 'Centro Banamex · Ciudad de México',
+    'promo.stands': 'Estaremos presentes, agenda una reunión con nuestro equipo',
+    'promo.cta': 'Agenda una reunión',
     'stats.years': 'años de experiencia',
     'stats.countries': 'oficinas en Centroamérica',
     'stats.brands': 'marcas representadas',
@@ -155,15 +150,10 @@ const I18N = {
     'hero.cta2': 'Contact us',
     'hero.prev': 'Previous slide',
     'hero.next': 'Next slide',
-    'promo.title': 'Apparel Sourcing Show 2026',
-    'promo.dates': 'August 18 – 20, 2026',
-    'promo.venue': 'Tikal Futura · Convention Center · Guatemala City',
-    'promo.stands': 'Stands 25 & 26',
-    'promo.lead': 'We showcase the most advanced technology for the textile industry.',
-    'promo.b1': 'Yarn-Pak: plastic pallets for palletizing yarn bobbins. Multi-Pak: returnable heavy-duty cardboard boxes with plastic base and lid for textile parts.',
-    'promo.b2': 'Application of softeners and auxiliary chemicals onto fabric via precision spray: maximum efficiency and savings.',
-    'promo.b3': 'The most complete range of Italian machinery for dyeing yarn and fabrics in natural and synthetic fibres, including the Nautilus system.',
-    'promo.b4': 'Latest-generation precision equipment for cutting fabrics, non-wovens, foam and leather in cutting rooms.',
+    'promo.dates': 'November 10 – 13, 2026',
+    'promo.venue': 'Centro Banamex · Mexico City',
+    'promo.stands': 'We will be there, book a meeting with our team',
+    'promo.cta': 'Book a meeting',
     'stats.years': 'years of experience',
     'stats.countries': 'offices in Central America',
     'stats.brands': 'brands represented',
@@ -418,7 +408,7 @@ if (yearsEl) countUp(yearsEl, YEARS, 1800);
 /* ---- Hero image carousel ---- */
 // Each copy layer belongs to exactly one slide and crossfades with it, so a
 // slide never shows another slide's text: .hero-copy is slide 0, .hero-promo
-// (the Apparel Show card) is slide 1.
+// (the event promo) is slide 1.
 const heroSlides = document.querySelectorAll('.hero-bg .hero-slide');
 const heroCopy = document.querySelector('.hero-copy');
 const heroPromo = document.querySelector('.hero-promo');

@@ -1,0 +1,222 @@
+<!--
+  ARCHIVED — Apparel Sourcing Show 2026 hero slide (slide 2), retired 2026-10-07
+  when the slide was replaced by the Plastimagen México 2026 promo.
+
+  Not linked from the site. To restore:
+    1. Paste the <aside> below into index.html in place of the current
+       .hero-promo <aside> (inside .hero-grid, after .hero-copy).
+    2. Copy the i18n strings below into the ES and EN dictionaries in
+       js/main.js (they use the same promo.* keys as the current slide).
+    3. Replace the "Hero promo overlay" block in css/styles.css with the CSS
+       below (the Apparel version: one logo + description row per brand).
+    4. Logos are still in assets/img/brands-show/ (formall, baldwin, laip, orox).
+    5. The slide's background was assets/img/hero-machinery.webp (still in the
+       repo): set it back as the second .hero-slide <img> in .hero-bg.
+    6. Add the 'promo.title' key back to both dictionaries (the Plastimagen
+       slide shows a logo there instead of translated text).
+  Keep the hero-promo-* class prefix and brands-show/ path — see the comment in
+  index.html about Arc's content blocker hiding "ad"/"sponsor" names.
+-->
+
+<aside class="hero-promo is-hidden" aria-label="Apparel Sourcing Show 2026" aria-hidden="true" inert>
+  <p class="hero-kicker" data-i18n="promo.dates">18 – 20 de agosto de 2026</p>
+  <h2 class="hero-promo-title" data-i18n="promo.title">Apparel Sourcing Show 2026</h2>
+  <p class="hero-promo-venue" data-i18n="promo.venue">Tikal Futura · Centro de Convenciones · Ciudad de Guatemala</p>
+  <p class="hero-promo-stands" data-i18n="promo.stands">Stands 25 &amp; 26</p>
+  <p class="hero-promo-lead" data-i18n="promo.lead">Exhibimos la tecnología más moderna para la industria textil.</p>
+  <ul class="hero-promo-brands">
+    <li>
+      <a href="https://formall.com/products/" target="_blank" rel="noopener">
+        <img class="brand-logo" src="assets/img/brands-show/formall.png" alt="" loading="lazy" width="300" height="57">
+        <span class="brand-text">
+          <span class="brand-name">Formall — Yarn-Pak &amp; Multi-Pak</span>
+          <span class="brand-desc" data-i18n="promo.b1">Yarn-Pak: tarimas plásticas para paletizar bobinas de hilo. Multi-Pak: cajas retornables de cartón duradero con base y tapa plásticas para piezas textiles.</span>
+        </span>
+      </a>
+    </li>
+    <li>
+      <a href="https://www.bwconverting.com/brand/product/baldwin/texcoat-g4" target="_blank" rel="noopener">
+        <img class="brand-logo" src="assets/img/brands-show/baldwin.png" alt="" loading="lazy" width="400" height="66">
+        <span class="brand-text">
+          <span class="brand-name">Baldwin — TexCoat™ G4</span>
+          <span class="brand-desc" data-i18n="promo.b2">Aplicación de suavizantes y químicos auxiliares sobre la tela mediante spray de precisión: máxima eficiencia y ahorro.</span>
+        </span>
+      </a>
+    </li>
+    <li>
+      <a href="https://laip.it/en/machines/nautilus/" target="_blank" rel="noopener">
+        <img class="brand-logo" src="assets/img/brands-show/laip.jpg" alt="" loading="lazy" width="300" height="128">
+        <span class="brand-text">
+          <span class="brand-name">Laip — Nautilus</span>
+          <span class="brand-desc" data-i18n="promo.b3">La gama más completa de maquinaria italiana para teñir hilo y telas de fibras naturales y sintéticas, incluyendo el sistema Nautilus.</span>
+        </span>
+      </a>
+    </li>
+    <li>
+      <a href="https://www.oroxgroup.it/complete-line/" target="_blank" rel="noopener">
+        <img class="brand-logo" src="assets/img/brands-show/orox.png" alt="" loading="lazy" width="400" height="144">
+        <span class="brand-text">
+          <span class="brand-name">Orox</span>
+          <span class="brand-desc" data-i18n="promo.b4">Equipos de precisión de última generación para el corte de tejidos, no-tejidos, esponja y cuero en salas de corte.</span>
+        </span>
+      </a>
+    </li>
+  </ul>
+</aside>
+
+<!--
+  i18n — ES (js/main.js, first dictionary)
+    'promo.title': 'Apparel Sourcing Show 2026',
+    'promo.dates': '18 – 20 de agosto de 2026',
+    'promo.venue': 'Tikal Futura · Centro de Convenciones · Ciudad de Guatemala',
+    'promo.stands': 'Stands 25 & 26',
+    'promo.lead': 'Exhibimos la tecnología más moderna para la industria textil.',
+    'promo.b1': 'Yarn-Pak: tarimas plásticas para paletizar bobinas de hilo. Multi-Pak: cajas retornables de cartón duradero con base y tapa plásticas para piezas textiles.',
+    'promo.b2': 'Aplicación de suavizantes y químicos auxiliares sobre la tela mediante spray de precisión: máxima eficiencia y ahorro.',
+    'promo.b3': 'La gama más completa de maquinaria italiana para teñir hilo y telas de fibras naturales y sintéticas, incluyendo el sistema Nautilus.',
+    'promo.b4': 'Equipos de precisión de última generación para el corte de tejidos, no-tejidos, esponja y cuero en salas de corte.',
+
+  i18n — EN (js/main.js, second dictionary)
+    'promo.title': 'Apparel Sourcing Show 2026',
+    'promo.dates': 'August 18 – 20, 2026',
+    'promo.venue': 'Tikal Futura · Convention Center · Guatemala City',
+    'promo.stands': 'Stands 25 & 26',
+    'promo.lead': 'We showcase the most advanced technology for the textile industry.',
+    'promo.b1': 'Yarn-Pak: plastic pallets for palletizing yarn bobbins. Multi-Pak: returnable heavy-duty cardboard boxes with plastic base and lid for textile parts.',
+    'promo.b2': 'Application of softeners and auxiliary chemicals onto fabric via precision spray: maximum efficiency and savings.',
+    'promo.b3': 'The most complete range of Italian machinery for dyeing yarn and fabrics in natural and synthetic fibres, including the Nautilus system.',
+    'promo.b4': 'Latest-generation precision equipment for cutting fabrics, non-wovens, foam and leather in cutting rooms.',
+-->
+
+<style>
+/* ---- Hero ad overlay (Apparel Show — slide 2) ---- */
+/* No card chrome on purpose: it sits in the same spot as .hero-copy, at the
+   same measure, and borrows the slide-1 type scale (.hero-kicker for the
+   dates, a red display figure for the stands) so the two slides read as one
+   hero. Same 1.4s fade as the image crossfade. */
+.hero-promo {
+  max-width: 498px;
+  opacity: 1;
+  transition: opacity 1.4s var(--ease);
+}
+.hero-promo.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.hero-promo-title {
+  font-size: clamp(1.16rem, 2.27vw, 1.78rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.hero-promo-venue {
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--gray);
+}
+/* Echoes .hero-number's red display figure so slide 2 keeps slide 1's accent. */
+.hero-promo-stands {
+  margin-top: 0.62rem;
+  font-size: clamp(1rem, 2vw, 1.38rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+.hero-promo-lead {
+  margin-top: 0.58rem;
+  font-size: 0.82rem;
+  color: var(--gray);
+}
+/* Four exhibited technologies, one full-width row each: at two columns the
+   logo chip would leave too little measure for the descriptions to read. */
+.hero-promo-brands {
+  list-style: none;
+  margin-top: 0.85rem;
+}
+.hero-promo-brands a {
+  display: flex;
+  align-items: center;
+  gap: 0.62rem;
+  padding: 0.4rem 0;
+  border-top: 1px solid var(--line);
+  text-decoration: none;
+  transition: border-color .25s var(--ease);
+}
+.hero-promo-brands a:hover { border-color: var(--red); }
+.hero-promo-brands a:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+/* Logos extracted from invite-apparel-show-2026.html. Their native aspect
+   ratios run from 2.78:1 to 6.06:1, so every logo gets an IDENTICAL fixed
+   chip and object-fit: contain scales it to fit inside — never stretched,
+   and the row of four lines up regardless of source proportions.
+   The paper chip also gives dark logos a consistent ground on the photo. */
+.brand-logo {
+  flex: 0 0 auto;
+  width: 64px;
+  height: 36px;
+  padding: 4px 6px;
+  object-fit: contain;
+  object-position: center;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  transition: border-color .25s var(--ease), box-shadow .25s var(--ease);
+}
+.hero-promo-brands a:hover .brand-logo {
+  border-color: var(--red);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, .08);
+}
+/* min-width:0 lets the long descriptions wrap instead of stretching the row. */
+.brand-text {
+  display: block;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.brand-name {
+  display: block;
+  font-weight: 700;
+  font-size: 0.77rem;
+  color: var(--ink);
+  transition: color .25s;
+}
+.hero-promo-brands a:hover .brand-name { color: var(--red); }
+.brand-desc {
+  display: block;
+  margin-top: 0.13rem;
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: var(--gray);
+}
+/* Phones: the ad carries far more content than the slide-1 copy (header block
+   + four sponsor rows), and both layers share one grid cell, so the ad sets
+   the hero's height. Compact it so the whole ad fits a phone screen instead
+   of running past the fold — measured 570px -> 511px at 375px wide.
+   align-self:start applies to the ad only: it is the taller layer so this is
+   a no-op today, but if it ever outgrows the row it now overflows downward
+   (where the section can grow) rather than symmetrically off the top.
+   .hero-copy stays centred so slide 1 is unchanged. */
+@media (max-width: 700px) {
+  .hero-promo { align-self: start; }
+  .hero-promo-venue { margin-top: 0.3rem; }
+  .hero-promo-stands { margin-top: 0.45rem; }
+  .hero-promo-lead { margin-top: 0.45rem; }
+  .hero-promo-brands { margin-top: 0.6rem; }
+  .hero-promo-brands a { padding: 0.28rem 0; }
+  /* Single-line labels don't need body's 1.6 leading. */
+  .brand-name { line-height: 1.25; }
+  .brand-desc { font-size: 0.7rem; line-height: 1.38; }
+}
+/* Narrow screens: shrink the chip rather than stacking, so the row reads the
+   same and the description keeps as much measure as possible. */
+@media (max-width: 560px) {
+  .hero-promo-brands a { gap: 0.53rem; }
+  .brand-logo {
+    width: 52px;
+    height: 30px;
+    padding: 3px 5px;
+  }
+}
+</style>

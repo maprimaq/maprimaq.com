@@ -264,6 +264,12 @@ h3 { font-size: 0.96rem; }
   transform: translateX(2.5%) scale(1.04);
   transition: opacity 1.4s var(--ease), transform 6s linear;
 }
+/* Plastimagen campaign art, pinned to the right edge. Both files are cropped
+   just left of the artwork's line-art strip so the sculpture (and, in the
+   wide version, the slogan) sits near the right edge. The <picture> in
+   index.html only serves the slogan version at >=960px landscape, where it
+   lands fully visible right of the promo copy. */
+.hero-bg .hero-slide-plastimagen { object-position: right center; }
 .hero-bg .hero-slide.is-active {
   opacity: 1;
   transform: translateX(0) scale(1);
@@ -302,11 +308,13 @@ h3 { font-size: 0.96rem; }
   pointer-events: none;
 }
 
-/* ---- Hero ad overlay (Apparel Show — slide 2) ---- */
+/* ---- Hero promo overlay (event — slide 2) ---- */
 /* No card chrome on purpose: it sits in the same spot as .hero-copy, at the
    same measure, and borrows the slide-1 type scale (.hero-kicker for the
-   dates, a red display figure for the stands) so the two slides read as one
-   hero. Same 1.4s fade as the image crossfade. */
+   dates, a red display line for the call to action) so the two slides read as
+   one hero. Same 1.4s fade as the image crossfade.
+   The previous Apparel Show version (logo + description rows) is kept in
+   archive/hero-promo-apparel-show-2026.html. */
 .hero-promo {
   max-width: 498px;
   opacity: 1;
@@ -324,6 +332,15 @@ h3 { font-size: 0.96rem; }
   text-transform: uppercase;
   color: var(--ink);
 }
+/* The official event logo stands in for the title text (the <img> alt
+   carries the name for screen readers). */
+.hero-promo-title a { display: inline-block; }
+.hero-promo-title a:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; border-radius: 6px; }
+.hero-promo-logo {
+  display: block;
+  width: clamp(200px, 24vw, 300px);
+  height: auto;
+}
 .hero-promo-venue {
   margin-top: 0.4rem;
   font-size: 0.8rem;
@@ -332,45 +349,31 @@ h3 { font-size: 0.96rem; }
 /* Echoes .hero-number's red display figure so slide 2 keeps slide 1's accent. */
 .hero-promo-stands {
   margin-top: 0.62rem;
-  font-size: clamp(1rem, 2vw, 1.38rem);
+  font-size: clamp(0.95rem, 1.7vw, 1.2rem);
   font-weight: 700;
-  line-height: 1.1;
+  line-height: 1.15;
   letter-spacing: -0.01em;
-  text-transform: uppercase;
   color: var(--red);
 }
-.hero-promo-lead {
-  margin-top: 0.58rem;
-  font-size: 0.82rem;
-  color: var(--gray);
-}
-/* Four exhibited technologies, one full-width row each: at two columns the
-   logo chip would leave too little measure for the descriptions to read. */
+/* Represented brands, logos only: a 3-up grid of identical chips.
+   Native aspect ratios run from ~1.6:1 (Bekum) to ~5:1 (Lohia), so every logo
+   gets the same fixed chip and object-fit: contain scales it inside — never
+   stretched, and the grid lines up regardless of source proportions.
+   The paper chip also gives dark logos a consistent ground on the photo. */
 .hero-promo-brands {
   list-style: none;
   margin-top: 0.85rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
 }
-.hero-promo-brands a {
-  display: flex;
-  align-items: center;
-  gap: 0.62rem;
-  padding: 0.4rem 0;
-  border-top: 1px solid var(--line);
-  text-decoration: none;
-  transition: border-color .25s var(--ease);
-}
-.hero-promo-brands a:hover { border-color: var(--red); }
-.hero-promo-brands a:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
-/* Logos extracted from invite-apparel-show-2026.html. Their native aspect
-   ratios run from 2.78:1 to 6.06:1, so every logo gets an IDENTICAL fixed
-   chip and object-fit: contain scales it to fit inside — never stretched,
-   and the row of four lines up regardless of source proportions.
-   The paper chip also gives dark logos a consistent ground on the photo. */
+.hero-promo-brands a { display: block; }
+.hero-promo-brands a:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; border-radius: 6px; }
 .brand-logo {
-  flex: 0 0 auto;
-  width: 64px;
-  height: 36px;
-  padding: 4px 6px;
+  display: block;
+  width: 100%;
+  height: 52px;
+  padding: 8px 12px;
   object-fit: contain;
   object-position: center;
   background: var(--paper);
@@ -382,55 +385,18 @@ h3 { font-size: 0.96rem; }
   border-color: var(--red);
   box-shadow: 0 6px 16px rgba(0, 0, 0, .08);
 }
-/* min-width:0 lets the long descriptions wrap instead of stretching the row. */
-.brand-text {
-  display: block;
-  flex: 1 1 auto;
-  min-width: 0;
-}
-.brand-name {
-  display: block;
-  font-weight: 700;
-  font-size: 0.77rem;
-  color: var(--ink);
-  transition: color .25s;
-}
-.hero-promo-brands a:hover .brand-name { color: var(--red); }
-.brand-desc {
-  display: block;
-  margin-top: 0.13rem;
-  font-size: 0.72rem;
-  line-height: 1.45;
-  color: var(--gray);
-}
-/* Phones: the ad carries far more content than the slide-1 copy (header block
-   + four sponsor rows), and both layers share one grid cell, so the ad sets
-   the hero's height. Compact it so the whole ad fits a phone screen instead
-   of running past the fold — measured 570px -> 511px at 375px wide.
-   align-self:start applies to the ad only: it is the taller layer so this is
-   a no-op today, but if it ever outgrows the row it now overflows downward
-   (where the section can grow) rather than symmetrically off the top.
-   .hero-copy stays centred so slide 1 is unchanged. */
+.hero-promo-actions { margin-top: 1rem; }
+/* Phones: both layers share one grid cell, so the taller promo sets the hero's
+   height. Tighten it so it fits a phone screen instead of running past the
+   fold. align-self:start makes it overflow downward (where the section can
+   grow) rather than symmetrically off the top; .hero-copy stays centred. */
 @media (max-width: 700px) {
   .hero-promo { align-self: start; }
   .hero-promo-venue { margin-top: 0.3rem; }
   .hero-promo-stands { margin-top: 0.45rem; }
-  .hero-promo-lead { margin-top: 0.45rem; }
-  .hero-promo-brands { margin-top: 0.6rem; }
-  .hero-promo-brands a { padding: 0.28rem 0; }
-  /* Single-line labels don't need body's 1.6 leading. */
-  .brand-name { line-height: 1.25; }
-  .brand-desc { font-size: 0.7rem; line-height: 1.38; }
-}
-/* Narrow screens: shrink the chip rather than stacking, so the row reads the
-   same and the description keeps as much measure as possible. */
-@media (max-width: 560px) {
-  .hero-promo-brands a { gap: 0.53rem; }
-  .brand-logo {
-    width: 52px;
-    height: 30px;
-    padding: 3px 5px;
-  }
+  .hero-promo-brands { margin-top: 0.6rem; gap: 0.4rem; }
+  .brand-logo { height: 44px; padding: 6px 8px; }
+  .hero-promo-actions { margin-top: 0.75rem; }
 }
 
 /* ---- Hero carousel controls ---- */
