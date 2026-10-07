@@ -6,7 +6,7 @@
   <title>MAPRIMAQ — Innovación Industrial</title>
   <meta name="description" content="Desde 1961 conectamos a la industria centroamericana con tecnología de clase mundial: textiles, plásticos, energía, tratamiento de aguas e industria en general.">
   <link rel="icon" type="image/png" href="assets/img/icon-1.png">
-  <link rel="stylesheet" href="css/styles.css?v=29">
+  <link rel="stylesheet" href="css/styles.css?v=33">
   <meta property="og:title" content="MAPRIMAQ — Innovación Industrial">
   <meta property="og:description" content="65 años al servicio de la industria. Representamos marcas líderes mundiales en Guatemala, El Salvador y Honduras.">
   <meta property="og:image" content="assets/img/logo-color.png">
@@ -48,12 +48,19 @@
 
          Each slide owns its own copy layer, and they crossfade with the
          images (see js/main.js): .hero-copy belongs to slide 1 and
-         .hero-promo (the Apparel Show overlay) belongs to slide 2, so a
+         .hero-promo (the event promo overlay) belongs to slide 2, so a
          slide never renders with another slide's text over it.
          ============================================================ -->
     <div class="hero-bg" aria-hidden="true">
       <img class="hero-slide is-active" src="assets/img/hero-spinning.jpg" alt="" fetchpriority="high">
-      <img class="hero-slide" src="assets/img/hero-machinery.webp" alt="" loading="lazy">
+      <!-- Plastimagen campaign art. The slogan is baked into the artwork, so it
+           is only served where it fits right of the promo copy (wide enough,
+           landscape); elsewhere the same art with the slogan removed is used,
+           so the slogan is never clipped or behind the copy. See css. -->
+      <picture>
+        <source media="(min-width: 960px) and (min-aspect-ratio: 4/3)" srcset="assets/img/hero-plastimagen.webp">
+        <img class="hero-slide hero-slide-plastimagen" src="assets/img/hero-plastimagen-plain.webp" alt="" loading="lazy">
+      </picture>
       <div class="hero-scrim"></div>
     </div>
     <div class="container hero-grid">
@@ -69,11 +76,13 @@
           <a href="#contacto" class="btn btn-ghost" data-i18n="hero.cta2">Contáctanos</a>
         </div>
       </div>
-      <!-- Apparel Show overlay — belongs to hero slide 2 only; starts hidden
+      <!-- Event promo overlay — belongs to hero slide 2 only; starts hidden
            until the carousel advances to that slide. It deliberately reuses
            the slide-1 hero typography (.hero-kicker, red accent figure)
            instead of card chrome so both slides read as one hero.
-           Content mirrors invite-apparel-show-2026.html.
+           Currently: Plastimagen México 2026 (attending, no stand). The
+           previous Apparel Sourcing Show 2026 version is kept in
+           archive/hero-promo-apparel-show-2026.html.
 
            NAMING IS LOAD-BEARING HERE — do not rename these classes back.
            This block was previously called .hero-ad / .hero-ad-* and its logos
@@ -92,50 +101,22 @@
            promo still shows on an engine that ignores `inert`. It starts inert
            because the carousel starts on slide 1; js/main.js clears it on
            slide 2. -->
-      <aside class="hero-promo is-hidden" aria-label="Apparel Sourcing Show 2026" aria-hidden="true" inert>
-        <p class="hero-kicker" data-i18n="promo.dates">18 – 20 de agosto de 2026</p>
-        <h2 class="hero-promo-title" data-i18n="promo.title">Apparel Sourcing Show 2026</h2>
-        <p class="hero-promo-venue" data-i18n="promo.venue">Tikal Futura · Centro de Convenciones · Ciudad de Guatemala</p>
-        <p class="hero-promo-stands" data-i18n="promo.stands">Stands 25 &amp; 26</p>
-        <p class="hero-promo-lead" data-i18n="promo.lead">Exhibimos la tecnología más moderna para la industria textil.</p>
+      <aside class="hero-promo is-hidden" aria-label="Plastimagen México 2026" aria-hidden="true" inert>
+        <p class="hero-kicker" data-i18n="promo.dates">10 – 13 de noviembre de 2026</p>
+        <h2 class="hero-promo-title"><a href="https://www.plastimagen.com.mx/" target="_blank" rel="noopener"><img class="hero-promo-logo" src="assets/img/brands-show/plastimagen.webp" alt="Plastimagen México 2026" width="700" height="174"></a></h2>
+        <p class="hero-promo-venue" data-i18n="promo.venue">Centro Banamex · Ciudad de México</p>
+        <p class="hero-promo-stands" data-i18n="promo.stands">Estaremos presentes, agenda una reunión con nuestro equipo</p>
         <ul class="hero-promo-brands">
-          <li>
-            <a href="https://formall.com/products/" target="_blank" rel="noopener">
-              <img class="brand-logo" src="assets/img/brands-show/formall.png" alt="" loading="lazy" width="300" height="57">
-              <span class="brand-text">
-                <span class="brand-name">Formall — Yarn-Pak &amp; Multi-Pak</span>
-                <span class="brand-desc" data-i18n="promo.b1">Yarn-Pak: tarimas plásticas para paletizar bobinas de hilo. Multi-Pak: cajas retornables de cartón duradero con base y tapa plásticas para piezas textiles.</span>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="https://www.bwconverting.com/brand/product/baldwin/texcoat-g4" target="_blank" rel="noopener">
-              <img class="brand-logo" src="assets/img/brands-show/baldwin.png" alt="" loading="lazy" width="400" height="66">
-              <span class="brand-text">
-                <span class="brand-name">Baldwin — TexCoat™ G4</span>
-                <span class="brand-desc" data-i18n="promo.b2">Aplicación de suavizantes y químicos auxiliares sobre la tela mediante spray de precisión: máxima eficiencia y ahorro.</span>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="https://laip.it/en/machines/nautilus/" target="_blank" rel="noopener">
-              <img class="brand-logo" src="assets/img/brands-show/laip.jpg" alt="" loading="lazy" width="300" height="128">
-              <span class="brand-text">
-                <span class="brand-name">Laip — Nautilus</span>
-                <span class="brand-desc" data-i18n="promo.b3">La gama más completa de maquinaria italiana para teñir hilo y telas de fibras naturales y sintéticas, incluyendo el sistema Nautilus.</span>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="https://www.oroxgroup.it/complete-line/" target="_blank" rel="noopener">
-              <img class="brand-logo" src="assets/img/brands-show/orox.png" alt="" loading="lazy" width="400" height="144">
-              <span class="brand-text">
-                <span class="brand-name">Orox</span>
-                <span class="brand-desc" data-i18n="promo.b4">Equipos de precisión de última generación para el corte de tejidos, no-tejidos, esponja y cuero en salas de corte.</span>
-              </span>
-            </a>
-          </li>
+          <li><a href="https://www.wittmann-group.com/" target="_blank" rel="noopener"><img class="brand-logo" src="assets/img/brands-show/wittmann.png" alt="Wittmann" loading="lazy" width="173" height="50"></a></li>
+          <li><a href="https://www.bekum.com/" target="_blank" rel="noopener"><img class="brand-logo" src="assets/img/brands-show/bekum.svg" alt="Bekum" loading="lazy" width="110" height="70"></a></li>
+          <li><a href="https://www.ngr-world.com/" target="_blank" rel="noopener"><img class="brand-logo" src="assets/img/brands-show/ngr.svg" alt="NGR" loading="lazy" width="288" height="78"></a></li>
+          <li><a href="https://www.lohiagroup.com/" target="_blank" rel="noopener"><img class="brand-logo" src="assets/img/brands-show/lohia.svg" alt="Lohia" loading="lazy" width="195" height="39"></a></li>
+          <li><a href="https://www.tecnofer.biz/en/" target="_blank" rel="noopener"><img class="brand-logo" src="assets/img/brands-show/tecnofer.svg" alt="Tecnofer" loading="lazy" width="269" height="57"></a></li>
+          <li><a href="https://www.htw-molds.com/" target="_blank" rel="noopener"><img class="brand-logo" src="assets/img/brands-show/htw.png" alt="HTW" loading="lazy" width="300" height="92"></a></li>
         </ul>
+        <div class="hero-promo-actions">
+          <a href="#contacto" class="btn btn-primary" data-i18n="promo.cta">Agenda una reunión</a>
+        </div>
       </aside>
     </div>
     <!-- Carousel controls — grouped bottom-right (inside the container width)
@@ -537,6 +518,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=18"></script>
+  <script src="js/main.js?v=20"></script>
 </body>
 </html>
