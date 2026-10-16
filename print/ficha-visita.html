@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>MAPRIMAQ · Ficha de visita — Apparel Sourcing Show</title>
+<style>
+  @font-face { font-family:'Decimal'; src:url('../assets/fonts/DecimalBold.ttf'); font-weight:700; }
+  @font-face { font-family:'Decimal'; src:url('../assets/fonts/DecimalBook.ttf'); font-weight:400; }
+  @font-face { font-family:'Decimal'; src:url('../assets/fonts/DecimalExtraLight.ttf'); font-weight:200; }
+
+  :root {
+    --red:#c0202c; --gray:#606161; --ink:#131315;
+    --rule:#b9b9be;        /* fill-in lines: dark enough to see, light enough to write over */
+    --hair:#dcdce0;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  @page { size: letter; margin: 0; }
+  html, body { width:8.5in; height:11in; }
+  body {
+    font-family:'Decimal','Helvetica Neue',Arial,sans-serif;
+    color:var(--ink); background:#fff;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;
+  }
+
+  .sheet { position:relative; width:8.5in; height:11in; overflow:hidden; }
+
+  /* ---- letterhead, rebuilt from the brand assets ----
+     Geometry measured off page 1 of "Hojas membretadas editables.pdf" (300 dpi):
+     logo 2.113x1.143in centred at 4.25in / 0.54in from the top; footer text
+     Decimal Book 10pt on 13.93pt leading at a 0.593in left margin; maprimaq.com
+     Decimal Bold 12pt, 0.713in right margin. The grey outline "M" watermark from
+     the original is deliberately dropped — it ran through the fill-in lines.
+     The logo is an <img> (not a CSS background) so it prints even when
+     "Background graphics" is off in the print dialog. */
+  .lh-logo  { position:absolute; left:3.193in; top:0.54in; width:2.113in; }
+  .lh-rule  { position:absolute; left:0.593in; top:9.26in; width:0.87in; height:0.03in;
+              background:var(--red); }
+  .lh-foot  { position:absolute; left:0.593in; font-size:10pt; line-height:13.93pt;
+              color:var(--ink); }
+  .lh-phone { top:9.464in; }
+  .lh-addr  { top:9.858in; }
+  .lh-url   { position:absolute; right:0.713in; top:10.256in; font-size:12pt;
+              line-height:13.93pt; font-weight:700; color:var(--red); }
+
+  /* Form band: below the logo, above the letterhead's red rule. Left and right
+     edges align with the footer text and maprimaq.com. space-between distributes
+     the sections, so nothing can collide with the closing strip. */
+  .form { position:absolute; left:0.593in; right:0.713in; top:1.86in; bottom:1.92in;
+          display:flex; flex-direction:column; justify-content:space-between; }
+
+  /* ---- header ---- */
+  .head { display:flex; align-items:flex-end; justify-content:space-between; gap:.2in;
+          border-bottom:1.2pt solid var(--red); padding-bottom:5pt; }
+  .head h1 { font-weight:700; font-size:13pt; letter-spacing:.16em; text-transform:uppercase; line-height:1; }
+  .head h1 + .en { margin-top:2.5pt; }
+  .en { font-weight:200; font-size:7pt; color:var(--gray); letter-spacing:.06em; }
+  .show { text-align:right; }
+  .show .name { font-weight:700; font-size:9pt; color:var(--red); letter-spacing:.08em; text-transform:uppercase; }
+  .show .meta { margin-top:4pt; font-size:7.5pt; color:var(--gray); white-space:nowrap; }
+  .show .meta span { display:inline-block; border-bottom:.7pt solid var(--rule); width:.85in; }
+  .show .meta span.w { width:1.15in; }
+
+  /* ---- sections ---- */
+  .sec { padding-top:2pt; }
+  .sec > .cap { font-weight:700; font-size:6.5pt; letter-spacing:.2em; text-transform:uppercase;
+                color:var(--red); margin-bottom:6pt; }
+  .sec > .cap em { font-style:normal; font-weight:200; color:var(--gray); letter-spacing:.06em; }
+
+  .row { display:flex; gap:.22in; margin-bottom:9pt; }
+  .f { flex:1; min-width:0; }
+  .f.half { flex:0 0 calc(50% - .11in); }
+  .f.third { flex:0 0 calc(33.333% - .147in); }
+  .f.two-thirds { flex:0 0 calc(66.666% - .073in); }
+
+  .lbl { font-size:7pt; font-weight:400; color:var(--ink); letter-spacing:.04em; }
+  .lbl i { font-style:normal; font-weight:200; color:var(--gray); }
+  .line { height:.30in; border-bottom:.7pt solid var(--rule); }
+  .line.tall { height:.34in; }
+
+  /* multi-line write-in areas */
+  .lines { margin-top:2pt; }
+  .lines .line { margin-top:.02in; }
+
+  /* ---- checkbox rows ---- */
+  .opts { display:flex; flex-wrap:wrap; gap:4pt 16pt; padding-top:3pt; }
+  .opt { display:flex; align-items:center; gap:5pt; font-size:7.5pt; }
+  .box { flex:0 0 auto; width:8.5pt; height:8.5pt; border:.7pt solid var(--gray); }
+  .opt i { font-style:normal; font-weight:200; color:var(--gray); font-size:6.5pt; }
+  .opt .fill { display:inline-block; width:1.05in; border-bottom:.7pt solid var(--rule); height:8pt; }
+
+  /* ---- footer strip of the form ---- */
+  .close { display:flex; justify-content:flex-end; }
+  .internal { flex:0 0 2.35in; border:.7pt solid var(--hair); padding:4pt 6pt; }
+  .internal .t { font-size:6pt; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--gray); }
+  .internal .t em { font-style:normal; font-weight:200; letter-spacing:.06em; }
+  .internal .b { display:flex; align-items:center; gap:8pt; margin-top:4pt; font-size:7pt; color:var(--gray); }
+  .internal .b .fill { display:inline-block; width:.62in; border-bottom:.7pt solid var(--rule); height:8pt; }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <img class="lh-logo" src="logo-maprimaq.png" alt="MAPRIMAQ · Innovación Industrial">
+  <div class="lh-rule"></div>
+  <div class="lh-foot lh-phone">+502 2440 1840</div>
+  <div class="lh-foot lh-addr">Calzada Roosevelt 22-43 zona 11<br>Tikal Futura Business &amp; Convention Center<br>Torre Sol - Oficina 9D - Guatemala Ciudad</div>
+  <div class="lh-url">maprimaq.com</div>
+
+  <div class="form">
+
+    <div class="head">
+      <div>
+        <h1>Ficha de visita</h1>
+        <div class="en">Visitor &amp; lead form</div>
+      </div>
+      <div class="show">
+        <div class="name">Apparel Sourcing Show</div>
+        <div class="meta">Fecha <span></span> &nbsp; Asesor <span class="w"></span></div>
+      </div>
+    </div>
+
+    <!-- empresa -->
+    <div class="sec">
+      <div class="cap">Empresa <em>/ Company</em></div>
+      <div class="row">
+        <div class="f">
+          <div class="lbl">Razón social / nombre comercial <i>/ Company name</i></div>
+          <div class="line tall"></div>
+        </div>
+      </div>
+      <div class="row" style="margin-bottom:0">
+        <div class="f half">
+          <div class="lbl">País <i>/ Country</i></div>
+          <div class="line"></div>
+        </div>
+        <div class="f half">
+          <div class="lbl">Ciudad <i>/ City</i></div>
+          <div class="line"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- contacto -->
+    <div class="sec">
+      <div class="cap">Contacto <em>/ Contact</em></div>
+      <div class="row">
+        <div class="f two-thirds">
+          <div class="lbl">Nombre <i>/ Full name</i></div>
+          <div class="line"></div>
+        </div>
+        <div class="f third">
+          <div class="lbl">Puesto <i>/ Position</i></div>
+          <div class="line"></div>
+        </div>
+      </div>
+      <div class="row" style="margin-bottom:0">
+        <div class="f half">
+          <div class="lbl">Teléfono · WhatsApp <i>/ Phone</i></div>
+          <div class="line"></div>
+        </div>
+        <div class="f half">
+          <div class="lbl">Correo electrónico <i>/ Email</i></div>
+          <div class="line"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- interés -->
+    <div class="sec">
+      <div class="cap">Interés <em>/ Interest</em></div>
+      <div class="row">
+        <div class="f">
+          <div class="lbl">Marca(s) de interés <i>/ Brands of interest</i></div>
+          <div class="line tall"></div>
+        </div>
+      </div>
+      <div class="row" style="margin-bottom:0">
+        <div class="f">
+          <div class="lbl">Tema · necesidad · proyecto <i>/ Topic, need or project</i></div>
+          <div class="lines">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- seguimiento -->
+    <div class="sec">
+      <div class="cap">Seguimiento <em>/ Follow-up</em></div>
+      <div class="row">
+        <div class="f">
+          <div class="lbl">Plazo del proyecto <i>/ Timeline</i></div>
+          <div class="opts">
+            <label class="opt"><span class="box"></span>Inmediato <i>/ Now</i></label>
+            <label class="opt"><span class="box"></span>3–6 meses</label>
+            <label class="opt"><span class="box"></span>6–12 meses</label>
+            <label class="opt"><span class="box"></span>Más de 12 meses</label>
+            <label class="opt"><span class="box"></span>Explorando <i>/ Exploring</i></label>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-bottom:0">
+        <div class="f">
+          <div class="lbl">Acordado con el cliente <i>/ Agreed next step</i></div>
+          <div class="opts">
+            <label class="opt"><span class="box"></span>Cotización <i>/ Quotation</i></label>
+            <label class="opt"><span class="box"></span>Visita técnica <i>/ Site visit</i></label>
+            <label class="opt"><span class="box"></span>Información por email <i>/ Send info</i></label>
+            <label class="opt"><span class="box"></span>Demostración <i>/ Demo</i></label>
+            <label class="opt"><span class="box"></span>Fecha compromiso <span class="fill"></span></label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- cierre -->
+    <div class="close">
+      <div class="internal">
+        <div class="t">Uso interno <em>/ Internal</em></div>
+        <div class="b">
+          <span>Lead&nbsp;#<span class="fill"></span></span>
+          <span class="opt" style="gap:5pt"><span class="box"></span>Cargado a CRM</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

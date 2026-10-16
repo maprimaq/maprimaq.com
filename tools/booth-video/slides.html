@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>MAPRIMAQ booth slides</title>
+<style>
+  @font-face { font-family:'Decimal'; src:url('file:///Users/sebastian/src/maprimaq.com/assets/fonts/DecimalBold.ttf'); font-weight:700; }
+  @font-face { font-family:'Decimal'; src:url('file:///Users/sebastian/src/maprimaq.com/assets/fonts/DecimalBook.ttf'); font-weight:400; }
+  @font-face { font-family:'Decimal'; src:url('file:///Users/sebastian/src/maprimaq.com/assets/fonts/DecimalExtraLight.ttf'); font-weight:200; }
+
+  :root {
+    --red:#c0202c; --red-bright:#db2638; --red-deep:#a91e2d;
+    --gray:#606161; --ink:#131315; --paper:#ffffff; --paper-soft:#f6f6f7; --line:#e6e6e8;
+    --teal:#014e5e; --teal-deep:#023641; --teal-soft:#9fd2da;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:1920px; height:1080px; overflow:hidden; background:var(--paper);
+    font-family:'Decimal','Helvetica Neue',Arial,sans-serif; color:var(--ink); }
+  .slide { display:none; position:absolute; inset:0; width:1920px; height:1080px; }
+  .slide.active { display:block; }
+
+  /* shared chrome */
+  .chrome-logo { position:absolute; top:56px; left:80px; height:56px; z-index:5; }
+  .chrome-foot { position:absolute; bottom:0; left:0; right:0; height:14px; background:var(--red); z-index:5; }
+  .chrome-url { position:absolute; bottom:44px; right:80px; font-weight:400; font-size:28px; color:var(--gray); letter-spacing:.04em; z-index:5; }
+
+  .eyebrow { color:var(--red); font-weight:700; text-transform:uppercase; letter-spacing:.22em; font-size:30px; margin-bottom:28px; }
+  h2.big { font-weight:700; font-size:88px; line-height:1.05; letter-spacing:-.01em; }
+
+  /* ---- 1 cover ---- */
+  #s1 .bg, #s11 .bg { position:absolute; inset:0; }
+  #s1 .bg img, #s11 .bg img { width:100%; height:100%; object-fit:cover; }
+  #s1 .scrim { position:absolute; inset:0;
+    background:linear-gradient(100deg, rgba(255,255,255,.97) 0%, rgba(255,255,255,.85) 52%, rgba(255,255,255,.45) 100%); }
+  #s1 .copy { position:absolute; left:130px; top:50%; transform:translateY(-50%); color:var(--ink); max-width:1350px; }
+  #s1 .logo { height:170px; margin-bottom:70px; }
+  #s1 .kicker { color:var(--red); font-weight:700; text-transform:uppercase; letter-spacing:.24em; font-size:34px; margin-bottom:30px; }
+  #s1 .years { font-weight:700; font-size:200px; line-height:1; color:var(--red); }
+  #s1 .years small { color:var(--ink); }
+  #s1 .years small { font-weight:200; font-size:96px; }
+  #s1 .sub { font-weight:200; font-size:84px; margin-top:6px; }
+  #s1 .lead { font-weight:400; font-size:40px; line-height:1.45; margin-top:44px; color:#4c4c50; max-width:1200px; }
+
+  /* ---- 2 stats ---- */
+  #s2 { background:var(--red); color:#fff; }
+  #s2 .wrap { position:absolute; inset:0; display:flex; align-items:center; justify-content:space-evenly; padding:0 120px; }
+  #s2 .stat { text-align:center; }
+  #s2 .n { font-weight:700; font-size:250px; line-height:1; }
+  #s2 .l { font-weight:400; font-size:44px; margin-top:18px; opacity:.92; }
+  #s2 .chrome-foot { background:#8f1620; }
+  #s2 .logo-w { position:absolute; top:56px; left:80px; height:56px; }
+
+  /* ---- 3 nosotros ---- */
+  .split { display:flex; height:100%; }
+  .split .txt { flex:1.15; padding:170px 100px 120px 130px; display:flex; flex-direction:column; justify-content:center; }
+  .split .pic { flex:1; position:relative; }
+  .split .pic img { width:100%; height:100%; object-fit:cover; }
+  #s3 p.body { font-weight:400; font-size:36px; line-height:1.45; color:var(--gray); margin-top:32px; max-width:960px; }
+  #s3 p.body strong { color:var(--ink); }
+
+  /* ---- 4 timeline ---- */
+  #s4 { background:var(--paper-soft); }
+  #s4 .wrap { padding:100px 130px; }
+  #s4 .tl { margin-top:56px; display:flex; flex-direction:column; gap:38px; }
+  #s4 .row { display:flex; gap:52px; align-items:baseline; border-left:6px solid var(--red); padding-left:44px; }
+  #s4 .yr { font-weight:700; color:var(--red); font-size:52px; min-width:165px; }
+  #s4 .tx { font-weight:400; font-size:36px; color:var(--ink); line-height:1.3; max-width:1420px; }
+
+  /* ---- divisions (5–8) ---- */
+  .div-slide .pic { flex:1; }
+  .div-slide .txt { flex:1.2; padding-top:100px; padding-bottom:100px; }
+  .div-slide .desc { font-weight:400; font-size:36px; line-height:1.4; color:var(--gray); margin:26px 0 40px; max-width:930px; }
+  .div-slide ul { list-style:none; display:flex; flex-direction:column; gap:20px; }
+  .div-slide li { font-weight:400; font-size:36px; padding-left:44px; position:relative; }
+  .div-slide li::before { content:''; position:absolute; left:0; top:17px; width:16px; height:16px; background:var(--red); border-radius:50%; }
+  .div-slide li b { font-weight:700; }
+
+  /* ---- 9 brands ---- */
+  #s9 .wrap { padding:120px 130px; text-align:center; }
+  #s9 .grid { margin-top:110px; display:grid; grid-template-columns:repeat(6,1fr); gap:110px 70px; align-items:center; justify-items:center; }
+  #s9 .grid img { max-height:96px; max-width:245px; object-fit:contain; }
+
+  /* ---- 10 mapritécnica section (teal brand) ---- */
+  .mt-foot { position:absolute; bottom:0; left:0; right:0; height:14px; background:var(--teal); z-index:5; }
+
+  #s10 { background:#fff; }
+  #s10 .head { padding:80px 130px 0; }
+  #s10 .mt-logo { height:100px; }
+  #s10 h2 { font-weight:700; font-size:74px; line-height:1.16; margin-top:48px; color:#22252b; max-width:1700px; }
+  #s10 h2 img { height:150px; vertical-align:middle; transform:translateY(-6px); margin:0 -14px; }
+  #s10 .rule { width:200px; height:8px; background:var(--teal); margin:36px 0 30px; }
+  #s10 .sub { font-weight:400; font-size:40px; color:var(--gray); max-width:1500px; line-height:1.4; }
+  #s10 .photo { position:absolute; left:0; right:0; bottom:80px; height:330px; overflow:hidden; }
+  #s10 .photo img { width:100%; height:100%; object-fit:cover; object-position:center 40%; }
+  #s10 .band { position:absolute; left:0; right:0; bottom:0; height:80px; background:var(--teal); color:#fff;
+    display:flex; align-items:center; justify-content:flex-end; padding:0 80px; font-weight:400; font-size:32px; letter-spacing:.04em; }
+
+  #s10b .eyebrow { color:var(--teal); }
+  #s10b ul { list-style:none; margin-top:44px; display:flex; flex-direction:column; gap:28px; }
+  #s10b li { font-weight:400; font-size:40px; padding-left:46px; position:relative; }
+  #s10b li::before { content:''; position:absolute; left:0; top:19px; width:16px; height:16px; background:var(--teal); border-radius:50%; }
+  #s10b .mt-logo { height:80px; width:auto; align-self:flex-start; margin-bottom:56px; }
+
+  #s10c { background:var(--teal); color:#fff; }
+  #s10c .split .txt { justify-content:center; }
+  #s10c .eyebrow { color:var(--teal-soft); }
+  #s10c h2.big { font-size:72px; }
+  #s10c .lead { font-weight:400; font-size:38px; line-height:1.45; color:#e8f3f5; margin-top:32px; max-width:960px; }
+  #s10c .lead b { color:#fff; }
+  #s10c .chips { margin-top:44px; display:flex; flex-wrap:wrap; gap:22px; max-width:980px; }
+  #s10c .chip { border:3px solid rgba(255,255,255,.55); border-radius:999px; padding:12px 34px; font-weight:700; font-size:32px; }
+  #s10c .logo-card { display:inline-block; align-self:flex-start; background:#fff; border-radius:14px; padding:18px 30px; margin-bottom:44px; }
+  #s10c .logo-card img { height:56px; display:block; }
+
+  /* ---- 11 show ---- */
+  #s11 .scrim { position:absolute; inset:0; background:linear-gradient(100deg, rgba(9,9,11,.92) 0%, rgba(9,9,11,.78) 55%, rgba(9,9,11,.45) 100%); }
+  #s11 .copy { position:absolute; inset:0; padding:120px 130px; color:#fff; }
+  #s11 .kicker { color:#ff8a93; font-weight:700; text-transform:uppercase; letter-spacing:.22em; font-size:32px; }
+  #s11 h2 { font-weight:700; font-size:96px; margin-top:20px; }
+  #s11 .venue { font-weight:200; font-size:42px; margin-top:16px; color:#e6e6ea; }
+  #s11 .stands { display:inline-block; margin-top:26px; background:var(--red); font-weight:700; font-size:44px; padding:14px 36px; border-radius:10px; }
+  #s11 .brands { margin-top:64px; display:grid; grid-template-columns:1fr 1fr; gap:40px 70px; max-width:1620px; }
+  #s11 .brand { display:flex; gap:36px; align-items:center; }
+  #s11 .brand .lg { width:270px; height:110px; background:#fff; border-radius:12px; display:flex; align-items:center; justify-content:center; flex:none; }
+  #s11 .brand .lg img { max-width:220px; max-height:82px; object-fit:contain; }
+  #s11 .brand .nm { font-weight:700; font-size:36px; }
+  #s11 .brand .ds { font-weight:400; font-size:28px; color:#d4d4d9; line-height:1.35; margin-top:8px; }
+
+  /* ---- 12 presencia + contacto ---- */
+  #s12 .wrap { padding:150px 130px; }
+  #s12 .cards { margin-top:80px; display:flex; gap:50px; }
+  #s12 .card { flex:1; border:2px solid var(--line); border-radius:16px; padding:54px; background:var(--paper-soft); }
+  #s12 .tag { display:inline-block; color:var(--red); font-weight:700; text-transform:uppercase; letter-spacing:.18em; font-size:26px; }
+  #s12 .card h3 { font-weight:700; font-size:56px; margin-top:20px; }
+  #s12 .card p { font-weight:400; font-size:34px; color:var(--gray); margin-top:14px; }
+  #s12 .contact { margin-top:100px; display:flex; justify-content:space-between; align-items:center; }
+  #s12 .contact .item { font-weight:700; font-size:46px; color:var(--ink); white-space:nowrap; }
+  #s12 .contact .item span { color:var(--red); }
+</style>
+</head>
+<body>
+
+<!-- 1 · Cover -->
+<section class="slide" id="s1">
+  <div class="bg"><img src="file:///Users/sebastian/src/maprimaq.com/assets/img/hero-spinning.jpg"></div>
+  <div class="scrim"></div>
+  <div class="copy">
+    <img class="logo" src="file:///Users/sebastian/src/maprimaq.com/assets/firma/logo.png">
+    <p class="kicker">Innovación industrial desde 1961</p>
+    <div class="years">65 <small>años</small></div>
+    <div class="sub">al servicio de la industria</div>
+    <p class="lead">Conectamos a la industria centroamericana con tecnología de clase mundial: textiles, plásticos, energía, tratamiento de aguas e industria en general.</p>
+  </div>
+  <div class="chrome-foot"></div>
+</section>
+
+<!-- 2 · Stats -->
+<section class="slide" id="s2">
+  <img class="logo-w" src="file:///Users/sebastian/src/maprimaq.com/assets/img/logo-dark-bg.png">
+  <div class="wrap">
+    <div class="stat"><div class="n">65</div><div class="l">años de experiencia</div></div>
+    <div class="stat"><div class="n">3</div><div class="l">oficinas en Centroamérica</div></div>
+    <div class="stat"><div class="n">4</div><div class="l">segmentos de la industria</div></div>
+  </div>
+  <div class="chrome-foot"></div>
+</section>
+
+<!-- 3 · Nosotros -->
+<section class="slide" id="s3">
+  <div class="split">
+    <div class="txt">
+      <p class="eyebrow">Nosotros</p>
+      <h2 class="big">Tres generaciones al servicio de la industria</h2>
+      <p class="body">Empresa familiar en la <strong>tercera generación</strong>, fundada en agosto de 1961. Comercializamos equipos de Europa, Asia y América para las industrias textil, del plástico, hidroeléctricas y plantas de tratamiento de aguas industriales.</p>
+      <p class="body"><strong>Únicos en Centroamérica</strong> en ofrecer localmente montajes, puestas en marcha y servicio posventa de equipos de hilatura Rieter.</p>
+    </div>
+    <div class="pic"><img src="file:///Users/sebastian/src/maprimaq.com/assets/img/hero-machinery.webp"></div>
+  </div>
+  <img class="chrome-logo" style="display:none">
+  <div class="chrome-foot"></div>
+</section>
+
+<!-- 4 · Hitos -->
+<section class="slide" id="s4">
+  <div class="wrap">
+    <p class="eyebrow">Hitos históricos</p>
+    <h2 class="big">Seis décadas de historia</h2>
+    <div class="tl">
+      <div class="row"><span class="yr">1961</span><span class="tx">Fundación de la empresa en Guatemala.</span></div>
+      <div class="row"><span class="yr">1984</span><span class="tx">Primera máquina de hilatura Schubert &amp; Salzer vendida en Guatemala y Latinoamérica.</span></div>
+      <div class="row"><span class="yr">1985</span><span class="tx">Primera sopladora de envases plásticos Bekum vendida en Guatemala.</span></div>
+      <div class="row"><span class="yr">1995</span><span class="tx">Primera planta biológica de depuración de aguas residuales textiles, marca Idrosistem.</span></div>
+      <div class="row"><span class="yr">2021</span><span class="tx">La planta de hilatura más grande de Centroamérica, marca Rieter, vendida en Honduras.</span></div>
+    </div>
+  </div>
+  <div class="chrome-foot"></div>
+</section>
+
+<!-- 5 · Textiles 1/2 -->
+<section class="slide div-slide" id="s5">
+  <div class="split">
+    <div class="txt">
+      <p class="eyebrow">Nuestros servicios</p>
+      <h2 class="big">Textiles</h2>
+      <p class="desc">Tecnología para toda la cadena de producción textil.</p>
+      <ul>
+        <li><b>Rieter</b> · Hilatura de fibra corta y larga</li>
+        <li><b>Mayer &amp; Cie.</b> · Tejido de punto circular</li>
+        <li><b>Picanol</b> · Telares</li>
+        <li><b>Lafer</b> · Tintura, estampado y acabados</li>
+        <li><b>Baldwin</b> · Líneas continuas de teñido y acabado para tejido plano</li>
+        <li><b>SSM</b> · Máquinas para enconar y procesar hilo</li>
+        <li><b>Reseda Binder</b> · Parafinado de hilo</li>
+        <li><b>Rimtex</b> · Botes de hilatura</li>
+      </ul>
+    </div>
+    <div class="pic"><img src="file:///Users/sebastian/src/maprimaq.com/assets/img/machines/rieter.jpg"></div>
+  </div>
+  <div class="chrome-foot"></div>
+</section>
+
+<!-- 5b · Textiles 2/2 -->
+<section class="slide div-slide" id="s5b">
+  <div class="split">
+    <div class="pic"><img src="file:///Users/sebastian/src/maprimaq.com/assets/img/machines/orox.jpg"></div>
+    <div class="txt" style="padding-left:110px;">
+      <p class="eyebrow">Nuestros servicios · continuación</p>
+      <h2 class="big">Textiles</h2>
+      <p class="desc">Del laboratorio a la sala de corte.</p>
+      <ul>
+        <li><b>USTER</b> · Detección de metales, chispas y fibras extrañas</li>
+        <li><b>Orox</b> · Líneas de corte automático</li>
+        <li><b>ANDRITZ Laroche</b> · Líneas de reciclaje</li>
+        <li>Acondicionamiento al vacío y tratamiento de hilos en procesos continuos</li>
+        <li>Sistemas de hilos de fantasía con efectos especiales</li>
+        <li>Laboratorios e instrumentos para hilanderías</li>
+        <li>Climatización</li>
+        <li>Sistemas industriales de aspiración</li>
+      </ul>
+    </div>
+  </div>
+  <div class="chrome-foot"></div>
+</section>
+
+<!-- 6 · Plásticos 1/2 -->
+<section class="slide div-slide" id="s6">
+  <div class="split">
+    <div class="txt">
+      <p class="eyebrow">Nuestros servicios</p>
+      <h2 class="big">Plásticos</h2>
+      <p class="desc">Maquinaria para transformación, reciclaje y producción de envases plásticos.</p>
+      <ul>
+        <li><b>Bandera</b> · Extrusión</li>
+        <li><b>Bekum</b> · Soplado</li>
+        <li><b>Wittmann</b> · Inyección</li>
+        <li><b>Wittmann</b> · Equipos auxiliares y automatización completa</li>
+        <li><b>Frigosystem</b> · Sistemas de enfriamiento</li>
+        <li><b>NGR</b> · Reciclaje post-industrial y post-consumo</li>
+      </ul>
+    </div>
+    <div class="pic"><img src="file:///Users/sebastian/src/maprimaq.com/assets/img/machines/bekum.jpg"></div>
+  </div>
+  <div class="chrome-foot"></div>
+</section>
+
+<!-- 6b · Plásticos 2/2 -->
+<section class="slide div-slide" id="s6b">
+  <div class="split">
+    <div class="pic"><img src="file:///Users/sebastian/src/maprimaq.com/assets/img/machines/wittmann-robot.jpg"></div>
+    <div class="txt" style="padding-left:110px;">
+      <p class="eyebrow">Nuestros servicios · continuación</p>
+      <h2 class="big">Plásticos</h2>
+      <p class="desc">Soluciones enfocadas en productividad y sostenibilidad.</p>
+      <ul>
+        <li>Termoformado</li>
+        <li>Maquinaria para tubos plásticos flexibles</li>
+        <li>Plantas llave en mano para producción de diésel</li>
+        <li>Resinas y compuestos para películas de empaque</li>
+        <li>Sistemas industriales de aspiración</li>
+      </ul>
+    </div>
+  </div>
+  <div class="chrome-foot"></div>
+</section>
+
+<!-- 7 · Ambiente y Energía -->
+<section class="slide div-slide" id="s7">
+  <div class="split">
+    <div class="txt">
+      <p class="eyebrow">Nuestros servicios</p>
+      <h2 class="big">Ambiente y Energía</h2>
+      <p class="desc">Equipos y soluciones para proyectos energéticos e hidroeléctricos con tecnología de alto rendimiento.</p>
+      <ul>
+        <li><b>Idrosistem</b> · Tratamiento de aguas residuales industriales</li>
+        <li><b>NGR</b> · Líneas completas de reciclaje de plástico</li>
+        <li><b>Pierret · ANDRITZ</b> · Líneas de reciclaje textil</li>
+        <li><b>Troyer</b> · Energía hidroeléctrica</li>
+      </ul>
+    </div>
+    <div class="pic"><img src="file:///Users/sebastian/src/maprimaq.com/assets/img/machines/troyer.jpg"></div>
+  </div>
+  <div class="chrome-foot"></div>
+</section>
+
+<!-- 8 · Equipo Industrial -->
+<section class="slide div-slide" id="s8">
+  <div class="split">
+    <div class="pic"><img src="file:///Users/sebastian/src/maprimaq.com/assets/img/machines/wieland.webp"></div>
+    <div class="txt" style="padding-left:110px;">
+      <p class="eyebrow">Nuestros servicios</p>
+      <h2 class="big">Equipo Industrial</h2>
+      <p class="desc">Soluciones para diversos procesos industriales, representando fabricantes reconocidos por su innovación, eficiencia y confiabilidad.</p>
+      <ul>
+        <li><b>Wieland</b> · Sistemas de aspiración industrial y de alto vacío</li>
+        <li>Climatización industrial</li>
+        <li>Sistemas de enfriamiento</li>
+        <li>Automatización de bodegas y estacionamientos</li>
+      </ul>
+    </div>
+  </div>
+  <div class="chrome-foot"></div>
+</section>
+
+<!-- 9 · Marcas -->
+<section class="slide" id="s9">
+  <div class="wrap">
+    <p class="eyebrow">Marcas</p>
+    <h2 class="big">Representamos a líderes mundiales</h2>
+    <div class="grid">
+      <img src="file:///Users/sebastian/src/maprimaq.com/assets/img/brands/bracker.png">
+      <img src="file:///Users/sebastian/src/maprimaq.com/assets/img/brands/baldwin.png">
+      <img src="file:///Users/sebastian/src/maprimaq.com/assets/img/brands/comez.png">
+      <img src="file:///Users/sebastian/src/maprimaq.com/assets/img/brands/lafer.png">
+      <img src="file:///Users/sebastian/src/maprimaq.com/assets/img/brands/laip.png">
+      <img src="file:///Users/sebastian/src/maprimaq.com/assets/img/brands/andritz.png">
+      <img src="file:///Users/sebastian/src/maprimaq.com/assets/img/brands/lawer.png">
+      <img src="file:///Users/sebastian/src/maprimaq.com/assets/img/brands/mayer-cie.png">
+      <img src="file:///Users/sebastian/src/maprimaq.com/assets/img/brands/novibra.png">
+      <img src="file:///Users/sebastian/src/maprimaq.com/assets/img/brands/orox.png">
+      <img src="file:///Users/sebastian/src/maprimaq.com/assets/img/brands/pentek.png">
+      <img src="file:///Users/sebastian/src/maprimaq.com/assets/img/brands/picanol.png">
+      <img src="file:///Users/sebastian/src/maprimaq.com/assets/img/brands/reseda-binder.png">
+      <img src="file:///Users/sebastian/src/maprimaq.com/assets/img/brands/rieter.png">
+      <img src="file:///Users/sebastian/src/maprimaq.com/assets/img/brands/rimtex.png">
+      <img src="file:///Users/sebastian/src/maprimaq.com/assets/img/brands/ssm.png">
+      <img src="file:///Users/sebastian/src/maprimaq.com/assets/img/brands/suessen.png">
+      <img src="file:///Users/sebastian/src/maprimaq.com/assets/img/brands/uster.png">
+    </div>
+  </div>
+  <div class="chrome-foot"></div>
+</section>
+
+<!-- 10 · Mapritécnica — poster hero -->
+<section class="slide" id="s10">
+  <div class="head">
+    <img class="mt-logo" src="file:///Users/sebastian/src/maprimaq.com/tools/booth-video/mapritecnica-logo.png">
+    <h2>Único servicio técnico autorizado<br>de <img src="file:///Users/sebastian/src/maprimaq.com/assets/img/brands/rieter.png"> en Centroamérica.</h2>
+    <div class="rule"></div>
+    <p class="sub">Mantenimiento, repuestos originales y montaje por técnicos certificados.</p>
+  </div>
+  <div class="photo"><img src="file:///Users/sebastian/src/maprimaq.com/assets/img/rieter-spinning.webp"></div>
+  <div class="band">maprimaq.com</div>
+</section>
+
+<!-- 10b · Mapritécnica — servicios -->
+<section class="slide div-slide" id="s10b">
+  <div class="split">
+    <div class="txt">
+      <img class="mt-logo" src="file:///Users/sebastian/src/maprimaq.com/tools/booth-video/mapritecnica-logo.png">
+      <p class="eyebrow">Servicio técnico especializado</p>
+      <h2 class="big">Toda la vida útil de sus equipos</h2>
+      <ul>
+        <li>Montaje e instalación por técnicos certificados</li>
+        <li>Puesta en marcha</li>
+        <li>Mantenimiento preventivo y correctivo</li>
+        <li>Repuestos originales Rieter</li>
+        <li>Soporte técnico local en Centroamérica</li>
+      </ul>
+    </div>
+    <div class="pic"><img src="file:///Users/sebastian/src/maprimaq.com/assets/img/division-machinery.webp"></div>
+  </div>
+  <div class="mt-foot"></div>
+</section>
+
+<!-- 10c · Mapritécnica — experiencia -->
+<section class="slide" id="s10c">
+  <div class="split">
+    <div class="txt">
+      <span class="logo-card"><img src="file:///Users/sebastian/src/maprimaq.com/tools/booth-video/mapritecnica-logo.png"></span>
+      <p class="eyebrow">Experiencia internacional</p>
+      <h2 class="big">Ingenieros con trayectoria mundial</h2>
+      <p class="lead">Nuestros ingenieros han brindado servicio posventa para equipos de hilatura <b>Rieter</b> en:</p>
+      <div class="chips">
+        <span class="chip">Centroamérica</span>
+        <span class="chip">Turquía</span>
+        <span class="chip">Portugal</span>
+        <span class="chip">Perú</span>
+      </div>
+    </div>
+    <div class="pic"><img src="file:///Users/sebastian/src/maprimaq.com/assets/img/hero-spinning.jpg"></div>
+  </div>
+  <div class="mt-foot" style="background:var(--teal-deep)"></div>
+</section>
+
+<!-- 11 · Apparel Sourcing Show -->
+<section class="slide" id="s11">
+  <div class="bg"><img src="file:///Users/sebastian/src/maprimaq.com/assets/img/hero-machinery.webp"></div>
+  <div class="scrim"></div>
+  <div class="copy">
+    <p class="kicker">18 – 20 de agosto de 2026</p>
+    <h2>Apparel Sourcing Show 2026</h2>
+    <p class="venue">Tikal Futura · Centro de Convenciones · Ciudad de Guatemala</p>
+    <span class="stands">Stands 25 &amp; 26</span>
+    <div class="brands">
+      <div class="brand">
+        <span class="lg"><img src="file:///Users/sebastian/src/maprimaq.com/assets/img/brands-show/formall.png"></span>
+        <span><span class="nm">Formall — Yarn-Pak &amp; Multi-Pak</span><br>
+        <span class="ds">Tarimas plásticas para bobinas de hilo y cajas retornables para piezas textiles.</span></span>
+      </div>
+      <div class="brand">
+        <span class="lg"><img src="file:///Users/sebastian/src/maprimaq.com/assets/img/brands-show/baldwin.png"></span>
+        <span><span class="nm">Baldwin — TexCoat™ G4</span><br>
+        <span class="ds">Aplicación de suavizantes y químicos por spray de precisión: eficiencia y ahorro.</span></span>
+      </div>
+      <div class="brand">
+        <span class="lg"><img src="file:///Users/sebastian/src/maprimaq.com/assets/img/brands-show/laip.jpg"></span>
+        <span><span class="nm">Laip — Nautilus</span><br>
+        <span class="ds">Maquinaria italiana para teñir hilo y telas de fibras naturales y sintéticas.</span></span>
+      </div>
+      <div class="brand">
+        <span class="lg"><img src="file:///Users/sebastian/src/maprimaq.com/assets/img/brands-show/orox.png"></span>
+        <span><span class="nm">Orox</span><br>
+        <span class="ds">Equipos de precisión para el corte de tejidos, no-tejidos, esponja y cuero.</span></span>
+      </div>
+    </div>
+  </div>
+  <div class="chrome-foot"></div>
+</section>
+
+<!-- 12 · Presencia + contacto -->
+<section class="slide" id="s12">
+  <div class="wrap">
+    <p class="eyebrow">Cerca de su operación</p>
+    <h2 class="big">Visítenos</h2>
+    <div class="cards">
+      <div class="card"><span class="tag">Oficina principal</span><h3>Guatemala</h3><p>Ciudad de Guatemala</p></div>
+      <div class="card"><span class="tag">Oficina</span><h3>El Salvador</h3><p>San Salvador</p></div>
+      <div class="card"><span class="tag">Oficina</span><h3>Honduras</h3><p>San Pedro Sula</p></div>
+    </div>
+    <div class="contact">
+      <span class="item"><span>✉</span> info@maprimaq.com</span>
+      <span class="item"><span>✆</span> +502 2440 1840</span>
+      <span class="item"><span>🌐</span> maprimaq.com</span>
+    </div>
+  </div>
+  <div class="chrome-foot"></div>
+</section>
+
+<script>
+  const n = new URLSearchParams(location.search).get('n') || '1';
+  document.getElementById('s' + n).classList.add('active');
+</script>
+</body>
+</html>

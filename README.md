@@ -33,6 +33,36 @@ Push to GitHub, enable Pages on the branch root. Then:
 2. Verify Decimal (Hoefler&Co) web-embedding license before going live; swap
    `@font-face` for a licensed webfont kit if needed.
 
+## Print collateral (`print/`)
+
+`print/ficha-visita.html` is the trade-show visitor form — one letter page,
+Spanish labels with small English subtitles. No year in the header, so the same
+print run works at the next Apparel Sourcing Show.
+
+The letterhead is **rebuilt in the HTML**, not rasterised from
+`Hojas membretadas editables.pdf`: `print/logo-maprimaq.png` is cropped to its
+bounding box from `0 Maprimaq - materiales entregados/1 Logotipo/PNG/Logotipo Maprimaq-01.png` (5100×3300, alpha)
+and the footer is live Decimal text. Geometry was measured off the original at
+300 dpi and matches it within 0.004in — logo 2.113×1.143in centred at 0.54in
+from the top, footer Decimal Book 10pt / 13.93pt leading at a 0.593in left
+margin, `maprimaq.com` Decimal Bold 12pt at a 0.713in right margin. The grey
+outline "M" watermark is dropped on purpose: it ran through the fill-in lines.
+
+To PDF, either way works:
+
+```bash
+print/build.sh
+```
+
+…or open the HTML in any browser and print (Letter, margins **None**). The logo
+is an `<img>`, so it prints without enabling "Background graphics".
+`print/build.sh` needs a working headless Chromium — headless Brave hangs on
+this machine (it never returns, even on `--dump-dom data:text/html,<h1>hi</h1>`),
+so `brew install --cask chromium`.
+
+`print/inline.py` bakes the letterhead and fonts into a single self-contained
+HTML (`out/print/ficha-visita-standalone.html`) for emailing to a print shop.
+
 ## Language
 
 Default is Spanish; the header ES/EN toggle switches all copy via

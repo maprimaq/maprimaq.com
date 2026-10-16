@@ -1,3 +1,10 @@
 .DS_Store
+# Client-supplied source material (brand handbook, logos, letterhead).
+# Kept locally, never published.
 0 Maprimaq - materiales entregados/
+
+# Build output, one subfolder per tool: out/booth-video/ (tools/booth-video),
+# out/print/ (print/build.sh, print/inline.py).
+out/
+
 countries-50m.json
