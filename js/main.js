@@ -412,6 +412,10 @@ if (yearsEl) countUp(yearsEl, YEARS, 1800);
 const heroSlides = document.querySelectorAll('.hero-bg .hero-slide');
 const heroCopy = document.querySelector('.hero-copy');
 const heroPromo = document.querySelector('.hero-promo');
+// With a single slide the arrows would do nothing, so they are hidden; adding
+// a second .hero-slide in index.html brings them back.
+const heroNav = document.querySelector('.hero-nav');
+if (heroNav) heroNav.hidden = heroSlides.length < 2;
 if (heroSlides.length > 1) {
   let heroIdx = 0;
   let heroTimer = null;

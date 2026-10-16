@@ -50,17 +50,13 @@
          images (see js/main.js): .hero-copy belongs to slide 1 and
          .hero-promo (the event promo overlay) belongs to slide 2, so a
          slide never renders with another slide's text over it.
+
+         Currently a single slide: the prev/next arrows are hidden and
+         there is no .hero-promo. The last promo (Plastimagen México 2026)
+         is in archive/hero-promo-plastimagen-2026.html with restore steps.
          ============================================================ -->
     <div class="hero-bg" aria-hidden="true">
       <img class="hero-slide is-active" src="assets/img/hero-spinning.jpg" alt="" fetchpriority="high">
-      <!-- Plastimagen campaign art. The slogan is baked into the artwork, so it
-           is only served where it fits right of the promo copy (wide enough,
-           landscape); elsewhere the same art with the slogan removed is used,
-           so the slogan is never clipped or behind the copy. See css. -->
-      <picture>
-        <source media="(min-width: 960px) and (min-aspect-ratio: 4/3)" srcset="assets/img/hero-plastimagen.webp">
-        <img class="hero-slide hero-slide-plastimagen" src="assets/img/hero-plastimagen-plain.webp" alt="" loading="lazy">
-      </picture>
       <div class="hero-scrim"></div>
     </div>
     <div class="container hero-grid">
@@ -76,48 +72,6 @@
           <a href="#contacto" class="btn btn-ghost" data-i18n="hero.cta2">Contáctanos</a>
         </div>
       </div>
-      <!-- Event promo overlay — belongs to hero slide 2 only; starts hidden
-           until the carousel advances to that slide. It deliberately reuses
-           the slide-1 hero typography (.hero-kicker, red accent figure)
-           instead of card chrome so both slides read as one hero.
-           Currently: Plastimagen México 2026 (attending, no stand). The
-           previous Apparel Sourcing Show 2026 version is kept in
-           archive/hero-promo-apparel-show-2026.html.
-
-           NAMING IS LOAD-BEARING HERE — do not rename these classes back.
-           This block was previously called .hero-ad / .hero-ad-* and its logos
-           lived in assets/img/sponsors/. Arc on iOS rendered it as completely
-           absent while Safari on the same phone was fine: Arc's built-in
-           content blocker matches cosmetic filter lists, which hide elements
-           whose class/id contains an "ad" token and block URLs containing
-           "sponsor". Keep every class here on the hero-promo-* prefix and keep
-           the logos under assets/img/brands-show/. Visible copy may still say
-           "sponsors" — filter lists match names and URLs, not prose.
-
-           Visibility is driven ONLY by the .is-hidden class (opacity), the
-           same mechanism .hero-copy uses. `inert` and aria-hidden are purely
-           ADDITIVE a11y (they keep the faded-out promo's links out of the tab
-           order and the a11y tree) — neither may ever gate rendering, so the
-           promo still shows on an engine that ignores `inert`. It starts inert
-           because the carousel starts on slide 1; js/main.js clears it on
-           slide 2. -->
-      <aside class="hero-promo is-hidden" aria-label="Plastimagen México 2026" aria-hidden="true" inert>
-        <p class="hero-kicker" data-i18n="promo.dates">10 – 13 de noviembre de 2026</p>
-        <h2 class="hero-promo-title"><a href="https://www.plastimagen.com.mx/" target="_blank" rel="noopener"><img class="hero-promo-logo" src="assets/img/brands-show/plastimagen.webp" alt="Plastimagen México 2026" width="700" height="174"></a></h2>
-        <p class="hero-promo-venue" data-i18n="promo.venue">Centro Banamex · Ciudad de México</p>
-        <p class="hero-promo-stands" data-i18n="promo.stands">Estaremos presentes, agenda una reunión con nuestro equipo</p>
-        <ul class="hero-promo-brands">
-          <li><a href="https://www.wittmann-group.com/" target="_blank" rel="noopener"><img class="brand-logo" src="assets/img/brands-show/wittmann.png" alt="Wittmann" loading="lazy" width="173" height="50"></a></li>
-          <li><a href="https://www.bekum.com/" target="_blank" rel="noopener"><img class="brand-logo" src="assets/img/brands-show/bekum.svg" alt="Bekum" loading="lazy" width="110" height="70"></a></li>
-          <li><a href="https://www.ngr-world.com/" target="_blank" rel="noopener"><img class="brand-logo" src="assets/img/brands-show/ngr.svg" alt="NGR" loading="lazy" width="288" height="78"></a></li>
-          <li><a href="https://www.lohiagroup.com/" target="_blank" rel="noopener"><img class="brand-logo" src="assets/img/brands-show/lohia.svg" alt="Lohia" loading="lazy" width="195" height="39"></a></li>
-          <li><a href="https://www.tecnofer.biz/en/" target="_blank" rel="noopener"><img class="brand-logo" src="assets/img/brands-show/tecnofer.svg" alt="Tecnofer" loading="lazy" width="269" height="57"></a></li>
-          <li><a href="https://www.htw-molds.com/" target="_blank" rel="noopener"><img class="brand-logo" src="assets/img/brands-show/htw.png" alt="HTW" loading="lazy" width="300" height="92"></a></li>
-        </ul>
-        <div class="hero-promo-actions">
-          <a href="#contacto" class="btn btn-primary" data-i18n="promo.cta">Agenda una reunión</a>
-        </div>
-      </aside>
     </div>
     <!-- Carousel controls — grouped bottom-right (inside the container width)
          so they never sit on top of the left-aligned hero copy. -->

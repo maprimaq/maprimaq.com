@@ -413,6 +413,9 @@ h3 { font-size: 0.96rem; }
   gap: 0.53rem;
   pointer-events: none;
 }
+/* Set by js/main.js when there is only one slide; display:flex above would
+   otherwise override the hidden attribute. */
+.hero-nav[hidden] { display: none; }
 .hero-nav-btn {
   pointer-events: auto;
   width: 38px;
