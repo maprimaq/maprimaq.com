@@ -983,7 +983,12 @@ h3 { font-size: 0.96rem; }
   width: max-content;
   animation: marqueeSlide 90s linear infinite;
 }
-.logo-marquee:hover .marquee-track { animation-play-state: paused; }
+/* Scoped to fine pointers only: a bare `:hover` here could otherwise be
+   momentarily matched by WebKit's tap-simulates-hover behavior on touch
+   devices and leave the marquee looking stuck after a tap. */
+@media (hover: hover) {
+  .logo-marquee:hover .marquee-track { animation-play-state: paused; }
+}
 .marquee-group {
   display: flex;
   align-items: center;
