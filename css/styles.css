@@ -580,7 +580,7 @@ h3 { font-size: 0.96rem; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform .6s var(--ease);
+  transition: transform .6s var(--ease), opacity .25s var(--ease);
 }
 .division-card:hover .division-photo img,
 .division-card.open .division-photo img { transform: scale(1.06); }
@@ -702,6 +702,36 @@ h3 { font-size: 0.96rem; }
     opacity: .45;
     vertical-align: middle;
   }
+}
+
+/* Touch/no-hover pointers can't discover data-img items via :hover, so show
+   the same affordance dot unconditionally instead of only on interaction. */
+@media (hover: none) {
+  .division-list li[data-img] {
+    -webkit-tap-highlight-color: transparent;
+  }
+  .division-list li[data-img]::after {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin-left: 7px;
+    border-radius: 50%;
+    background: var(--red);
+    opacity: .45;
+    vertical-align: middle;
+  }
+}
+
+/* Tapped (or keyboard-selected) brand — the division's hero photo above
+   now shows this item's picture. */
+.division-list li[data-img].selected {
+  color: var(--red);
+  font-weight: 600;
+}
+.division-list li[data-img]:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 2px;
 }
 
 /* Floating machine preview that follows the cursor */
