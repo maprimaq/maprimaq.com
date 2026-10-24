@@ -61,7 +61,6 @@ const I18N = {
     'div.lead': 'Cada división de MAPRIMAQ está especializada en brindar tecnología de alto desempeño para distintos sectores industriales.',
     'div.more': 'Ver servicios',
     'div.less': 'Ver menos',
-    'div.photo.showing': 'Foto mostrada arriba:',
     'div.textiles.title': 'Textiles',
     'div.textiles.desc': 'Tecnología para toda la cadena de producción textil, desde hilatura hasta procesos especializados, respaldada por marcas líderes a nivel mundial.',
     'div.textiles.i1': 'Hilatura de fibra corta y larga',
@@ -177,7 +176,6 @@ const I18N = {
     'div.lead': 'Each MAPRIMAQ division specializes in delivering high-performance technology for different industrial sectors.',
     'div.more': 'View services',
     'div.less': 'Show less',
-    'div.photo.showing': 'Photo now shown above:',
     'div.textiles.title': 'Textiles',
     'div.textiles.desc': 'Technology for the entire textile production chain, from spinning to specialized processes, backed by world-leading brands.',
     'div.textiles.i1': 'Short and long staple spinning',
@@ -274,6 +272,69 @@ function applyLang(lang) {
   syncToggleLabels();
 }
 
+// Fine pointers (mouse) get a floating photo-on-hover tooltip (below); on
+// coarse/no-hover pointers (touch) there is no hover to reveal it with, so
+// the division list instead becomes a horizontally swipeable strip of cards.
+const canHoverDivisionPhotos = window.matchMedia('(hover: hover)').matches;
+
+// Turns one division's <ul class="division-list"> into a horizontal strip
+// of square-ish cells — one per brand/item — in place, reusing the same
+// <li> elements and data-img/data-brand/data-i18n already on them. Only
+// called for touch/no-hover pointers, and only once per card, the first
+// time it's opened — so a division the user never opens never has its
+// photos inserted into the DOM at all.
+function buildDivisionStrip(card) {
+  if (card.dataset.stripBuilt) return;
+  card.dataset.stripBuilt = 'true';
+
+  const list = card.querySelector('.division-list');
+  list.classList.add('division-strip');
+
+  list.querySelectorAll('li').forEach((li) => {
+    li.classList.add('division-cell');
+    li.tabIndex = 0;
+
+    // Move the translatable text one level down into a child <span> —
+    // applyLang() replaces [data-i18n] elements' entire textContent, which
+    // would otherwise wipe out the <img>/caption markup added below.
+    const i18nKey = li.getAttribute('data-i18n');
+    const text = li.textContent;
+    li.textContent = '';
+    if (i18nKey) li.removeAttribute('data-i18n');
+
+    const textSpan = document.createElement('span');
+    textSpan.className = 'cell-text';
+    if (i18nKey) textSpan.setAttribute('data-i18n', i18nKey);
+    textSpan.textContent = text;
+
+    const imgSrc = li.dataset.img;
+    if (imgSrc) {
+      li.classList.add('has-photo');
+
+      const img = document.createElement('img');
+      img.className = 'cell-img';
+      img.src = imgSrc;
+      img.alt = '';
+      img.loading = 'lazy';
+      li.appendChild(img);
+
+      const caption = document.createElement('span');
+      caption.className = 'cell-caption';
+      if (li.dataset.brand) {
+        const brandSpan = document.createElement('span');
+        brandSpan.className = 'cell-brand';
+        brandSpan.textContent = li.dataset.brand;
+        caption.appendChild(brandSpan);
+      }
+      caption.appendChild(textSpan);
+      li.appendChild(caption);
+    } else {
+      li.classList.add('text-only');
+      li.appendChild(textSpan);
+    }
+  });
+}
+
 /* ---- Collapsible service lists ---- */
 // Sets one card's toggle label from an explicit state (avoids reading the
 // `open` class, which is toggled asynchronously while collapsing).
@@ -294,6 +355,10 @@ function setCardOpen(card, open) {
   const btn = card.querySelector('.division-toggle');
   const wrap = card.querySelector('.division-list-wrap');
   if (open) {
+    // Build the swipeable strip (touch only, idempotent) before measuring
+    // scrollHeight below, so the expand animation sizes to its real height
+    // instead of the plain list it replaces.
+    if (!canHoverDivisionPhotos) buildDivisionStrip(card);
     card.classList.add('open');
     wrap.style.maxHeight = wrap.scrollHeight + 'px';
     // After the expand finishes, lift the cap so a language switch or reflow
@@ -309,18 +374,6 @@ function setCardOpen(card, open) {
     requestAnimationFrame(() => {
       card.classList.remove('open');
       wrap.style.maxHeight = '0px';
-    });
-    // Closing resets the hero photo to the division's default image and
-    // clears any brand selected via tap, so reopening always starts fresh.
-    // No-op on pointers that can hover, since that branch never sets
-    // defaultImg or .selected in the first place.
-    const photoImg = card.querySelector('.division-photo img');
-    if (photoImg && photoImg.dataset.defaultImg) {
-      photoImg.src = photoImg.dataset.defaultImg;
-    }
-    card.querySelectorAll('.division-list li[data-img].selected').forEach((li) => {
-      li.classList.remove('selected');
-      li.setAttribute('aria-pressed', 'false');
     });
   }
   btn.setAttribute('aria-expanded', String(open));
@@ -338,8 +391,12 @@ document.querySelectorAll('.division-card').forEach((card) => {
     if (e.target.closest('.division-list')) return;
     setCardOpen(card, !card.classList.contains('open'));
   });
-  // Keyboard access via the focusable card.
+  // Keyboard access via the focusable card. Mirrors the click handler's
+  // guard above: once the list is open, its cells are tabbable too (the
+  // mobile strip), and Enter/Space on one of them must scroll/read it, not
+  // collapse the whole card out from under the user's focus.
   card.addEventListener('keydown', (e) => {
+    if (e.target.closest('.division-list')) return;
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       setCardOpen(card, !card.classList.contains('open'));
@@ -506,13 +563,10 @@ if (heroSlides.length > 1) {
 }
 
 
-/* ---- Machine hover/tap previews ---- */
-// Any .division-list li with data-img carries a photo; data-brand (optional)
-// displays the brand name — omit it for anonymous machines. Fine pointers
-// (mouse) get a floating photo that follows the cursor; coarse/no-hover
-// pointers (touch) instead tap a brand to update that division's hero
-// photo, since there is no hover to reveal a floating tooltip on.
-const canHoverDivisionPhotos = window.matchMedia('(hover: hover)').matches;
+/* ---- Machine hover previews (desktop only — see buildDivisionStrip
+   above for the touch equivalent) ---- */
+// Any .division-list li with data-img shows a floating photo on hover;
+// data-brand (optional) displays the brand name — omit it for anonymous machines.
 if (canHoverDivisionPhotos) {
   const peek = document.createElement('div');
   peek.className = 'machine-peek';
@@ -545,78 +599,6 @@ if (canHoverDivisionPhotos) {
     });
     li.addEventListener('mousemove', movePeek);
     li.addEventListener('mouseleave', () => peek.classList.remove('show'));
-  });
-} else {
-  // Smooth-scrolling the hero photo into view is itself motion, so honor
-  // the same reduced-motion check the hero carousel's autoplay already uses.
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  document.querySelectorAll('.division-card').forEach((card) => {
-    const photo = card.querySelector('.division-photo');
-    const photoImg = photo.querySelector('img');
-
-    // One visually-hidden live region per card, announcing the swap for
-    // screen-reader users — an <img src> change is otherwise silent, and
-    // .division-photo itself is aria-hidden.
-    const live = document.createElement('span');
-    live.className = 'sr-only';
-    live.setAttribute('aria-live', 'polite');
-    photo.insertAdjacentElement('afterend', live);
-
-    card.querySelectorAll('.division-list li[data-img]').forEach((li) => {
-      li.tabIndex = 0;
-      li.setAttribute('role', 'button');
-      li.setAttribute('aria-pressed', 'false');
-
-      const selectBrand = () => {
-        if (!photoImg.dataset.defaultImg) photoImg.dataset.defaultImg = photoImg.src;
-
-        card.querySelectorAll('.division-list li[data-img].selected').forEach((other) => {
-          if (other !== li) {
-            other.classList.remove('selected');
-            other.setAttribute('aria-pressed', 'false');
-          }
-        });
-        li.classList.add('selected');
-        li.setAttribute('aria-pressed', 'true');
-
-        const nextSrc = li.dataset.img;
-        if (photoImg.getAttribute('src') !== nextSrc) {
-          // Preload so the crossfade below never shows a blank/stale frame.
-          const preload = new Image();
-          preload.onload = () => {
-            photoImg.style.opacity = '0';
-            requestAnimationFrame(() => {
-              photoImg.src = nextSrc;
-              photoImg.style.opacity = '1';
-            });
-          };
-          preload.src = nextSrc;
-        }
-
-        const dict = I18N[currentLang];
-        const brandPrefix = li.dataset.brand ? `${li.dataset.brand} — ` : '';
-        live.textContent = `${dict['div.photo.showing']} ${brandPrefix}${li.textContent}`;
-
-        // Only nudge the scroll position if the hero photo isn't already
-        // visible — never scroll when it's already on screen.
-        const rect = photo.getBoundingClientRect();
-        if (rect.top < 0 || rect.bottom > window.innerHeight) {
-          photo.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'nearest' });
-        }
-      };
-
-      li.addEventListener('click', selectBrand);
-      li.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          // Stop this from also bubbling to the card's own keydown handler,
-          // which would otherwise collapse/expand the whole card.
-          e.stopPropagation();
-          selectBrand();
-        }
-      });
-    });
   });
 }
 

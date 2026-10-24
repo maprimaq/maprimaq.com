@@ -580,7 +580,7 @@ h3 { font-size: 0.96rem; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform .6s var(--ease), opacity .25s var(--ease);
+  transition: transform .6s var(--ease);
 }
 .division-card:hover .division-photo img,
 .division-card.open .division-photo img { transform: scale(1.06); }
@@ -704,34 +704,92 @@ h3 { font-size: 0.96rem; }
   }
 }
 
-/* Touch/no-hover pointers can't discover data-img items via :hover, so show
-   the same affordance dot unconditionally instead of only on interaction. */
-@media (hover: none) {
-  .division-list li[data-img] {
-    -webkit-tap-highlight-color: transparent;
-  }
-  .division-list li[data-img]::after {
-    content: '';
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    margin-left: 7px;
-    border-radius: 50%;
-    background: var(--red);
-    opacity: .45;
-    vertical-align: middle;
-  }
+/* Touch/no-hover pointers: the list becomes a horizontally swipeable strip
+   of cards (built in JS, see buildDivisionStrip in main.js) instead of the
+   plain text list above — there's no hover to preview a photo with, and
+   tapping is reserved for native scrolling rather than a selection action.
+   These classes only ever exist in the DOM on such pointers, so they don't
+   need a (hover: none) guard of their own. */
+/* `.division-list` and `.division-list li` below set a masonry column
+   layout, bullet padding and a ::before tick mark for the desktop text
+   list; .division-strip/.division-cell need to win over those rules on
+   the same elements, so they're qualified with the ancestor class to
+   outweigh ".division-list li"'s specificity rather than relying on
+   source order. */
+.division-list.division-strip {
+  display: flex;
+  columns: initial;
+  gap: 0.62rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.15rem 0.1rem 0.55rem;
+  scrollbar-width: none;
 }
+.division-strip::-webkit-scrollbar { display: none; }
 
-/* Tapped (or keyboard-selected) brand — the division's hero photo above
-   now shows this item's picture. */
-.division-list li[data-img].selected {
-  color: var(--red);
-  font-weight: 600;
+.division-strip .division-cell {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  width: 132px;
+  height: 184px;
+  padding: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--paper-soft);
+  display: flex;
+  flex-direction: column;
+  -webkit-tap-highlight-color: transparent;
 }
-.division-list li[data-img]:focus-visible {
+.division-strip .division-cell::before { display: none; }
+.division-strip .division-cell:focus-visible {
   outline: 2px solid var(--red);
   outline-offset: 2px;
+}
+.cell-img {
+  width: 100%;
+  height: 104px;
+  object-fit: cover;
+  display: block;
+  flex: 0 0 auto;
+  background: var(--paper-soft);
+}
+.cell-caption {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.18rem;
+  padding: 0.5rem 0.55rem;
+  overflow: hidden;
+}
+.division-cell.text-only .cell-caption {
+  justify-content: center;
+  text-align: center;
+}
+.cell-brand {
+  color: var(--red);
+  font-weight: 700;
+  font-size: 0.62rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cell-text {
+  font-size: 0.68rem;
+  line-height: 1.3;
+  color: var(--ink);
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.division-cell.text-only .cell-text {
+  -webkit-line-clamp: 6;
+  font-weight: 600;
 }
 
 /* Floating machine preview that follows the cursor */
