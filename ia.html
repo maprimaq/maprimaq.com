@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAPRIMAQ — Automatización de documentos con IA</title>
+  <meta name="description" content="Automatización inteligente de documentos para integrar órdenes, facturas y otros registros directamente a su ERP, sin digitación manual.">
+  <link rel="icon" type="image/png" href="assets/img/icon-1.png">
+  <link rel="stylesheet" href="css/styles.css?v=35">
+  <meta property="og:title" content="MAPRIMAQ — Automatización de documentos con IA">
+  <meta property="og:description" content="Del documento al sistema. Automáticamente. IA + validación + integración.">
+  <meta property="og:image" content="assets/img/ia-demo-poster.webp">
+</head>
+<body>
+
+  <!-- ======= Header ======= -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a href="index.html" class="header-logo" aria-label="MAPRIMAQ — inicio">
+        <img class="logo-m" src="assets/img/logo-m.png" alt="">
+        <img class="logo-text" src="assets/img/logo-text.png" alt="MAPRIMAQ">
+      </a>
+      <nav class="header-nav" id="headerNav" aria-label="Principal">
+        <a href="index.html#nosotros" data-i18n="nav.about">Nosotros</a>
+        <a href="index.html#servicios" data-i18n="nav.divisions">Servicios</a>
+        <a href="index.html#mapritecnica" data-i18n="nav.service">Servicio técnico</a>
+        <a href="index.html#presencia" data-i18n="nav.presence">Sedes</a>
+        <a href="#contacto" class="nav-cta" data-i18n="nav.contact">Contáctanos</a>
+        <button class="lang-toggle" id="langToggle" aria-label="Switch language">
+          <span data-lang-opt="es">ES</span><span class="lang-sep">/</span><span data-lang-opt="en">EN</span>
+        </button>
+      </nav>
+      <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ======= Hero (single slide; reuses the home hero styles) ======= -->
+  <section class="hero hero-page" id="inicio">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hero-slide hero-slide-software is-active"></div>
+      <div class="hero-scrim"></div>
+    </div>
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="hero-kicker reveal" data-i18n="ia.hero.kicker">IA + validación + integración</p>
+        <h1 class="ia-title reveal" data-i18n="ia.hero.title">Del documento al sistema. Automáticamente.</h1>
+        <p class="hero-lead reveal" data-i18n="ia.hero.lead">Automatización inteligente de documentos para integrar órdenes, facturas y otros registros directamente a su ERP, sin digitación manual.</p>
+        <div class="hero-actions reveal">
+          <a href="#contacto" class="btn btn-primary" data-i18n="ia.hero.cta">Agende un diagnóstico</a>
+          <a href="#operacion" class="btn btn-ghost" data-i18n="ia.hero.cta2">Véalo en operación</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= El problema ======= -->
+  <section class="section" id="problema">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow" data-i18n="ia.prob.eyebrow">El problema</p>
+        <h2 data-i18n="ia.prob.title">Procesos manuales que consumen tiempo y generan errores</h2>
+      </div>
+      <div class="ia-cards">
+        <article class="ia-card reveal">
+          <h3 data-i18n="ia.prob.c1t">Documentos en múltiples formatos</h3>
+          <p data-i18n="ia.prob.c1">Correo, WhatsApp, PDF, foto, Excel. Cada cliente o proveedor con su propio formato.</p>
+        </article>
+        <article class="ia-card reveal">
+          <h3 data-i18n="ia.prob.c2t">Digitación repetitiva</h3>
+          <p data-i18n="ia.prob.c2">Línea por línea en el sistema. Lento, puede llevar a errores, y sin registro de quién ingresó qué.</p>
+        </article>
+        <article class="ia-card reveal">
+          <h3 data-i18n="ia.prob.c3t">Errores detectados demasiado tarde</h3>
+          <p data-i18n="ia.prob.c3">Producto equivocado, precio fuera de lista, total incorrecto. Se nota hasta facturar o al despachar.</p>
+        </article>
+      </div>
+      <div class="ia-applies reveal">
+        <h3 data-i18n="ia.prob.applies">Aplica a</h3>
+        <ul class="ia-tags">
+          <li data-i18n="ia.prob.a1">Órdenes de compra de clientes</li>
+          <li data-i18n="ia.prob.a2">Facturas de proveedores</li>
+          <li data-i18n="ia.prob.a3">Notas de envío y guías de despacho</li>
+          <li data-i18n="ia.prob.a4">Cotizaciones y contratos</li>
+          <li data-i18n="ia.prob.a5">Conteos y formularios de campo</li>
+          <li data-i18n="ia.prob.a6">Reportes en Excel o en foto</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Del documento al registro ======= -->
+  <section class="section ia-soft" id="proceso">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow" data-i18n="ia.steps.eyebrow">Del documento al registro</p>
+        <h2 data-i18n="ia.steps.title">La IA lee y vincula con su inventario. Mejora con el tiempo.</h2>
+      </div>
+      <ol class="ia-steps">
+        <li class="reveal"><span class="ia-step-num">01</span><h3 data-i18n="ia.steps.s1t">Recibir</h3><p data-i18n="ia.steps.s1">PDF, imagen, Excel o foto de WhatsApp. Uno o varios a la vez.</p></li>
+        <li class="reveal"><span class="ia-step-num">02</span><h3 data-i18n="ia.steps.s2t">Extraer</h3><p data-i18n="ia.steps.s2">La IA lee cliente, referencia, líneas, cantidades y precios.</p></li>
+        <li class="reveal ia-step-key"><span class="ia-step-num">03</span><h3 data-i18n="ia.steps.s3t">Cruzar</h3><p data-i18n="ia.steps.s3">Códigos del cliente, de barras y de producto contra su catálogo real. Esta es la parte clave, y se auto-mejora con el tiempo.</p></li>
+        <li class="reveal"><span class="ia-step-num">04</span><h3 data-i18n="ia.steps.s4t">Validar</h3><p data-i18n="ia.steps.s4">Listas de precios, descuentos, totales, impuestos y cliente.</p></li>
+        <li class="reveal"><span class="ia-step-num">05</span><h3 data-i18n="ia.steps.s5t">Registrar</h3><p data-i18n="ia.steps.s5">Orden, factura o registro creado en su sistema.</p></li>
+      </ol>
+      <p class="ia-note reveal"><strong data-i18n="ia.steps.noteT">Control humano solo donde agrega valor:</strong> <span data-i18n="ia.steps.note">Los casos ambiguos quedan destacados para revisión. Cada ajuste queda registrado para que el sistema aprenda y mejore con el tiempo.</span></p>
+    </div>
+  </section>
+
+  <!-- ======= Así se ve en operación ======= -->
+  <section class="section" id="operacion">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow" data-i18n="ia.demo.eyebrow">Así se ve en operación</p>
+        <h2 data-i18n="ia.demo.title">Varios documentos a la vez, revisión solo donde hace falta</h2>
+      </div>
+      <figure class="ia-video reveal">
+        <video src="assets/video/ia-demo.mp4" poster="assets/img/ia-demo-poster.webp" controls muted playsinline preload="none"></video>
+        <figcaption data-i18n="ia.demo.caption">Capturas con datos ilustrativos</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ======= Resultados reales ======= -->
+  <section class="stats ia-results" id="resultados">
+    <div class="container">
+      <p class="eyebrow light reveal" data-i18n="ia.res.eyebrow">Resultados reales</p>
+      <p class="ia-results-client reveal" data-i18n="ia.res.client">Cliente: distribuidor de productos alimenticios · 9 meses en operación</p>
+      <div class="stats-grid">
+        <div class="stat reveal"><span class="stat-number">+3,000</span><span class="stat-label" data-i18n="ia.res.s1">documentos procesados</span></div>
+        <div class="stat reveal"><span class="stat-number">78 %</span><span class="stat-label" data-i18n="ia.res.s2">sin intervención humana (último mes completo)</span></div>
+        <div class="stat reveal"><span class="stat-number">98 %</span><span class="stat-label" data-i18n="ia.res.s3">coincidencias por código, no por aproximación</span></div>
+        <div class="stat reveal"><span class="stat-number">25 s</span><span class="stat-label" data-i18n="ia.res.s4">por documento, en promedio</span></div>
+      </div>
+      <div class="ia-results-detail">
+        <div class="ia-bars reveal">
+          <h3 data-i18n="ia.res.chart">Documentos sin intervención, por mes</h3>
+          <ul>
+            <li style="--v: 60"><span class="ia-bar-val">60%</span><span class="ia-bar"></span><span class="ia-bar-label" data-i18n="ia.res.m1">Abr</span></li>
+            <li style="--v: 72"><span class="ia-bar-val">72%</span><span class="ia-bar"></span><span class="ia-bar-label" data-i18n="ia.res.m2">May</span></li>
+            <li style="--v: 73"><span class="ia-bar-val">73%</span><span class="ia-bar"></span><span class="ia-bar-label" data-i18n="ia.res.m3">Jun</span></li>
+            <li style="--v: 78"><span class="ia-bar-val">78%</span><span class="ia-bar"></span><span class="ia-bar-label" data-i18n="ia.res.m4">Jul</span></li>
+          </ul>
+        </div>
+        <div class="ia-results-copy reveal">
+          <h3 data-i18n="ia.res.claimT">Cada documento procesado creó su registro.</h3>
+          <p data-i18n="ia.res.claim">Cero órdenes perdidas. El porcentaje automático subió mes a mes al afinar los catálogos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Implementación ======= -->
+  <section class="section" id="implementacion">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow" data-i18n="ia.impl.eyebrow">Tres fases, la primera sin compromiso</p>
+        <h2 data-i18n="ia.impl.title">Implementación gradual, con resultados medibles</h2>
+      </div>
+      <ol class="ia-phases">
+        <li class="reveal"><span class="ia-step-num">01</span><span class="ia-phase-when" data-i18n="ia.impl.p1w">Semanas 1 – 2</span><h3 data-i18n="ia.impl.p1t">Diagnóstico</h3><p data-i18n="ia.impl.p1">Nos entregan 50 documentos reales y acceso de lectura a su catálogo. Medimos precisión antes de que inviertan.</p></li>
+        <li class="reveal"><span class="ia-step-num">02</span><span class="ia-phase-when" data-i18n="ia.impl.p2w">Semanas 3 – 6</span><h3 data-i18n="ia.impl.p2t">Prueba conectada</h3><p data-i18n="ia.impl.p2">Integración con su sistema, revisión humana activa, indicadores diarios de avance.</p></li>
+        <li class="reveal"><span class="ia-step-num">03</span><span class="ia-phase-when" data-i18n="ia.impl.p3w">Después</span><h3 data-i18n="ia.impl.p3t">Operación y mejora</h3><p data-i18n="ia.impl.p3">Afinamos por cliente o proveedor y sumamos tipos de documento. Soporte y seguimiento incluidos.</p></li>
+      </ol>
+      <p class="ia-note reveal" data-i18n="ia.impl.compat">Funciona con Zoho, Odoo, SAP o cualquier sistema que permita conexión (API).</p>
+    </div>
+  </section>
+
+  <!-- ======= Cuánto se ahorra ======= -->
+  <section class="section ia-soft" id="ahorro">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow" data-i18n="ia.save.eyebrow">Ejemplo ilustrativo · 1,000 documentos al mes</p>
+        <h2 data-i18n="ia.save.title">Cuánto se ahorra</h2>
+      </div>
+      <div class="ia-save">
+        <div class="ia-table-wrap reveal">
+          <table class="ia-table">
+            <thead>
+              <tr><th></th><th data-i18n="ia.save.manual">Manual</th><th data-i18n="ia.save.ai">Con IA</th><th data-i18n="ia.save.saving">Ahorro</th></tr>
+            </thead>
+            <tbody>
+              <tr><th data-i18n="ia.save.r1">Horas de digitación</th><td>100 h</td><td>4 h</td><td>96 h</td></tr>
+              <tr><th data-i18n="ia.save.r2">Costo de digitación</th><td>US$ 500</td><td>US$ 20</td><td>US$ 480</td></tr>
+              <tr><th data-i18n="ia.save.r3">Errores al mes</th><td>30</td><td>5</td><td>25</td></tr>
+              <tr><th data-i18n="ia.save.r4">Costo de errores</th><td>US$ 300</td><td>US$ 50</td><td>US$ 250</td></tr>
+              <tr class="ia-total"><th data-i18n="ia.save.r5">Total mensual</th><td>US$ 800</td><td>US$ 70</td><td>US$ 730</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="ia-save-highlights">
+          <div class="ia-highlight reveal"><span class="ia-figure">US$ 730</span><p data-i18n="ia.save.h1">ahorro al mes, 91 % del costo actual</p></div>
+          <div class="ia-highlight reveal"><span class="ia-figure">US$ 8,760</span><p data-i18n="ia.save.h2">al año, gracias a 96 horas liberadas cada mes (más de media persona por tiempo completo)</p></div>
+        </div>
+      </div>
+      <p class="ia-fine reveal" data-i18n="ia.save.assumptions">Supuestos: 6 min de digitación manual por documento; costo de US$ 5 por hora; 3% de documentos con error y US$ 10 por error (devolución, refacturación, reenvío). Automatizado: 78 % sin intervención (resultado en producción) y 1 min de revisión en el resto; 0.5 % de error residual.</p>
+    </div>
+  </section>
+
+  <!-- ======= Cuánto cuesta ======= -->
+  <section class="section" id="precio">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow" data-i18n="ia.price.eyebrow">Nuestra regla de precio da un ahorro garantizado</p>
+        <h2 data-i18n="ia.price.title">Cuánto cuesta</h2>
+      </div>
+      <div class="ia-cards">
+        <article class="ia-card reveal">
+          <span class="ia-figure" data-i18n="ia.price.c1f">Máx. 50%</span>
+          <span class="ia-figure-label" data-i18n="ia.price.c1l">del ahorro total</span>
+          <h3 data-i18n="ia.price.c1t">Regla de precio</h3>
+          <p data-i18n="ia.price.c1">La mensualidad nunca supera la mitad de lo que la IA le ahorra en digitación y errores.</p>
+        </article>
+        <article class="ia-card reveal">
+          <span class="ia-figure">96 h</span>
+          <span class="ia-figure-label" data-i18n="ia.price.c2l">liberadas al mes</span>
+          <h3 data-i18n="ia.price.c2t">Ejemplo: 1,000 docs</h3>
+          <p data-i18n="ia.price.c2">96 h de digitación (US$480) más US$250 en errores evitados: US$730 de ahorro al mes.</p>
+        </article>
+        <article class="ia-card reveal">
+          <span class="ia-figure" data-i18n="ia.price.c3f">Máx. US$360</span>
+          <span class="ia-figure-label" data-i18n="ia.price.c3l">por cada 1,000 docs</span>
+          <h3 data-i18n="ia.price.c3t">Precio por volumen</h3>
+          <p data-i18n="ia.price.c3">Cada documento le ahorra US$0.73 (US$0.48 en digitación y US$0.25 en errores). Cobramos US$0.36 como máximo.</p>
+        </article>
+      </div>
+      <p class="ia-fine reveal" data-i18n="ia.price.formula">Fórmula: mensualidad = documentos al mes × US$0.36. En el ejemplo, usted conserva US$370 de los US$730 que ahorra. La implementación se cotiza aparte, o puede ser amortizada en mensualidad con contrato de 2+ años.</p>
+    </div>
+  </section>
+
+  <!-- ======= Contacto (same form and Odoo lead endpoint as the home page) ======= -->
+  <section class="contact section" id="contacto">
+    <div class="container contact-grid">
+      <div class="contact-copy">
+        <p class="eyebrow reveal" data-i18n="contact.eyebrow">Contacto</p>
+        <h2 class="reveal" data-i18n="ia.contact.title">Agende un diagnóstico</h2>
+        <p class="reveal" data-i18n="ia.contact.lead">Nos entregan 50 documentos reales y acceso de lectura a su catálogo. Medimos precisión antes de que inviertan.</p>
+        <ul class="contact-info">
+          <li class="reveal"><a href="mailto:info@maprimaq.com">info@maprimaq.com</a></li>
+          <li class="reveal"><a href="tel:+50224401840">+502 2440 1840</a></li>
+        </ul>
+      </div>
+      <form class="contact-form reveal" id="contactForm" novalidate>
+        <div class="form-row">
+          <label>
+            <span data-i18n="form.name">Nombre completo</span>
+            <input type="text" name="name" required autocomplete="name">
+          </label>
+          <label>
+            <span data-i18n="form.company">Empresa</span>
+            <input type="text" name="company" autocomplete="organization">
+          </label>
+        </div>
+        <div class="form-row">
+          <label>
+            <span data-i18n="form.email">Correo electrónico</span>
+            <input type="email" name="email" required autocomplete="email">
+          </label>
+          <label>
+            <span data-i18n="form.phone">Teléfono</span>
+            <input type="tel" name="phone" autocomplete="tel">
+          </label>
+        </div>
+        <label>
+          <span data-i18n="form.message">Mensaje</span>
+          <textarea name="message" rows="5" required></textarea>
+        </label>
+        <button type="submit" class="btn btn-primary" data-i18n="form.send">Enviar</button>
+        <p class="form-status" id="formStatus" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ======= Footer ======= -->
+  <footer class="site-footer">
+    <div class="pattern-bg subtle" aria-hidden="true"></div>
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <img src="assets/img/logo-footer.png" alt="MAPRIMAQ — Innovación Industrial" class="footer-logo">
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="index.html#nosotros" data-i18n="nav.about">Nosotros</a>
+        <a href="index.html#servicios" data-i18n="nav.divisions">Servicios</a>
+        <a href="index.html#mapritecnica" data-i18n="nav.service">Servicio técnico</a>
+        <a href="#contacto" data-i18n="nav.contact">Contáctanos</a>
+      </nav>
+      <div class="footer-contact">
+        <a href="mailto:info@maprimaq.com">info@maprimaq.com</a>
+        <a href="tel:+50224401840">+502 2440 1840</a>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>© <span id="year">2026</span> MAPRIMAQ. <span data-i18n="footer.rights">Todos los derechos reservados.</span></p>
+    </div>
+  </footer>
+
+  <script src="js/main.js?v=22"></script>
+</body>
+</html>

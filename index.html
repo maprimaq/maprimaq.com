@@ -6,7 +6,7 @@
   <title>MAPRIMAQ — Innovación Industrial</title>
   <meta name="description" content="Desde 1961 conectamos a la industria centroamericana con tecnología de clase mundial: textiles, plásticos, energía, tratamiento de aguas e industria en general.">
   <link rel="icon" type="image/png" href="assets/img/icon-1.png">
-  <link rel="stylesheet" href="css/styles.css?v=34">
+  <link rel="stylesheet" href="css/styles.css?v=35">
   <meta property="og:title" content="MAPRIMAQ — Innovación Industrial">
   <meta property="og:description" content="65 años al servicio de la industria. Representamos marcas líderes mundiales en Guatemala, El Salvador y Honduras.">
   <meta property="og:image" content="assets/img/logo-color.png">
@@ -51,12 +51,13 @@
          .hero-promo (the event promo overlay) belongs to slide 2, so a
          slide never renders with another slide's text over it.
 
-         Currently a single slide: the prev/next arrows are hidden and
-         there is no .hero-promo. The last promo (Plastimagen México 2026)
-         is in archive/hero-promo-plastimagen-2026.html with restore steps.
+         Slide 2 announces MAPRIMAQ's software services (links to ia.html);
+         its background is pure CSS (.hero-slide-software), not a photo.
+         Past event promos are in archive/ with restore steps.
          ============================================================ -->
     <div class="hero-bg" aria-hidden="true">
       <img class="hero-slide is-active" src="assets/img/hero-spinning.jpg" alt="" fetchpriority="high">
+      <div class="hero-slide hero-slide-software"></div>
       <div class="hero-scrim"></div>
     </div>
     <div class="container hero-grid">
@@ -72,6 +73,23 @@
           <a href="#contacto" class="btn btn-ghost" data-i18n="hero.cta2">Contáctanos</a>
         </div>
       </div>
+      <!-- Slide 2 copy layer — starts hidden until the carousel advances.
+           NAMING IS LOAD-BEARING: keep every class on the hero-promo-*
+           prefix. Named .hero-ad-* this block was hidden outright by Arc's
+           built-in content blocker (cosmetic filter lists hide "ad" class
+           tokens). Visibility is driven ONLY by .is-hidden; inert and
+           aria-hidden are additive a11y, cleared by js/main.js on slide 2. -->
+      <aside class="hero-promo is-hidden" aria-label="MAPRIMAQ Software" aria-hidden="true" inert>
+        <p class="hero-kicker" data-i18n="promo.sw.kicker">Nuevo en MAPRIMAQ</p>
+        <h2 class="hero-title">
+          <span class="hero-number" data-i18n="promo.sw.title">Software</span>
+          <span class="hero-sub" data-i18n="promo.sw.sub">para la industria</span>
+        </h2>
+        <p class="hero-lead" data-i18n="promo.sw.lead">Además de maquinaria, ahora desarrollamos software: inteligencia artificial y automatización a la medida para los procesos de su empresa.</p>
+        <div class="hero-promo-actions">
+          <a href="ia.html" class="btn btn-primary" data-i18n="promo.sw.cta">Conoce más</a>
+        </div>
+      </aside>
     </div>
     <!-- Carousel controls — grouped bottom-right (inside the container width)
          so they never sit on top of the left-aligned hero copy. -->
@@ -475,6 +493,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=21"></script>
+  <script src="js/main.js?v=22"></script>
 </body>
 </html>
