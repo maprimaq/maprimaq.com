@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240">
+  <!-- custom icon: flat sheet thermoformed over a mold -->
+  <rect width="240" height="240" fill="#f6f6f7"/>
+  <g transform="translate(72,72) scale(4)" fill="none" stroke="#c0202c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 19h16" />
+    <path d="M8 19v-6a4 4 0 0 1 8 0v6" />
+    <path d="M4 13h4" />
+    <path d="M16 13h4" />
+  </g>
+</svg>
