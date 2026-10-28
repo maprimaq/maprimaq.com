@@ -1221,6 +1221,7 @@ h3 { font-size: 0.96rem; }
   .hero-slide-software::after { left: 45%; opacity: .5; align-items: flex-end; padding-bottom: 12%; }
 }
 .hero-promo .hero-lead { margin-top: 0.62rem; }
+.hero-promo .hero-number { font-size: clamp(2.2rem, 5vw, 3.9rem); line-height: 1.02; }
 
 /* ia.html reuses the home hero as a single, static slide. */
 .hero-page { min-height: 60vh; min-height: 60svh; }
