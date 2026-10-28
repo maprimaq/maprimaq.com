@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>ia-images — artboards (source for assets/img/ia-before-*.webp and ia-after.webp)</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #d7d9dc; padding: 40px; display: flex; flex-direction: column; gap: 40px; align-items: flex-start; font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif; color: #1c1f23; }
+
+  /* ================= BEFORE 1: the spreadsheet somebody emailed ================= */
+  #before-excel { width: 820px; background: #fff; border: 1px solid #9aa0a6; font-family: Calibri, Carlito, 'Segoe UI', Arial, sans-serif; font-size: 13px; box-shadow: 0 8px 24px rgba(0,0,0,.2); }
+  #before-excel .xl-title { display: flex; justify-content: space-between; background: #1d6f42; color: #fff; padding: 6px 12px; font-size: 12px; }
+  #before-excel .xl-ribbon { background: #f3f3f3; border-bottom: 1px solid #c8c8c8; padding: 5px 12px; display: flex; gap: 16px; font-size: 12px; color: #444; }
+  #before-excel .xl-fx { display: flex; border-bottom: 1px solid #c8c8c8; background: #fff; font-size: 12px; }
+  #before-excel .xl-fx b { width: 54px; padding: 4px 8px; border-right: 1px solid #c8c8c8; font-weight: 400; }
+  #before-excel .xl-fx span { padding: 4px 10px; color: #333; font-family: Consolas, monospace; }
+  #before-excel table { border-collapse: collapse; width: 100%; table-layout: fixed; }
+  #before-excel th { background: #e6e6e6; border: 1px solid #c4c4c4; font-weight: 400; color: #444; padding: 2px 4px; font-size: 11.5px; }
+  #before-excel td { border: 1px solid #dcdcdc; padding: 1px 5px; height: 21px; white-space: nowrap; overflow: hidden; }
+  #before-excel td.rn { background: #e6e6e6; border-color: #c4c4c4; text-align: center; color: #444; font-size: 11.5px; padding: 0; }
+  #before-excel .r { text-align: right; }
+  #before-excel .hl { background: #ffff00; }
+  #before-excel .red { color: #d00000; font-weight: 700; }
+  #before-excel .b { font-weight: 700; }
+  #before-excel .it { font-style: italic; color: #666; }
+  #before-excel .gr { background: #c6e0b4; }
+  #before-excel .tabs { display: flex; gap: 2px; background: #e6e6e6; border-top: 1px solid #c4c4c4; padding: 4px 8px 0; font-size: 12px; }
+  #before-excel .tabs span { padding: 3px 12px; background: #d4d4d4; border: 1px solid #c4c4c4; border-bottom: 0; }
+  #before-excel .tabs span.on { background: #fff; font-weight: 700; color: #1d6f42; }
+
+  /* ================= BEFORE 2: old-school printed PO, scanned to PDF ================= */
+  #before-pdf { width: 700px; position: relative; padding: 26px 34px 30px; color: #2b2b2b; font-family: 'Courier New', Courier, monospace; font-size: 13px; line-height: 1.5;
+    background:
+      repeating-linear-gradient(0deg, rgba(0,0,0,.035) 0 1px, transparent 1px 3px),
+      radial-gradient(ellipse at 20% 10%, rgba(0,0,0,.06), transparent 60%),
+      radial-gradient(ellipse at 90% 95%, rgba(0,0,0,.10), transparent 55%),
+      #ececea;
+    box-shadow: 0 8px 24px rgba(0,0,0,.25); }
+  #before-pdf .fx-top { display: flex; justify-content: space-between; font-size: 11px; border-bottom: 1px solid #777; padding-bottom: 5px; margin-bottom: 14px; }
+  #before-pdf .skew { transform: rotate(-0.7deg); transform-origin: 0 0; }
+  #before-pdf h3 { font-size: 15px; letter-spacing: .12em; text-align: center; margin-bottom: 10px; }
+  #before-pdf pre { font: inherit; white-space: pre; letter-spacing: -0.2px; }
+  #before-pdf .hand { position: absolute; font-family: 'Bradley Hand', 'Noteworthy', 'Segoe Print', cursive; color: #1b3a8a; font-size: 24px; transform: rotate(-6deg); }
+  #before-pdf .circle { position: absolute; border: 2px solid #1b3a8a; border-radius: 50%; transform: rotate(-3deg); }
+  #before-pdf .stamp { position: absolute; right: 38px; bottom: 54px; border: 3px solid rgba(160,30,30,.55); color: rgba(160,30,30,.6); padding: 2px 12px; font: 700 20px Arial, sans-serif; letter-spacing: .12em; transform: rotate(-8deg); }
+
+  /* ================= BEFORE 3: the WhatsApp message ================= */
+  #before-wa { width: 520px; background: #e5ddd5; font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif; box-shadow: 0 8px 24px rgba(0,0,0,.2); }
+  #before-wa .wa-head { display: flex; align-items: center; gap: 12px; background: #075e54; color: #fff; padding: 10px 14px; }
+  #before-wa .wa-av { width: 36px; height: 36px; border-radius: 50%; background: #b8c6c2; color: #075e54; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  #before-wa .wa-head b { display: block; font-size: 15px; }
+  #before-wa .wa-head small { font-size: 11px; opacity: .8; }
+  #before-wa .wa-body { padding: 16px 14px 20px; display: flex; flex-direction: column; gap: 8px; }
+  #before-wa .day { align-self: center; background: #e1f2fb; font-size: 11px; color: #54656f; padding: 3px 10px; border-radius: 6px; }
+  #before-wa .msg { max-width: 82%; background: #fff; border-radius: 0 9px 9px 9px; padding: 7px 10px 5px; font-size: 14px; line-height: 1.35; box-shadow: 0 1px 1px rgba(0,0,0,.12); }
+  #before-wa .msg.me { align-self: flex-end; background: #d9fdd3; border-radius: 9px 0 9px 9px; }
+  #before-wa .msg time { display: block; text-align: right; font-size: 10.5px; color: #8696a0; margin-top: 2px; }
+  #before-wa .msg .photo { position: relative; width: 100%; height: 250px; border-radius: 6px; margin-bottom: 5px; overflow: hidden;
+    background: radial-gradient(ellipse at 30% 20%, #8a6a4a, #4d3a28 70%); }
+  #before-wa .msg .photo::after { content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(ellipse at 50% 50%, transparent 55%, rgba(0,0,0,.45)), linear-gradient(115deg, rgba(255,255,255,.14), transparent 40%); }
+  #before-wa .sheet { position: absolute; left: 34px; top: 14px; width: 250px; height: 250px; padding: 18px 16px 0 40px; transform: rotate(-3.2deg) skewX(-1.5deg);
+    background:
+      linear-gradient(90deg, transparent 31px, rgba(200,60,60,.55) 31px 32px, transparent 32px),
+      repeating-linear-gradient(0deg, transparent 0 27px, rgba(70,110,190,.35) 27px 28px),
+      #f3ecd6;
+    box-shadow: 3px 6px 14px rgba(0,0,0,.5); filter: blur(.35px) contrast(1.05);
+    font-family: 'Bradley Hand', 'Noteworthy', 'Segoe Print', cursive; font-size: 20px; line-height: 28px; color: #1a2a6c; white-space: nowrap; }
+  #before-wa .sheet u { text-decoration-thickness: 1px; }
+
+  /* ================= AFTER: the same order inside the ERP ================= */
+  #after { width: 1020px; background: #fff; box-shadow: 0 10px 30px rgba(0,0,0,.22); font-size: 13px; line-height: 1.45; border-radius: 10px; overflow: hidden; }
+  #after .chrome { display: flex; align-items: center; gap: 14px; background: #e8eaed; padding: 9px 14px; }
+  #after .dots { display: flex; gap: 6px; } #after .dots i { width: 11px; height: 11px; border-radius: 50%; background: #c4c7ca; display: block; }
+  #after .url { flex: 1; background: #fff; border-radius: 14px; padding: 4px 14px; font-size: 12px; color: #5f6368; }
+  #after .shell { display: flex; min-height: 640px; }
+  #after .side { width: 210px; background: #1f2a37; color: #aeb9c6; padding: 16px 0; flex-shrink: 0; }
+  #after .brand { padding: 0 18px 16px; font-weight: 700; color: #fff; font-size: 15px; letter-spacing: .02em; border-bottom: 1px solid #2d3a49; margin-bottom: 10px; }
+  #after .brand span { display: inline-block; width: 22px; height: 22px; border-radius: 6px; background: #3b82f6; vertical-align: middle; margin-right: 8px; }
+  #after .nav a { display: flex; align-items: center; gap: 10px; padding: 8px 18px; font-size: 13px; color: #aeb9c6; text-decoration: none; }
+  #after .nav a::before { content: ''; width: 14px; height: 14px; border-radius: 4px; background: #3a4757; flex-shrink: 0; }
+  #after .nav a.open { color: #fff; }
+  #after .nav a.open::before { background: #6b7c93; }
+  #after .nav .sub a { padding-left: 42px; font-size: 12.5px; }
+  #after .nav .sub a::before { display: none; }
+  #after .nav .sub a.on { color: #fff; background: #2d3d52; border-left: 3px solid #3b82f6; padding-left: 39px; }
+  #after .main { flex: 1; min-width: 0; background: #f4f6f8; }
+  #after .topbar { display: flex; justify-content: space-between; align-items: center; background: #fff; border-bottom: 1px solid #e3e7eb; padding: 10px 22px; }
+  #after .search { width: 280px; background: #f1f3f5; border-radius: 6px; padding: 6px 12px; color: #8a96a3; font-size: 12px; }
+  #after .me { width: 28px; height: 28px; border-radius: 50%; background: #cfd8e3; }
+  #after .doc { padding: 20px 24px 24px; }
+  #after .top { display: flex; justify-content: space-between; align-items: flex-start; }
+  #after .crumb { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: #78909c; }
+  #after h2 { font-size: 22px; margin-top: 3px; }
+  #after .badges { display: flex; gap: 8px; align-items: center; }
+  .pill { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .04em; padding: 4px 10px; border-radius: 999px; }
+  .pill.ok { background: #e3f4e7; color: #1e7a34; }
+  .pill.auto { background: #e8eefc; color: #2b57c4; }
+  #after .card { background: #fff; border: 1px solid #e3e7eb; border-radius: 8px; margin-top: 16px; }
+  #after .meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 14px 18px; }
+  #after .meta small { display: block; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: #78909c; }
+  #after .meta b { font-size: 13.5px; }
+  #after table { width: 100%; border-collapse: collapse; }
+  #after th { text-align: left; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: #78909c; padding: 9px 14px; border-bottom: 2px solid #e1e6e9; }
+  #after td { padding: 10px 14px; border-bottom: 1px solid #edf0f2; vertical-align: top; }
+  #after td.n, #after th.n { text-align: right; white-space: nowrap; }
+  #after td .sku { display: block; font-size: 11px; color: #78909c; margin-top: 1px; }
+  #after tr.review td { background: #fff8e5; }
+  #after .rev { display: inline-block; margin-top: 4px; font-size: 10.5px; font-weight: 700; color: #8a6100; background: #ffe9a8; padding: 2px 8px; border-radius: 999px; }
+  #after .sum { display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; }
+  #after .chip { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; padding: 7px 12px; border: 1px solid #d7dde1; border-radius: 6px; color: #455a64; }
+  #after .chip b { color: #c0392b; font-size: 10px; border: 1px solid #c0392b; border-radius: 3px; padding: 0 4px; }
+  #after .tot { text-align: right; font-size: 12px; color: #78909c; }
+  #after .tot strong { display: block; font-size: 22px; color: #1c1f23; }
+</style>
+</head>
+<body>
+
+<!-- ===== BEFORE 1: spreadsheet ===== -->
+<section id="before-excel">
+  <div class="xl-title"><span>PEDIDO LA ESTRELLA oct FINAL (2).xlsx - Excel</span><span>—  □  ✕</span></div>
+  <div class="xl-ribbon"><span>Archivo</span><span>Inicio</span><span>Insertar</span><span>Diseño de página</span><span>Fórmulas</span><span>Datos</span><span>Revisar</span><span>Vista</span></div>
+  <div class="xl-fx"><b>B8</b><span>=SI(C8="","",C8*D8)</span></div>
+  <table>
+    <colgroup><col style="width:34px"><col style="width:96px"><col style="width:300px"><col style="width:74px"><col style="width:94px"><col style="width:104px"><col></colgroup>
+    <thead><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th></tr></thead>
+    <tbody>
+      <tr><td class="rn">1</td><td colspan="3" class="b" style="font-size:16px">SUPERMERCADOS LA ESTRELLA</td><td></td><td></td><td class="it">compras@laestrella...</td></tr>
+      <tr><td class="rn">2</td><td colspan="2" class="b">PEDIDO PROVEEDOR</td><td></td><td></td><td class="r">fecha:</td><td>1/10/26</td></tr>
+      <tr><td class="rn">3</td><td class="it">oc#</td><td>OC-2026-04817</td><td></td><td></td><td class="r">entrega:</td><td class="red">8 OCT!!</td></tr>
+      <tr><td class="rn">4</td><td colspan="6" class="it">* precios segun lista vigente, confirmar descuento 3% con Marta</td></tr>
+      <tr><td class="rn">5</td><td class="gr b">cod</td><td class="gr b">producto</td><td class="gr b">cant</td><td class="gr b">und</td><td class="gr b">precio</td><td class="gr b">total</td></tr>
+      <tr><td class="rn">6</td><td></td><td>GRANOLA ORIGINAL 500gr</td><td class="r">24</td><td>caja</td><td class="r">Q38.5</td><td class="r">924</td></tr>
+      <tr><td class="rn">7</td><td></td><td>miel abeja pura 350 g</td><td class="r">12</td><td>und</td><td class="r">45.00</td><td class="r">540</td></tr>
+      <tr><td class="rn">8</td><td></td><td>Cafe molido trad. 454</td><td class="r">18</td><td>und</td><td class="r">62</td><td class="r">1116.00</td></tr>
+      <tr><td class="rn">9</td><td></td><td>ACEITE COCO ORGANICO 500ml</td><td class="r hl">10</td><td>und</td><td class="r">72.00</td><td class="r">720</td></tr>
+      <tr><td class="rn">10</td><td></td><td>mermelada surtida frutas 250g</td><td class="r">30</td><td>cj</td><td class="r">24</td><td class="r">720</td></tr>
+      <tr><td class="rn">11</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="rn">12</td><td colspan="4" class="it">(los de la hoja 2 son del otro local)</td><td class="r b">TOTAL</td><td class="r b">4020</td></tr>
+    </tbody>
+  </table>
+  <div class="tabs"><span>Hoja1</span><span class="on">OC final (2)</span><span>otro local</span></div>
+</section>
+
+<!-- ===== BEFORE 2: old-school scanned PDF ===== -->
+<section id="before-pdf">
+  <div class="fx-top"><span>ESCANEADO 04-OCT-26 09:12</span><span>scan_0417.pdf</span><span>P. 01 / 01</span></div>
+  <div class="skew">
+    <h3>*** ORDEN DE COMPRA ***</h3>
+    <pre>CLIENTE: SUPERMERCADOS LA ESTRELLA S.A.
+DEPTO COMPRAS            OC NO. 2026-04817
+FECHA 01/10/26           ENTREGA 08/10/26
+
+COD    DESCRIPCION                CANT UM   PRECIO    TOTAL
+-----------------------------------------------------------
+       GRANOLA ORIG 500G            24 CJ    38.50    924.00
+       MIEL ABEJA PURA 350G         12 UN    45.00    540.00
+       CAFE MOL TRAD 454G           18 UN    62.00   1116.00
+       ACEITE COCO ORG 500ML        10 UN    72.00    720.00
+       MERMELADA SURT FRUTAS 250G   30 CJ    24.00    720.00
+-----------------------------------------------------------
+                             TOTAL Q            4020.00
+
+AUTORIZADO: ____________   RECIBIDO: ____________</pre>
+  </div>
+  <div class="circle" style="left:34px;top:318px;width:360px;height:30px"></div>
+  <div class="hand" style="left:420px;top:296px">urgente!</div>
+  <div class="stamp">COPIA</div>
+</section>
+
+<!-- ===== BEFORE 3: WhatsApp ===== -->
+<section id="before-wa">
+  <div class="wa-head"><div class="wa-av">LE</div><div><b>Compras La Estrella</b><small>en línea</small></div></div>
+  <div class="wa-body">
+    <div class="day">HOY</div>
+    <div class="msg">Buenas tardes! Para el pedido de esta semana 🙏<time>3:41 PM</time></div>
+    <div class="msg">24 granola original 500<br>12 miel pura 350<br>18 cafe molido 454<br>10 aceite de coco organico<br>30 mermelada de frutas 250<br>entrega el 8 porfa<time>3:42 PM</time></div>
+    <div class="msg me">Perfecto, lo registramos 👍<time>3:50 PM ✓✓</time></div>
+    <div class="msg"><div class="photo"><div class="sheet">pedido otro local<br>12 granola orig<br>6 miel 350<br>20 cafe molido<br>8 aceite coco 500<br>entrega <u>jueves</u></div></div>y esta tambien, es del otro local<time>3:58 PM</time></div>
+  </div>
+</section>
+
+<!-- ===== AFTER ===== -->
+<section id="after">
+  <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">🔒 erp.suempresa.com/ventas/ordenes-de-venta/SO-63703</div></div>
+  <div class="shell">
+    <aside class="side">
+      <div class="brand"><span></span>Su ERP</div>
+      <nav class="nav">
+        <a>Inicio</a>
+        <a class="open">Ventas</a>
+        <div class="sub"><a>Cotizaciones</a><a class="on">Órdenes de venta</a><a>Facturas</a><a>Clientes</a></div>
+        <a>Compras</a>
+        <a>Inventario</a>
+        <a>Productos</a>
+        <a>Reportes</a>
+        <a>Configuración</a>
+      </nav>
+    </aside>
+    <div class="main">
+      <div class="topbar"><div class="search">Buscar órdenes, clientes, productos…</div><div class="me"></div></div>
+      <div class="doc">
+        <div class="top">
+          <div><div class="crumb">Ventas › Órdenes de venta</div><h2>SO-63703</h2></div>
+          <div class="badges"><span class="pill auto">Creada automáticamente</span><span class="pill ok">Confirmada</span></div>
+        </div>
+        <div class="card">
+          <div class="meta">
+            <div><small>Cliente</small><b>Supermercados La Estrella, S.A.</b></div>
+            <div><small>Referencia / O.C.</small><b>OC-2026-04817</b></div>
+            <div><small>Entrega</small><b>08/10/2026</b></div>
+          </div>
+        </div>
+        <div class="card">
+          <table>
+            <thead><tr><th>Producto</th><th class="n">Cant.</th><th class="n">Tarifa</th><th class="n">Importe</th></tr></thead>
+            <tbody>
+              <tr><td>Granola Original 500g<span class="sku">GRA-500</span></td><td class="n">24</td><td class="n">38.50</td><td class="n">924.00</td></tr>
+              <tr><td>Miel de Abeja Pura 350g<span class="sku">MIE-350</span></td><td class="n">12</td><td class="n">45.00</td><td class="n">540.00</td></tr>
+              <tr><td>Cafe Molido Tradicional 454g<span class="sku">CAF-454</span></td><td class="n">18</td><td class="n">62.00</td><td class="n">1,116.00</td></tr>
+              <tr><td>Aceite de Coco Organico 500ml<span class="sku">ACE-500</span></td><td class="n">10</td><td class="n">72.00</td><td class="n">720.00</td></tr>
+              <tr class="review"><td>Mermelada de Fresa 250g<span class="sku">MER-FRE-250</span><span class="rev">Línea revisada por una persona</span></td><td class="n">30</td><td class="n">24.00</td><td class="n">720.00</td></tr>
+            </tbody>
+          </table>
+          <div class="sum">
+            <span class="chip"><b>PDF</b> OC-2026-04817.pdf adjunto</span>
+            <div class="tot">Total<strong>Q 4,020.00</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
