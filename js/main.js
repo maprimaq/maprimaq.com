@@ -161,6 +161,9 @@ const I18N = {
     'div.eyebrow': 'Nuestros servicios',
     'div.title': 'Soluciones para cada industria',
     'div.lead': 'Cada división de MAPRIMAQ está especializada en brindar tecnología de alto desempeño para distintos sectores industriales.',
+    'div.software.title': 'Software',
+    'div.software.desc': 'Automatización de documentos y procesos con inteligencia artificial, integrada a su ERP.',
+    'div.software.cta': 'Ver más',
     'div.more': 'Ver servicios',
     'div.less': 'Ver menos',
     'div.textiles.title': 'Textiles',
@@ -378,6 +381,9 @@ const I18N = {
     'div.eyebrow': 'Our services',
     'div.title': 'Solutions for every industry',
     'div.lead': 'Each MAPRIMAQ division specializes in delivering high-performance technology for different industrial sectors.',
+    'div.software.title': 'Software',
+    'div.software.desc': 'AI-powered document and process automation, integrated with your ERP.',
+    'div.software.cta': 'Learn more',
     'div.more': 'View services',
     'div.less': 'Show less',
     'div.textiles.title': 'Textiles',
@@ -550,7 +556,7 @@ function setCardLabel(card, open) {
   label.textContent = open ? dict['div.less'] : `${dict['div.more']} (${count})`;
 }
 function syncToggleLabels() {
-  document.querySelectorAll('.division-card').forEach((card) => {
+  document.querySelectorAll('.division-card:not(.division-card-link)').forEach((card) => {
     setCardLabel(card, card.classList.contains('open'));
   });
 }
@@ -584,7 +590,7 @@ function setCardOpen(card, open) {
   setCardLabel(card, open);
 }
 
-document.querySelectorAll('.division-card').forEach((card) => {
+document.querySelectorAll('.division-card:not(.division-card-link)').forEach((card) => {
   // Stagger the list-item rise animation.
   card.querySelectorAll('.division-list li').forEach((li, i) => {
     li.style.animationDelay = `${Math.min(i * 0.03, 0.4)}s`;

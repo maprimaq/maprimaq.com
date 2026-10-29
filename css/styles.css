@@ -600,6 +600,7 @@ h3 { font-size: 0.96rem; }
 }
 .division-card:hover::before, .division-card:focus-visible::before, .division-card.open::before { transform: scaleY(1); }
 .division-card:focus-visible { outline: none; }
+.division-card-link { display: block; color: inherit; text-decoration: none; }
 
 .division-card h3 { grid-area: title; align-self: end; margin: 0; }
 .division-head > p {
